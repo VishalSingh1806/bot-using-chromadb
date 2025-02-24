@@ -1,0 +1,524 @@
+2025-02-15 15:57:31,013 - INFO - Using device: cuda
+2025-02-15 15:57:31,014 - INFO - Use pytorch device_name: cuda
+2025-02-15 15:57:31,015 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-15 15:57:34,125 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-15 15:57:34,215 - INFO - Loading data from C:\Users\visha\Downloads\ValidatedQA (2).csv
+2025-02-15 15:57:34,239 - INFO - Successfully loaded 2997 rows
+2025-02-15 15:57:34,243 - ERROR - Error importing data from CSV: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-02-15 15:57:34,243 - ERROR - Error in import and indexing process: The truth value of a Series is ambiguous. Use a.empty, a.bool(), a.item(), a.any() or a.all().
+2025-02-15 15:58:57,857 - INFO - Using device: cuda
+2025-02-15 15:58:57,859 - INFO - Use pytorch device_name: cuda
+2025-02-15 15:58:57,859 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-15 15:59:00,565 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-15 15:59:00,659 - INFO - Loading data from C:\Users\visha\Downloads\ValidatedQA (2).csv
+2025-02-15 15:59:00,684 - INFO - Successfully loaded 2997 rows
+2025-02-15 15:59:00,690 - INFO - Processed 2997 valid rows after cleaning
+2025-02-15 15:59:00,690 - INFO - Generating embeddings...
+2025-02-15 15:59:03,517 - INFO - Adding data to ChromaDB...
+2025-02-15 15:59:06,402 - INFO - Performing initial clustering...
+2025-02-15 15:59:06,447 - ERROR - Error finding optimal k: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 15:59:06,447 - ERROR - Error in import and indexing process: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:01:59,256 - INFO - Using device: cuda
+2025-02-15 16:01:59,257 - INFO - Use pytorch device_name: cuda
+2025-02-15 16:01:59,257 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-15 16:02:02,372 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-15 16:02:02,471 - INFO - Loading data from C:\Users\visha\Downloads\ValidatedQA (2).csv
+2025-02-15 16:02:02,495 - INFO - Successfully loaded 2997 rows
+2025-02-15 16:02:02,501 - INFO - Processed 2997 valid rows after cleaning
+2025-02-15 16:02:02,502 - INFO - Generating embeddings...
+2025-02-15 16:02:05,333 - INFO - Adding data to ChromaDB...
+2025-02-15 16:02:08,384 - INFO - Performing initial clustering...
+2025-02-15 16:02:08,423 - ERROR - Error in import and indexing process: ufunc 'isnan' not supported for the input types, and the inputs could not be safely coerced to any supported types according to the casting rule ''safe''
+2025-02-15 16:05:14,620 - INFO - Using device: cuda
+2025-02-15 16:05:14,630 - INFO - Use pytorch device_name: cuda
+2025-02-15 16:05:14,630 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-15 16:05:17,236 - INFO - ✅ Embedding model initialized
+2025-02-15 16:05:17,244 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-15 16:05:17,329 - INFO - ✅ ChromaDB collection initialized
+2025-02-15 16:05:17,329 - INFO - ✅ Feedback manager initialized
+2025-02-15 16:05:17,331 - INFO - Loading data from C:\Users\visha\Downloads\ValidatedQA (2).csv
+2025-02-15 16:05:17,355 - INFO - Successfully loaded 2997 rows
+2025-02-15 16:05:17,362 - INFO - Processed 2997 valid rows after cleaning
+2025-02-15 16:05:17,363 - INFO - Generating embeddings...
+2025-02-15 16:05:20,210 - INFO - Adding data to ChromaDB...
+2025-02-15 16:05:23,293 - INFO - Performing initial clustering...
+2025-02-15 16:05:23,340 - INFO - Embeddings shape: ()
+2025-02-15 16:05:23,341 - INFO - Finding optimal k for embeddings shape: ()
+2025-02-15 16:05:23,343 - WARNING - Error for k=2: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,343 - WARNING - Error for k=3: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,344 - WARNING - Error for k=4: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,345 - WARNING - Error for k=5: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,345 - WARNING - Error for k=6: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,346 - WARNING - Error for k=7: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,346 - WARNING - Error for k=8: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,347 - WARNING - Error for k=9: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,347 - WARNING - Error for k=10: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,348 - WARNING - Error for k=11: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,348 - WARNING - Error for k=12: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,349 - WARNING - Error for k=13: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,349 - WARNING - Error for k=14: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,350 - WARNING - Error for k=15: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,350 - INFO - Optimal clusters found: 2
+2025-02-15 16:05:23,350 - ERROR - Clustering error: Expected 2D array, got scalar array instead:
+array=nan.
+Reshape your data either using array.reshape(-1, 1) if your data has a single feature or array.reshape(1, -1) if it contains a single sample.
+2025-02-15 16:05:23,351 - INFO - Proceeding without clustering...
+2025-02-15 16:05:23,363 - INFO - ✅ Data import and indexing completed successfully
+2025-02-15 16:08:18,750 - INFO - Using device: cuda
+2025-02-15 16:08:18,752 - INFO - Use pytorch device_name: cuda
+2025-02-15 16:08:18,753 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-15 16:08:21,373 - INFO - ✅ Embedding model initialized
+2025-02-15 16:08:21,373 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-15 16:08:21,470 - INFO - ✅ ChromaDB collection initialized
+2025-02-15 16:08:21,471 - INFO - ✅ Feedback manager initialized
+2025-02-15 16:08:21,472 - INFO - Loading data from C:\Users\visha\Downloads\ValidatedQA (2).csv
+2025-02-15 16:08:21,495 - INFO - Successfully loaded 2997 rows
+2025-02-15 16:08:21,503 - INFO - Processed 2997 valid rows after cleaning
+2025-02-15 16:08:21,503 - INFO - Generating embeddings...
+2025-02-15 16:08:24,343 - INFO - Adding data to ChromaDB...
+2025-02-15 16:08:27,486 - INFO - Performing initial clustering...
+2025-02-15 16:08:27,513 - INFO - Original embeddings shape: (2997, 384)
+2025-02-15 16:08:27,514 - INFO - Finding optimal k for embeddings shape: (2997, 384)
+2025-02-15 16:08:28,155 - INFO - k=2, silhouette score=0.0753
+2025-02-15 16:08:28,584 - INFO - k=3, silhouette score=0.0756
+2025-02-15 16:08:29,054 - INFO - k=4, silhouette score=0.0797
+2025-02-15 16:08:29,601 - INFO - k=5, silhouette score=0.0584
+2025-02-15 16:08:30,123 - INFO - k=6, silhouette score=0.0641
+2025-02-15 16:08:30,686 - INFO - k=7, silhouette score=0.0558
+2025-02-15 16:08:31,321 - INFO - k=8, silhouette score=0.0593
+2025-02-15 16:08:31,976 - INFO - k=9, silhouette score=0.0649
+2025-02-15 16:08:32,712 - INFO - k=10, silhouette score=0.0652
+2025-02-15 16:08:33,506 - INFO - k=11, silhouette score=0.0673
+2025-02-15 16:08:34,334 - INFO - k=12, silhouette score=0.0517
+2025-02-15 16:08:35,271 - INFO - k=13, silhouette score=0.0538
+2025-02-15 16:08:36,541 - INFO - k=14, silhouette score=0.0555
+2025-02-15 16:08:37,432 - INFO - k=15, silhouette score=0.0675
+2025-02-15 16:08:37,433 - INFO - Optimal clusters found: 4
+2025-02-15 16:08:37,849 - INFO - Updating cluster information...
+2025-02-15 16:08:47,118 - INFO - Successfully imported and indexed 2997 items with 4 clusters
+2025-02-15 16:08:47,126 - INFO - ✅ Data import and indexing completed successfully
+2025-02-15 16:15:44,689 - INFO - Using device: cuda
+2025-02-15 16:15:44,689 - INFO - Use pytorch device_name: cuda
+2025-02-15 16:15:44,689 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-15 16:15:47,620 - INFO - ✅ Embedding model initialized
+2025-02-15 16:15:47,628 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-15 16:15:47,703 - INFO - ✅ ChromaDB collection initialized
+2025-02-15 16:15:47,704 - INFO - ✅ Feedback manager initialized
+2025-02-15 16:17:17,277 - INFO - Using device: cuda
+2025-02-15 16:17:17,279 - INFO - Use pytorch device_name: cuda
+2025-02-15 16:17:17,279 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-15 16:17:19,797 - INFO - ✅ Embedding model initialized
+2025-02-15 16:17:19,805 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-15 16:17:19,884 - INFO - ✅ ChromaDB collection initialized
+2025-02-15 16:17:19,885 - INFO - ✅ Feedback manager initialized
+2025-02-15 16:25:58,604 - INFO - Using device: cuda
+2025-02-15 16:25:58,607 - INFO - Use pytorch device_name: cuda
+2025-02-15 16:25:58,607 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-15 16:26:01,088 - INFO - ✅ Embedding model initialized
+2025-02-15 16:26:01,097 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-15 16:26:01,172 - INFO - ✅ ChromaDB collection initialized
+2025-02-15 16:26:01,172 - INFO - ✅ Feedback manager initialized
+2025-02-15 16:28:48,185 - INFO - Using device: cuda
+2025-02-15 16:28:48,190 - INFO - Use pytorch device_name: cuda
+2025-02-15 16:28:48,190 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-15 16:28:51,077 - INFO - ✅ Embedding model initialized
+2025-02-15 16:28:51,084 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-15 16:28:51,157 - INFO - ✅ ChromaDB collection initialized
+2025-02-15 16:28:51,157 - INFO - ✅ Feedback manager initialized
+2025-02-17 22:45:50,876 - INFO - Using device: cuda
+2025-02-17 22:45:50,881 - INFO - Use pytorch device_name: cuda
+2025-02-17 22:45:50,881 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-17 22:46:01,826 - INFO - ✅ Embedding model initialized
+2025-02-17 22:46:02,085 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-17 22:46:03,597 - INFO - ✅ ChromaDB collection initialized
+2025-02-17 22:46:03,597 - INFO - ✅ Feedback manager initialized
+2025-02-21 12:58:37,720 - INFO - Using device: cuda
+2025-02-21 12:58:37,722 - INFO - Use pytorch device_name: cuda
+2025-02-21 12:58:37,722 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-21 12:58:44,586 - INFO - ✅ Embedding model initialized
+2025-02-21 12:58:44,692 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-21 12:58:45,990 - INFO - ✅ ChromaDB collection initialized
+2025-02-21 12:58:45,991 - INFO - ✅ Feedback manager initialized
+2025-02-21 13:17:25,009 - INFO - Using device: cuda
+2025-02-21 13:17:25,011 - INFO - Use pytorch device_name: cuda
+2025-02-21 13:17:25,011 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-21 13:17:27,506 - INFO - ✅ Embedding model initialized
+2025-02-21 13:17:27,509 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-21 13:17:27,592 - INFO - ✅ ChromaDB collection initialized
+2025-02-21 13:17:27,592 - INFO - ✅ Feedback manager initialized
+2025-02-21 13:27:26,758 - INFO - Using device: cuda
+2025-02-21 13:27:26,760 - INFO - Use pytorch device_name: cuda
+2025-02-21 13:27:26,760 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-21 13:27:29,236 - INFO - ✅ Embedding model initialized
+2025-02-21 13:27:29,244 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-21 13:27:29,323 - INFO - ✅ ChromaDB collection initialized
+2025-02-21 13:27:29,323 - INFO - ✅ Feedback manager initialized
+2025-02-21 13:31:30,782 - INFO - Using device: cuda
+2025-02-21 13:31:30,784 - INFO - Use pytorch device_name: cuda
+2025-02-21 13:31:30,784 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-21 13:31:33,330 - INFO - ✅ Embedding model initialized
+2025-02-21 13:31:33,338 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-21 13:31:33,417 - INFO - ✅ ChromaDB collection initialized
+2025-02-21 13:31:33,418 - INFO - ✅ Feedback manager initialized
+2025-02-21 13:38:01,209 - INFO - Using device: cuda
+2025-02-21 13:38:01,212 - INFO - Use pytorch device_name: cuda
+2025-02-21 13:38:01,212 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-21 13:38:03,662 - INFO - ✅ Embedding model initialized
+2025-02-21 13:38:03,670 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-21 13:38:03,748 - INFO - ✅ ChromaDB collection initialized
+2025-02-21 13:38:03,748 - INFO - ✅ Feedback manager initialized
+2025-02-21 13:38:43,205 - INFO - 📥 Received query: what is epr
+2025-02-21 13:38:43,393 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-21 13:38:43,419 - INFO - 📤 Returning Answer: Hello! How can I assist you today?
+2025-02-21 13:38:47,277 - INFO - 📥 Received query: what is epr
+2025-02-21 13:38:47,304 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-21 13:38:47,307 - INFO - 📤 Returning Answer: Hello! How can I assist you today?
+2025-02-21 13:39:08,565 - INFO - 📥 Received query: can you explain epr to me?
+2025-02-21 13:39:08,586 - INFO - 🔎 Generated Embedding: [-0.06328696012496948, 0.0043565877713263035, -0.014270776882767677, -0.06912528723478317, 0.08961377292871475]...
+2025-02-21 13:39:08,594 - INFO - 📤 Returning Answer: Hello! How can I assist you today?
+2025-02-21 13:45:35,644 - INFO - Using device: cuda
+2025-02-21 13:45:35,646 - INFO - Use pytorch device_name: cuda
+2025-02-21 13:45:35,646 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-21 13:45:39,422 - INFO - ✅ Embedding model initialized
+2025-02-21 13:45:39,430 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-21 13:45:39,508 - INFO - ✅ ChromaDB collection initialized
+2025-02-21 13:45:39,509 - INFO - ✅ Feedback manager initialized
+2025-02-24 11:38:20,072 - INFO - Using device: cuda
+2025-02-24 11:38:20,075 - INFO - Use pytorch device_name: cuda
+2025-02-24 11:38:20,075 - INFO - Use pytorch device_name: cuda
+2025-02-24 11:38:20,076 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-24 11:38:20,076 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-24 11:38:26,696 - INFO - ✅ Embedding model initialized
+2025-02-24 11:38:26,704 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-24 11:38:26,716 - INFO - ✅ Embedding model initialized
+2025-02-24 11:38:26,725 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-24 11:38:26,808 - INFO - ✅ ChromaDB collection initialized
+2025-02-24 11:38:26,808 - INFO - ✅ Feedback manager initialized
+2025-02-24 11:38:26,817 - INFO - ✅ ChromaDB collection initialized
+2025-02-24 11:38:26,818 - INFO - ✅ Feedback manager initialized
+2025-02-24 11:38:26,824 - INFO - Loading data from C:\Users\visha\Downloads\DataBase.csv
+2025-02-24 11:38:26,834 - INFO - Successfully loaded 76 rows
+2025-02-24 11:38:26,841 - INFO - Processed 76 valid rows after cleaning
+2025-02-24 11:38:26,841 - INFO - Generating embeddings...
+2025-02-24 11:38:27,053 - INFO - Adding data to ChromaDB...
+2025-02-24 11:38:27,308 - INFO - Performing initial clustering...
+2025-02-24 11:38:27,309 - INFO - Original embeddings shape: (76, 384)
+2025-02-24 11:38:27,309 - INFO - Finding optimal k for embeddings shape: (76, 384)
+2025-02-24 11:38:27,617 - INFO - k=2, silhouette score=0.0817
+2025-02-24 11:38:27,750 - INFO - k=3, silhouette score=0.0830
+2025-02-24 11:38:27,883 - INFO - k=4, silhouette score=0.0856
+2025-02-24 11:38:28,021 - INFO - k=5, silhouette score=0.0967
+2025-02-24 11:38:28,150 - INFO - k=6, silhouette score=0.0941
+2025-02-24 11:38:28,290 - INFO - k=7, silhouette score=0.0952
+2025-02-24 11:38:28,429 - INFO - k=8, silhouette score=0.0880
+2025-02-24 11:38:28,570 - INFO - k=9, silhouette score=0.0861
+2025-02-24 11:38:28,711 - INFO - k=10, silhouette score=0.0912
+2025-02-24 11:38:28,849 - INFO - k=11, silhouette score=0.0815
+2025-02-24 11:38:28,991 - INFO - k=12, silhouette score=0.1013
+2025-02-24 11:38:29,132 - INFO - k=13, silhouette score=0.0890
+2025-02-24 11:38:29,274 - INFO - k=14, silhouette score=0.0757
+2025-02-24 11:38:29,415 - INFO - k=15, silhouette score=0.0897
+2025-02-24 11:38:29,416 - INFO - Optimal clusters found: 12
+2025-02-24 11:38:29,555 - INFO - Updating cluster information...
+2025-02-24 11:38:29,844 - INFO - Successfully imported and indexed 76 items with 12 clusters
+2025-02-24 11:38:29,844 - INFO - ✅ Data import and indexing completed successfully
+2025-02-24 11:40:09,051 - INFO - Using device: cuda
+2025-02-24 11:40:09,053 - INFO - Use pytorch device_name: cuda
+2025-02-24 11:40:09,053 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-24 11:40:11,790 - INFO - ✅ Embedding model initialized
+2025-02-24 11:40:11,798 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-24 11:40:11,882 - INFO - ✅ ChromaDB collection initialized
+2025-02-24 11:40:11,882 - INFO - ✅ Feedback manager initialized
+2025-02-24 11:40:23,158 - INFO - 📥 Received query: what is epr
+2025-02-24 11:40:23,360 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 11:40:23,406 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets.
+2025-02-24 11:41:33,915 - INFO - 📥 Received query: If exports are exempt from EPR obligations, is it still necessary to upload the data?
+2025-02-24 11:41:33,971 - INFO - 🔎 Generated Embedding: [-0.0989750325679779, 0.00452558696269989, -0.03334757313132286, -0.052826568484306335, 0.10363922268152237]...
+2025-02-24 11:41:33,975 - INFO - 📤 Returning Answer: Yes, you need to upload the export data on the portal along with a soft copy of the invoice. This ensures that the quantity can be deducted when calculating the target.
+2025-02-24 11:41:39,716 - INFO - Using device: cuda
+2025-02-24 11:41:39,718 - INFO - Use pytorch device_name: cuda
+2025-02-24 11:41:39,719 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-24 11:41:42,543 - INFO - ✅ Embedding model initialized
+2025-02-24 11:41:42,552 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-24 11:41:42,636 - INFO - ✅ ChromaDB collection initialized
+2025-02-24 11:41:42,637 - INFO - ✅ Feedback manager initialized
+2025-02-24 11:41:43,674 - INFO - 📥 Received query: What is the 40% deviation in EPR?
+2025-02-24 11:41:43,801 - INFO - 🔎 Generated Embedding: [0.07614236325025558, -0.012481607496738434, 0.008056804537773132, -0.017959032207727432, 0.0400749035179615]...
+2025-02-24 11:41:43,845 - INFO - 📤 Returning Answer: Validation is for +/- 40% limit that the portal allows between procurement & sales at category level & total level.
+2025-02-24 11:42:01,738 - INFO - 📥 Received query: What is the Deadline for PIBO Annual Report Filing?
+2025-02-24 11:42:01,774 - INFO - 🔎 Generated Embedding: [-0.025826793164014816, -0.0028849830850958824, -0.057480160146951675, 0.02829071134328842, -0.030477451160550117]...
+2025-02-24 11:42:01,777 - INFO - 📤 Returning Answer: The deadline for annual report filing is 30th June of the next financial year.
+2025-02-24 11:42:14,571 - INFO - 📥 Received query: Do I still need to file the Annual Report if my target is 0 MT?
+2025-02-24 11:42:14,619 - INFO - 🔎 Generated Embedding: [0.013317374512553215, 0.05841614305973053, -0.016115352511405945, 0.02969355136156082, 0.051467083394527435]...
+2025-02-24 11:42:14,622 - INFO - 📤 Returning Answer: Yes, even with a 0 MT target obligation, you are still required to upload the data and submit the annual report for that year.
+2025-02-24 11:42:45,020 - INFO - 📥 Received query: if my target is 0, should i file annual report?
+2025-02-24 11:42:45,052 - INFO - 🔎 Generated Embedding: [0.06113731488585472, 0.0826774537563324, -0.08356335759162903, 0.03261151537299156, 0.061050232499837875]...
+2025-02-24 11:42:45,055 - INFO - 📤 Returning Answer: Yes, even with a 0 MT target obligation, you are still required to upload the data and submit the annual report for that year.
+2025-02-24 12:00:44,457 - INFO - Using device: cuda
+2025-02-24 12:00:44,459 - INFO - Use pytorch device_name: cuda
+2025-02-24 12:00:44,460 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-24 12:00:47,763 - INFO - ✅ Embedding model initialized
+2025-02-24 12:00:47,772 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-24 12:00:47,852 - INFO - ✅ ChromaDB collection initialized
+2025-02-24 12:00:47,853 - INFO - ✅ Feedback manager initialized
+2025-02-24 12:00:52,938 - INFO - 📥 Received query: what is epr
+2025-02-24 12:00:53,063 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:00:53,183 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:01:31,445 - INFO - 📥 Received query: what is epr
+2025-02-24 12:01:31,483 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:01:31,490 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:29:23,578 - INFO - 📥 Received query: What is Extended Producer Responsibility (EPR)?
+2025-02-24 12:29:23,616 - INFO - 🔎 Generated Embedding: [-0.0765346959233284, -0.019027365371584892, -0.004390030633658171, -0.06042494997382164, 0.07882412523031235]...
+2025-02-24 12:29:23,624 - INFO - 📤 Returning Answer: EPR is the responsibility of a producer to ensure the environmentally sound management of a product until the end of its life. with 3 similar questions.
+2025-02-24 12:29:47,856 - INFO - 📥 Received query: What is Extended Producer Responsibility (EPR)?
+2025-02-24 12:29:47,898 - INFO - 🔎 Generated Embedding: [-0.0765346959233284, -0.019027365371584892, -0.004390030633658171, -0.06042494997382164, 0.07882412523031235]...
+2025-02-24 12:29:47,908 - INFO - 📤 Returning Answer: EPR is the responsibility of a producer to ensure the environmentally sound management of a product until the end of its life. with 3 similar questions.
+2025-02-24 12:34:32,900 - INFO - 📥 Received query: what is epr
+2025-02-24 12:34:32,929 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:34:32,937 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:34:42,661 - INFO - 📥 Received query: what is epr
+2025-02-24 12:34:42,708 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:34:42,719 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:36:57,446 - INFO - Using device: cuda
+2025-02-24 12:36:57,450 - INFO - Use pytorch device_name: cuda
+2025-02-24 12:36:57,450 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-24 12:37:03,087 - INFO - ✅ Embedding model initialized
+2025-02-24 12:37:03,182 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-24 12:37:03,572 - INFO - ✅ ChromaDB collection initialized
+2025-02-24 12:37:03,573 - INFO - ✅ Feedback manager initialized
+2025-02-24 12:37:20,357 - INFO - 📥 Received query: what is epr
+2025-02-24 12:37:20,573 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:37:20,627 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:37:25,108 - INFO - 📥 Received query: If exports are exempt from EPR obligations, is it still necessary to upload the data?
+2025-02-24 12:37:25,139 - INFO - 🔎 Generated Embedding: [-0.0989750325679779, 0.00452558696269989, -0.03334757313132286, -0.052826568484306335, 0.10363922268152237]...
+2025-02-24 12:37:25,147 - INFO - 📤 Returning Answer: Yes, you need to upload the export data on the portal along with a soft copy of the invoice. This ensures that the quantity can be deducted when calculating the target. with 3 similar questions.
+2025-02-24 12:37:39,494 - INFO - 📥 Received query: Can I print the EPR application number on our plastic packing since we haven’t received our EPR Certificate?
+2025-02-24 12:37:39,525 - INFO - 🔎 Generated Embedding: [-0.10495095700025558, 0.036801375448703766, -0.02655619941651821, -0.07441283762454987, 0.07013098150491714]...
+2025-02-24 12:37:39,533 - INFO - 📤 Returning Answer: As per the latest amendment the unique number issued under any law for the time being in force, wherein, the provisions of sub-rule (1) are required to be fulfilled before issuance of such a number. Once you get the EPR certificate you can print the registration number given with 3 similar questions.
+2025-02-24 12:38:07,418 - INFO - 📥 Received query: what is epr
+2025-02-24 12:38:07,449 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:38:07,458 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:39:54,762 - INFO - 📥 Received query: what is epr
+2025-02-24 12:39:54,792 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:39:54,801 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:40:10,476 - INFO - 📥 Received query: what is epr
+2025-02-24 12:40:10,507 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:40:10,514 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:42:02,707 - INFO - 📥 Received query: what is epr
+2025-02-24 12:42:02,743 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:42:02,754 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:43:55,713 - INFO - 📥 Received query: what is epr
+2025-02-24 12:43:55,748 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:43:55,755 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:44:25,925 - INFO - 📥 Received query: what is epr
+2025-02-24 12:44:25,959 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:44:25,966 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:44:41,835 - INFO - 📥 Received query: what can you do
+2025-02-24 12:44:41,873 - INFO - 🔎 Generated Embedding: [-0.005416715517640114, 0.0583527535200119, -0.005212812684476376, -0.04464622586965561, -0.0068039484322071075]...
+2025-02-24 12:44:41,881 - INFO - 📤 Returning Answer: EPR is the responsibility of a producer to ensure the environmentally sound management of a product until the end of its life. with 3 similar questions.
+2025-02-24 12:45:13,179 - INFO - 📥 Received query: What is SIMP
+2025-02-24 12:45:13,212 - INFO - 🔎 Generated Embedding: [-0.08232340961694717, 0.05933695659041405, 0.008293735794723034, -0.004714531358331442, 0.0007139580557122827]...
+2025-02-24 12:45:13,217 - INFO - 📤 Returning Answer: S - Seller of Plastic (Raw Material)
+I - Importer (Raw Material)
+M - Manufacturer (Raw Material)
+P - Producers (Small/Micro) with 3 similar questions.
+2025-02-24 12:49:34,723 - INFO - 📥 Received query: what is epr
+2025-02-24 12:49:34,769 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:49:34,779 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:50:15,794 - INFO - 📥 Received query: what is epr
+2025-02-24 12:50:15,838 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:50:15,846 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:52:37,877 - INFO - 📥 Received query: what is epr
+2025-02-24 12:52:37,931 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:52:37,938 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:53:12,147 - INFO - 📥 Received query: what is epr
+2025-02-24 12:53:12,179 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:53:12,188 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:55:03,444 - INFO - 📥 Received query: what is epr
+2025-02-24 12:55:03,487 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:55:03,494 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:55:04,579 - INFO - 📥 Received query: If exports are exempt from EPR obligations, is it still necessary to upload the data?
+2025-02-24 12:55:04,620 - INFO - 🔎 Generated Embedding: [-0.0989750325679779, 0.00452558696269989, -0.03334757313132286, -0.052826568484306335, 0.10363922268152237]...
+2025-02-24 12:55:04,627 - INFO - 📤 Returning Answer: Yes, you need to upload the export data on the portal along with a soft copy of the invoice. This ensures that the quantity can be deducted when calculating the target. with 3 similar questions.
+2025-02-24 12:55:08,371 - INFO - 📥 Received query: What is the 40% deviation in EPR?
+2025-02-24 12:55:08,404 - INFO - 🔎 Generated Embedding: [0.07614236325025558, -0.012481607496738434, 0.008056804537773132, -0.017959032207727432, 0.0400749035179615]...
+2025-02-24 12:55:08,411 - INFO - 📤 Returning Answer: Validation is for +/- 40% limit that the portal allows between procurement & sales at category level & total level. with 3 similar questions.
+2025-02-24 12:55:12,132 - INFO - 📥 Received query: Can I print the EPR application number on our plastic packing since we haven’t received our EPR Certificate?
+2025-02-24 12:55:12,171 - INFO - 🔎 Generated Embedding: [-0.10495095700025558, 0.036801375448703766, -0.02655619941651821, -0.07441283762454987, 0.07013098150491714]...
+2025-02-24 12:55:12,178 - INFO - 📤 Returning Answer: As per the latest amendment the unique number issued under any law for the time being in force, wherein, the provisions of sub-rule (1) are required to be fulfilled before issuance of such a number. Once you get the EPR certificate you can print the registration number given with 3 similar questions.
+2025-02-24 12:55:58,155 - INFO - 📥 Received query: what is epr
+2025-02-24 12:55:58,190 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:55:58,197 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:55:59,620 - INFO - 📥 Received query: If exports are exempt from EPR obligations, is it still necessary to upload the data?
+2025-02-24 12:55:59,675 - INFO - 🔎 Generated Embedding: [-0.0989750325679779, 0.00452558696269989, -0.03334757313132286, -0.052826568484306335, 0.10363922268152237]...
+2025-02-24 12:55:59,683 - INFO - 📤 Returning Answer: Yes, you need to upload the export data on the portal along with a soft copy of the invoice. This ensures that the quantity can be deducted when calculating the target. with 3 similar questions.
+2025-02-24 12:56:56,251 - INFO - 📥 Received query: what is epr
+2025-02-24 12:56:56,282 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:56:56,289 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 12:58:03,739 - INFO - 📥 Received query: what can you do
+2025-02-24 12:58:03,780 - INFO - 🔎 Generated Embedding: [-0.005416715517640114, 0.0583527535200119, -0.005212812684476376, -0.04464622586965561, -0.0068039484322071075]...
+2025-02-24 12:58:03,791 - INFO - 📤 Returning Answer: EPR is the responsibility of a producer to ensure the environmentally sound management of a product until the end of its life. with 3 similar questions.
+2025-02-24 12:58:36,579 - INFO - 📥 Received query: what is epr
+2025-02-24 12:58:36,609 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 12:58:36,617 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 13:00:14,163 - INFO - 📥 Received query: what is epr
+2025-02-24 13:00:14,194 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 13:00:14,203 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 13:03:30,267 - INFO - 📥 Received query: what is epr
+2025-02-24 13:03:30,304 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 13:03:30,311 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 13:04:06,903 - INFO - 📥 Received query: what is epr
+2025-02-24 13:04:06,938 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 13:04:06,946 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 13:04:34,548 - INFO - 📥 Received query: what is epr
+2025-02-24 13:04:34,592 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 13:04:34,599 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 13:04:47,780 - INFO - 📥 Received query: what is epr
+2025-02-24 13:04:47,822 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 13:04:47,829 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 13:06:46,932 - INFO - 📥 Received query: what is epr
+2025-02-24 13:06:46,968 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 13:06:46,975 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 13:07:02,520 - INFO - 📥 Received query: What is the 40% deviation in EPR?
+2025-02-24 13:07:02,558 - INFO - 🔎 Generated Embedding: [0.07614236325025558, -0.012481607496738434, 0.008056804537773132, -0.017959032207727432, 0.0400749035179615]...
+2025-02-24 13:07:02,566 - INFO - 📤 Returning Answer: Validation is for +/- 40% limit that the portal allows between procurement & sales at category level & total level. with 3 similar questions.
+2025-02-24 13:10:04,571 - INFO - 📥 Received query: what is epr
+2025-02-24 13:10:04,602 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 13:10:04,611 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 13:14:22,723 - INFO - 📥 Received query: what is epr
+2025-02-24 13:14:22,755 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 13:14:22,762 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 13:14:44,581 - INFO - 📥 Received query: what is epr
+2025-02-24 13:14:44,615 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 13:14:44,623 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 13:18:58,651 - INFO - 📥 Received query: what is epr
+2025-02-24 13:18:58,687 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 13:18:58,701 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 13:19:07,029 - INFO - 📥 Received query: What is the 40% deviation in EPR?
+2025-02-24 13:19:07,080 - INFO - 🔎 Generated Embedding: [0.07614236325025558, -0.012481607496738434, 0.008056804537773132, -0.017959032207727432, 0.0400749035179615]...
+2025-02-24 13:19:07,091 - INFO - 📤 Returning Answer: Validation is for +/- 40% limit that the portal allows between procurement & sales at category level & total level. with 3 similar questions.
+2025-02-24 13:19:20,236 - INFO - 📥 Received query: Do EPR credits expire?
+2025-02-24 13:19:20,288 - INFO - 🔎 Generated Embedding: [-0.10956951230764389, -0.03606640547513962, 0.0034361695870757103, -0.08216587454080582, 0.07533223181962967]...
+2025-02-24 13:19:20,300 - INFO - 📤 Returning Answer: Yes, EPR credits have a validity of 3 years with 3 similar questions.
+2025-02-24 15:34:18,774 - INFO - 📥 Received query: what is epr
+2025-02-24 15:34:18,804 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 15:34:18,872 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 15:40:51,375 - INFO - 📥 Received query: what is epr
+2025-02-24 15:40:51,406 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 15:40:51,414 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 15:41:04,078 - INFO - 📥 Received query: what is epr
+2025-02-24 15:41:04,120 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 15:41:04,134 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 15:41:32,271 - INFO - 📥 Received query: what is epr
+2025-02-24 15:41:32,303 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 15:41:32,311 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 15:43:21,271 - INFO - 📥 Received query: what is epr
+2025-02-24 15:43:21,302 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 15:43:21,309 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 15:43:42,711 - INFO - 📥 Received query: what is epr
+2025-02-24 15:43:42,747 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 15:43:42,754 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 15:44:00,574 - INFO - 📥 Received query: what is epr
+2025-02-24 15:44:00,600 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 15:44:00,607 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 15:44:21,359 - INFO - 📥 Received query: what is epr
+2025-02-24 15:44:21,400 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 15:44:21,409 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 15:48:24,759 - INFO - 📥 Received query: what is epr
+2025-02-24 15:48:24,796 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 15:48:24,808 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 15:49:01,423 - INFO - 📥 Received query: If exports are exempt from EPR obligations, is it still necessary to upload the data?
+2025-02-24 15:49:01,447 - INFO - 🔎 Generated Embedding: [-0.0989750325679779, 0.00452558696269989, -0.03334757313132286, -0.052826568484306335, 0.10363922268152237]...
+2025-02-24 15:49:01,456 - INFO - 📤 Returning Answer: Yes, you need to upload the export data on the portal along with a soft copy of the invoice. This ensures that the quantity can be deducted when calculating the target. with 3 similar questions.
+2025-02-24 15:50:02,039 - INFO - 📥 Received query: Can I print the EPR application number on our plastic packing since we haven’t received our EPR Certificate?
+2025-02-24 15:50:02,074 - INFO - 🔎 Generated Embedding: [-0.10495095700025558, 0.036801375448703766, -0.02655619941651821, -0.07441283762454987, 0.07013098150491714]...
+2025-02-24 15:50:02,082 - INFO - 📤 Returning Answer: As per the latest amendment the unique number issued under any law for the time being in force, wherein, the provisions of sub-rule (1) are required to be fulfilled before issuance of such a number. Once you get the EPR certificate you can print the registration number given with 3 similar questions.
+2025-02-24 15:55:20,711 - INFO - 📥 Received query: what is epr
+2025-02-24 15:55:20,761 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 15:55:20,769 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 15:55:27,529 - INFO - 📥 Received query: If exports are exempt from EPR obligations, is it still necessary to upload the data?
+2025-02-24 15:55:27,563 - INFO - 🔎 Generated Embedding: [-0.0989750325679779, 0.00452558696269989, -0.03334757313132286, -0.052826568484306335, 0.10363922268152237]...
+2025-02-24 15:55:27,570 - INFO - 📤 Returning Answer: Yes, you need to upload the export data on the portal along with a soft copy of the invoice. This ensures that the quantity can be deducted when calculating the target. with 3 similar questions.
+2025-02-24 15:55:47,339 - INFO - 📥 Received query: Can I print the EPR application number on our plastic packing since we haven’t received our EPR Certificate?
+2025-02-24 15:55:47,376 - INFO - 🔎 Generated Embedding: [-0.10495095700025558, 0.036801375448703766, -0.02655619941651821, -0.07441283762454987, 0.07013098150491714]...
+2025-02-24 15:55:47,384 - INFO - 📤 Returning Answer: As per the latest amendment the unique number issued under any law for the time being in force, wherein, the provisions of sub-rule (1) are required to be fulfilled before issuance of such a number. Once you get the EPR certificate you can print the registration number given with 3 similar questions.
+2025-02-24 15:58:19,062 - INFO - 📥 Received query: If exports are exempt from EPR obligations, is it still necessary to upload the data?
+2025-02-24 15:58:19,092 - INFO - 🔎 Generated Embedding: [-0.0989750325679779, 0.00452558696269989, -0.03334757313132286, -0.052826568484306335, 0.10363922268152237]...
+2025-02-24 15:58:19,102 - INFO - 📤 Returning Answer: Yes, you need to upload the export data on the portal along with a soft copy of the invoice. This ensures that the quantity can be deducted when calculating the target. with 3 similar questions.
+2025-02-24 16:04:50,352 - INFO - 📥 Received query: what is epr
+2025-02-24 16:04:50,391 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 16:04:50,406 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 16:04:56,032 - INFO - 📥 Received query: If exports are exempt from EPR obligations, is it still necessary to upload the data?
+2025-02-24 16:04:56,077 - INFO - 🔎 Generated Embedding: [-0.0989750325679779, 0.00452558696269989, -0.03334757313132286, -0.052826568484306335, 0.10363922268152237]...
+2025-02-24 16:04:56,087 - INFO - 📤 Returning Answer: Yes, you need to upload the export data on the portal along with a soft copy of the invoice. This ensures that the quantity can be deducted when calculating the target. with 3 similar questions.
+2025-02-24 16:04:56,090 - INFO - 📥 Received query: If exports are exempt from EPR obligations, is it still necessary to upload the data?
+2025-02-24 16:04:56,139 - INFO - 🔎 Generated Embedding: [-0.0989750325679779, 0.00452558696269989, -0.03334757313132286, -0.052826568484306335, 0.10363922268152237]...
+2025-02-24 16:04:56,145 - INFO - 📤 Returning Answer: Yes, you need to upload the export data on the portal along with a soft copy of the invoice. This ensures that the quantity can be deducted when calculating the target. with 3 similar questions.
+2025-02-24 16:05:02,137 - INFO - 📥 Received query: Can I print the EPR application number on our plastic packing since we haven’t received our EPR Certificate?
+2025-02-24 16:05:02,179 - INFO - 🔎 Generated Embedding: [-0.10495095700025558, 0.036801375448703766, -0.02655619941651821, -0.07441283762454987, 0.07013098150491714]...
+2025-02-24 16:05:02,187 - INFO - 📤 Returning Answer: As per the latest amendment the unique number issued under any law for the time being in force, wherein, the provisions of sub-rule (1) are required to be fulfilled before issuance of such a number. Once you get the EPR certificate you can print the registration number given with 3 similar questions.
+2025-02-24 16:05:02,189 - INFO - 📥 Received query: Can I print the EPR application number on our plastic packing since we haven’t received our EPR Certificate?
+2025-02-24 16:05:02,252 - INFO - 🔎 Generated Embedding: [-0.10495095700025558, 0.036801375448703766, -0.02655619941651821, -0.07441283762454987, 0.07013098150491714]...
+2025-02-24 16:05:02,261 - INFO - 📤 Returning Answer: As per the latest amendment the unique number issued under any law for the time being in force, wherein, the provisions of sub-rule (1) are required to be fulfilled before issuance of such a number. Once you get the EPR certificate you can print the registration number given with 3 similar questions.
+2025-02-24 16:05:06,439 - INFO - 📥 Received query: What is the 40% deviation in EPR?
+2025-02-24 16:05:06,475 - INFO - 🔎 Generated Embedding: [0.07614236325025558, -0.012481607496738434, 0.008056804537773132, -0.017959032207727432, 0.0400749035179615]...
+2025-02-24 16:05:06,482 - INFO - 📤 Returning Answer: Validation is for +/- 40% limit that the portal allows between procurement & sales at category level & total level. with 3 similar questions.
+2025-02-24 16:05:06,484 - INFO - 📥 Received query: What is the 40% deviation in EPR?
+2025-02-24 16:05:06,527 - INFO - 🔎 Generated Embedding: [0.07614236325025558, -0.012481607496738434, 0.008056804537773132, -0.017959032207727432, 0.0400749035179615]...
+2025-02-24 16:05:06,534 - INFO - 📤 Returning Answer: Validation is for +/- 40% limit that the portal allows between procurement & sales at category level & total level. with 3 similar questions.
+2025-02-24 16:07:02,102 - INFO - 📥 Received query: what is epr
+2025-02-24 16:07:02,148 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 16:07:02,155 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 16:07:04,215 - INFO - 📥 Received query: If exports are exempt from EPR obligations, is it still necessary to upload the data?
+2025-02-24 16:07:04,254 - INFO - 🔎 Generated Embedding: [-0.0989750325679779, 0.00452558696269989, -0.03334757313132286, -0.052826568484306335, 0.10363922268152237]...
+2025-02-24 16:07:04,261 - INFO - 📤 Returning Answer: Yes, you need to upload the export data on the portal along with a soft copy of the invoice. This ensures that the quantity can be deducted when calculating the target. with 3 similar questions.
+2025-02-24 16:07:08,896 - INFO - 📥 Received query: Can I print the EPR application number on our plastic packing since we haven’t received our EPR Certificate?
+2025-02-24 16:07:08,932 - INFO - 🔎 Generated Embedding: [-0.10495095700025558, 0.036801375448703766, -0.02655619941651821, -0.07441283762454987, 0.07013098150491714]...
+2025-02-24 16:07:08,944 - INFO - 📤 Returning Answer: As per the latest amendment the unique number issued under any law for the time being in force, wherein, the provisions of sub-rule (1) are required to be fulfilled before issuance of such a number. Once you get the EPR certificate you can print the registration number given with 3 similar questions.
+2025-02-24 16:07:49,687 - INFO - 📥 Received query: what is epr
+2025-02-24 16:07:49,716 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-24 16:07:49,724 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-24 16:07:53,128 - INFO - 📥 Received query: If exports are exempt from EPR obligations, is it still necessary to upload the data?
+2025-02-24 16:07:53,170 - INFO - 🔎 Generated Embedding: [-0.0989750325679779, 0.00452558696269989, -0.03334757313132286, -0.052826568484306335, 0.10363922268152237]...
+2025-02-24 16:07:53,176 - INFO - 📤 Returning Answer: Yes, you need to upload the export data on the portal along with a soft copy of the invoice. This ensures that the quantity can be deducted when calculating the target. with 3 similar questions.
+2025-02-24 16:07:56,983 - INFO - 📥 Received query: Do EPR credits expire?
+2025-02-24 16:07:57,017 - INFO - 🔎 Generated Embedding: [-0.10956951230764389, -0.03606640547513962, 0.0034361695870757103, -0.08216587454080582, 0.07533223181962967]...
+2025-02-24 16:07:57,024 - INFO - 📤 Returning Answer: Yes, EPR credits have a validity of 3 years with 3 similar questions.
+2025-02-24 16:08:00,047 - INFO - 📥 Received query: Can I print the EPR application number on our plastic packing since we haven’t received our EPR Certificate?
+2025-02-24 16:08:00,088 - INFO - 🔎 Generated Embedding: [-0.10495095700025558, 0.036801375448703766, -0.02655619941651821, -0.07441283762454987, 0.07013098150491714]...
+2025-02-24 16:08:00,095 - INFO - 📤 Returning Answer: As per the latest amendment the unique number issued under any law for the time being in force, wherein, the provisions of sub-rule (1) are required to be fulfilled before issuance of such a number. Once you get the EPR certificate you can print the registration number given with 3 similar questions.
+2025-02-24 16:08:05,031 - INFO - 📥 Received query: Do EPR credits expire?
+2025-02-24 16:08:05,064 - INFO - 🔎 Generated Embedding: [-0.10956951230764389, -0.03606640547513962, 0.0034361695870757103, -0.08216587454080582, 0.07533223181962967]...
+2025-02-24 16:08:05,070 - INFO - 📤 Returning Answer: Yes, EPR credits have a validity of 3 years with 3 similar questions.
