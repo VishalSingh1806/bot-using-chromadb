@@ -1,0 +1,6 @@
+# Ignore Python cache and virtual environment
+__pycache__/
+venv/
+
+# Ignore ChromaDB database files
+chroma_db/*.sqlite3
