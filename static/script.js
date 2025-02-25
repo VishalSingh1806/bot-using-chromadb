@@ -388,7 +388,11 @@
 
 
 // const BACKEND_CHAT_URL = "http://127.0.0.1:8000/query"; 
+<<<<<<< HEAD
 // const BACKEND_CHAT_URL = "http://34.173.78.39:8000/query"; 
+=======
+// const BACKEND_CHAT_URL = "http://34.173.78.39:8000/query"; 
+>>>>>>> f4d4023230b99582f007b83190d9a5538f916718
 
 const isLocal = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
 const BACKEND_CHAT_URL = isLocal ? "http://127.0.0.1:8000/query" : "http://34.173.78.39:8000/query";
