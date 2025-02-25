@@ -522,3 +522,40 @@ P - Producers (Small/Micro) with 3 similar questions.
 2025-02-24 16:08:05,031 - INFO - 📥 Received query: Do EPR credits expire?
 2025-02-24 16:08:05,064 - INFO - 🔎 Generated Embedding: [-0.10956951230764389, -0.03606640547513962, 0.0034361695870757103, -0.08216587454080582, 0.07533223181962967]...
 2025-02-24 16:08:05,070 - INFO - 📤 Returning Answer: Yes, EPR credits have a validity of 3 years with 3 similar questions.
+2025-02-25 12:37:58,919 - INFO - Using device: cuda
+2025-02-25 12:37:58,921 - INFO - Use pytorch device_name: cuda
+2025-02-25 12:37:58,921 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-25 12:38:04,785 - INFO - ✅ Embedding model initialized
+2025-02-25 12:38:04,890 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-25 12:38:06,207 - INFO - ✅ ChromaDB collection initialized
+2025-02-25 12:38:06,207 - INFO - ✅ Feedback manager initialized
+2025-02-25 12:48:23,217 - INFO - Using device: cuda
+2025-02-25 12:48:23,219 - INFO - Use pytorch device_name: cuda
+2025-02-25 12:48:23,220 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-25 12:48:26,583 - INFO - ✅ Embedding model initialized
+2025-02-25 12:48:26,592 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-25 12:48:26,671 - INFO - ✅ ChromaDB collection initialized
+2025-02-25 12:48:26,672 - INFO - ✅ Feedback manager initialized
+2025-02-25 12:48:44,353 - INFO - 📥 Received query: what is epr
+2025-02-25 12:48:44,736 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-25 12:48:44,746 - WARNING - ⚠ No matching results found in ChromaDB!
+2025-02-25 12:49:44,556 - INFO - Using device: cuda
+2025-02-25 12:49:44,559 - INFO - Use pytorch device_name: cuda
+2025-02-25 12:49:44,559 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-25 12:49:47,567 - INFO - ✅ Embedding model initialized
+2025-02-25 12:49:47,575 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-25 12:49:47,656 - INFO - ✅ ChromaDB collection initialized
+2025-02-25 12:49:47,656 - INFO - ✅ Feedback manager initialized
+2025-02-25 12:49:53,103 - INFO - 📥 Received query: what is epr
+2025-02-25 12:49:53,249 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-25 12:49:53,360 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-25 12:58:32,509 - INFO - Using device: cuda
+2025-02-25 12:58:32,511 - INFO - Use pytorch device_name: cuda
+2025-02-25 12:58:32,511 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-25 12:58:35,459 - INFO - ✅ Embedding model initialized
+2025-02-25 12:58:35,467 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-25 12:58:35,547 - INFO - ✅ ChromaDB collection initialized
+2025-02-25 12:58:35,547 - INFO - ✅ Feedback manager initialized
+2025-02-25 12:58:42,431 - INFO - 📥 Received query: what is epr
+2025-02-25 12:58:42,582 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-25 12:58:42,628 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
