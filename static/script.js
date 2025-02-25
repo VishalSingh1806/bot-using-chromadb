@@ -388,6 +388,7 @@
 
 
 const BACKEND_CHAT_URL = "http://127.0.0.1:8000/query"; 
+// const BACKEND_CHAT_URL = "http://34.173.78.39:8000/query"; 
 
 // ✅ Function to Add Messages to Chat
 function addMessageToChat(message, className) {
