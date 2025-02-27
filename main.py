@@ -9,6 +9,8 @@ import logging
 import asyncio
 import os
 import redis
+import numpy as np
+from sklearn.metrics.pairwise import cosine_similarity
 import json
 import traceback
 from collections import Counter
@@ -26,7 +28,7 @@ load_dotenv()
 # Email batch configuration
 email_batch = []
 batch_size = 1
-SIMILARTY_THRESOLD = 0.8
+SIMILARITY_THRESHOLD = 0.5
 
 # Configure logging
 logging.basicConfig(
@@ -150,110 +152,130 @@ async def read_root():
 @app.post("/query")
 async def query_database(query: Query):
     try:
+        # ✅ Session validation
         if not query.session_id:
             logger.info("No session found. Redirecting to form")
             return JSONResponse(content={
                 "redirect_to": "/collect_user_data",
-                "message": "Please complete the form first!!"})
+                "message": "Please complete the form first!!"
+            })
 
         session_key = f"session:{query.session_id}"
         user_data_collected = redis_client.hget(session_key, "user_data_collected")
 
-        # #Store chat message in Redis
-        # chat_key = f"chat:{query.session_id}"
-        # chat_message = {
-        #     "type": "user",
-        #     "message": query.text,
-        #     "timestamp": datetime.utcnow().isoformat()
-        # }
-
-        # ✅ Ensure session exists and user data is collected
         if not user_data_collected or user_data_collected != "true":
             logger.info("⚠️ User data not collected, redirecting to form")
             return JSONResponse(content={
                 "redirect_to": "/collect_user_data",
-                "message": "Please complete the form first!!"})
+                "message": "Please complete the form first!!"
+            })
 
         logger.info(f"📥 Received query: {query.text}")
 
-        # ✅ Check Cache First
+        # ✅ Check cache
         cache_key = f"query:{query.text}"
         cached_result = redis_client.get(cache_key)
         if cached_result:
             logger.info("✅ Cache hit")
             return json.loads(cached_result)
 
-        # ✅ Generate Query Embedding
+        # ✅ Generate embedding
         query_embedding = embedding_model.encode([query.text])[0].tolist()
 
-        # ✅ Search in ChromaDB
+        # ✅ Retrieve results from ChromaDB
         results = collection.query(
             query_embeddings=[query_embedding],
             n_results=query.n_results,
-            include=["metadatas", "distances"]
+            include=["metadatas", "embeddings"]
         )
 
         if not results['ids'][0]:
             logger.warning("⚠ No results found")
             return {
-                "results": [ {
+                "results": [{
                     "id": None,
                     "answer": "Sorry, I couldn't find an answer to your question."
                 }],
                 "similar_questions": []
             }
 
-        # ✅ Process Results
+        # ✅ Compute Cosine Similarity
+        query_embedding_np = np.array(query_embedding).reshape(1, -1)
+        retrieved_embeddings_np = np.array(results["embeddings"][0])  # Ensure embeddings exist
+
+        cos_similarities = cosine_similarity(query_embedding_np, retrieved_embeddings_np)[0]
+
+        # ✅ Process results with similarity threshold
         processed_results = []
         cluster_counts = Counter()
 
+        logger.info(f"Processing {len(results['ids'][0])} results with similarity threshold: {SIMILARITY_THRESHOLD}")
+
         for i, result_id in enumerate(results['ids'][0]):
-            similarity = 1 - float(results['distances'][0][i])
+            similarity = cos_similarities[i]  # ✅ Use computed cosine similarity
             cluster = results['metadatas'][0][i]['cluster_kmeans']
+            question = results['metadatas'][0][i]['question']
+
+            # ✅ Log similarity for debugging
+            logger.info(f"Result {i+1}: Question: '{question}' - Similarity: {similarity:.4f}")
+
+            if similarity < SIMILARITY_THRESHOLD:
+                logger.warning(f"❌ Skipping result with low similarity: {similarity:.4f}")
+                continue
 
             result_data = {
                 'id': result_id,
-                'question': results['metadatas'][0][i]['question'],
+                'question': question,
                 'answer': results['metadatas'][0][i]['answer'],
                 'cluster': cluster,
                 'similarity': round(similarity, 4),
             }
             processed_results.append(result_data)
-
-            # ✅ Count occurrences of clusters
             cluster_counts[cluster] += 1
 
-        # ✅ Extract **Top 3 Clusters**
-        top_clusters = [cluster for cluster, _ in cluster_counts.most_common(3)]
+        # ✅ Handle no relevant results
+        if not processed_results:
+            logger.warning("No results met the similarity threshold")
+            return {
+                "results": [{
+                    "id": None,
+                    "answer": "I'm not confident I have a relevant answer to your question. Could you please rephrase or ask something else?"
+                }],
+                "similar_questions": []
+            }
 
-        # ✅ Fetch Similar Questions Using Top 3 Clusters
+        # ✅ Sort results by similarity and select best match
+        best_answer = max(processed_results, key=lambda x: x['similarity'])
+        processed_results = [best_answer]
+
+        # ✅ Get similar questions from top clusters
+        top_clusters = [cluster for cluster, _ in cluster_counts.most_common(3)]
         similar_questions = []
+
         if top_clusters:
             try:
                 similar_results = collection.query(
-                    query_embeddings=[query_embedding],  # ✅ Uses embeddings instead of `where`
-                    n_results=10,  # Fetch more results to filter from
+                    query_embeddings=[query_embedding],
+                    n_results=10,
                     include=["metadatas"]
                 )
 
-                # ✅ Filter by top clusters and avoid duplicates
                 seen_questions = set([query.text])
-                # Correct access to metadatas array
-                for metadata in similar_results['metadatas'][0]:  # Note the [0] index
+                for metadata in similar_results['metadatas'][0]:
                     cluster = metadata.get('cluster_kmeans')
                     question = metadata.get('question')
-                    
-                    if (cluster in top_clusters and 
-                        question and 
-                        question not in seen_questions):
+
+                    if (cluster in top_clusters and question and question not in seen_questions):
                         similar_questions.append({"question": question})
                         seen_questions.add(question)
 
-                        if len(similar_questions) >= 3:  # ✅ Limit to top 3 questions
+                        if len(similar_questions) >= 3:  # ✅ Limit to top 3
                             break
-                logger.info(f"✅ Found {len(similar_questions)} similar questions")               
+
+                logger.info(f"✅ Found {len(similar_questions)} similar questions")
+
             except Exception as e:
-                logger.error(f"⚠ Error while fetching similar questions: {str(e)}")
+                logger.error(f"⚠ Error fetching similar questions: {str(e)}")
                 similar_questions = []
 
         # ✅ Prepare Response
@@ -263,22 +285,14 @@ async def query_database(query: Query):
             'similar_questions': similar_questions
         }
 
-        #Store bot response in Redis
-        if len(processed_results)>0:
-            bot_message = {
-                "type": "bot",
-                "message": processed_results[0]['answer'],
-                "timestamp": datetime.utcnow().isoformat()
-            }
-
-        # ✅ Cache Response
-        redis_client.setex(cache_key, 60, json.dumps(response_data))
+        # ✅ Cache the response
+        redis_client.setex(cache_key, 120, json.dumps(response_data))  # Cache for 2 minutes
 
         return response_data
 
     except Exception as e:
-        traceback.print_exc()  # ✅ Print full error traceback
         logger.error(f"❌ Query error: {str(e)}")
+        logger.error(traceback.format_exc())  # Log full traceback
         raise HTTPException(
             status_code=500,
             detail=f"An error occurred: {str(e)}"
