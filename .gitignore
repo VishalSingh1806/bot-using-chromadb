@@ -5,3 +5,4 @@ venv/
 # Ignore ChromaDB database files
 chroma_db/*.sqlite3
 app.log
+app.log
