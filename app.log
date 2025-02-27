@@ -559,3 +559,1147 @@ P - Producers (Small/Micro) with 3 similar questions.
 2025-02-25 12:58:42,431 - INFO - 📥 Received query: what is epr
 2025-02-25 12:58:42,582 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
 2025-02-25 12:58:42,628 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-25 13:40:47,561 - INFO - Using device: cuda
+2025-02-25 13:40:47,564 - INFO - Use pytorch device_name: cuda
+2025-02-25 13:40:47,564 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-25 13:40:47,600 - INFO - Using device: cuda
+2025-02-25 13:40:47,603 - INFO - Use pytorch device_name: cuda
+2025-02-25 13:40:47,603 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-25 13:40:52,548 - INFO - ✅ Embedding model initialized
+2025-02-25 13:40:52,629 - INFO - ✅ Embedding model initialized
+2025-02-25 13:40:52,678 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-25 13:40:52,678 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-25 13:40:53,569 - INFO - ✅ ChromaDB collection initialized
+2025-02-25 13:40:53,569 - INFO - ✅ Feedback manager initialized
+2025-02-25 13:40:53,572 - INFO - ✅ Feedback manager initialized
+2025-02-25 13:41:03,698 - INFO - 📥 Received query: what is epr
+2025-02-25 13:41:04,010 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-25 13:41:04,159 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-25 23:28:49,316 - INFO - Using device: cuda
+2025-02-25 23:28:49,318 - INFO - Use pytorch device_name: cuda
+2025-02-25 23:28:49,318 - INFO - Use pytorch device_name: cuda
+2025-02-25 23:28:49,319 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-25 23:28:49,319 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-25 23:28:53,856 - INFO - ✅ Embedding model initialized
+2025-02-25 23:28:53,861 - INFO - ✅ Embedding model initialized
+2025-02-25 23:28:53,971 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-25 23:28:54,482 - INFO - ✅ ChromaDB collection initialized
+2025-02-25 23:28:54,482 - INFO - ✅ ChromaDB collection initialized
+2025-02-25 23:28:54,483 - INFO - ✅ Feedback manager initialized
+2025-02-25 23:28:54,483 - INFO - ✅ Feedback manager initialized
+2025-02-25 23:29:13,074 - INFO - 📥 Received query: what is epr
+2025-02-25 23:29:13,311 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-25 23:29:13,482 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-25 23:32:54,332 - INFO - 📥 Received query: what is epr
+2025-02-25 23:32:54,358 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-25 23:32:54,372 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-25 23:32:56,160 - INFO - 📥 Received query: If exports are exempt from EPR obligations, is it still necessary to upload the data?
+2025-02-25 23:32:56,200 - INFO - 🔎 Generated Embedding: [-0.0989750325679779, 0.00452558696269989, -0.03334757313132286, -0.052826568484306335, 0.10363922268152237]...
+2025-02-25 23:32:56,212 - INFO - 📤 Returning Answer: Yes, you need to upload the export data on the portal along with a soft copy of the invoice. This ensures that the quantity can be deducted when calculating the target. with 3 similar questions.
+2025-02-26 10:38:28,623 - INFO - Using device: cuda
+2025-02-26 10:38:28,627 - INFO - Use pytorch device_name: cuda
+2025-02-26 10:38:28,627 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 10:38:34,982 - INFO - ✅ Embedding model initialized
+2025-02-26 10:38:35,099 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 10:38:35,710 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 10:38:35,710 - INFO - ✅ Feedback manager initialized
+2025-02-26 10:40:28,752 - INFO - 📥 Received query: what is epr
+2025-02-26 10:40:29,121 - INFO - 🔎 Generated Embedding: [-0.08253029733896255, 0.006841694936156273, -0.029968051239848137, -0.09000393003225327, 0.09274453669786453]...
+2025-02-26 10:40:29,294 - INFO - 📤 Returning Answer: EPR Certificates represent the quantity of plastic waste processed, recycled, or sent for EOL disposal, helping PIBOs meet their EPR targets. with 3 similar questions.
+2025-02-26 10:41:05,285 - INFO - 📥 Received query: Do EPR credits expire?
+2025-02-26 10:41:05,348 - INFO - 🔎 Generated Embedding: [-0.10956951230764389, -0.03606640547513962, 0.0034361695870757103, -0.08216587454080582, 0.07533223181962967]...
+2025-02-26 10:41:05,361 - INFO - 📤 Returning Answer: Yes, EPR credits have a validity of 3 years with 3 similar questions.
+2025-02-26 10:45:51,490 - INFO - Using device: cuda
+2025-02-26 10:45:51,492 - INFO - Use pytorch device_name: cuda
+2025-02-26 10:45:51,493 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 10:45:54,008 - INFO - ✅ Embedding model initialized
+2025-02-26 10:45:54,017 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 10:45:54,098 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 10:45:54,099 - INFO - ✅ Feedback manager initialized
+2025-02-26 10:46:00,640 - INFO - Using device: cuda
+2025-02-26 10:46:00,643 - INFO - Use pytorch device_name: cuda
+2025-02-26 10:46:00,643 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 10:46:04,097 - INFO - ✅ Embedding model initialized
+2025-02-26 10:46:04,105 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 10:46:04,183 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 10:46:04,183 - INFO - ✅ Feedback manager initialized
+2025-02-26 10:51:37,862 - INFO - Using device: cuda
+2025-02-26 10:51:37,864 - INFO - Use pytorch device_name: cuda
+2025-02-26 10:51:37,864 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 10:51:40,370 - INFO - ✅ Embedding model initialized
+2025-02-26 10:51:40,381 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 10:51:40,461 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 10:51:40,461 - INFO - ✅ Feedback manager initialized
+2025-02-26 11:20:40,815 - INFO - Using device: cuda
+2025-02-26 11:20:40,815 - INFO - Use pytorch device_name: cuda
+2025-02-26 11:20:40,815 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 11:20:43,430 - INFO - ✅ Embedding model initialized
+2025-02-26 11:20:43,432 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 11:20:43,515 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 11:20:43,515 - INFO - ✅ Feedback manager initialized
+2025-02-26 11:22:23,284 - INFO - Using device: cuda
+2025-02-26 11:22:23,284 - INFO - Use pytorch device_name: cuda
+2025-02-26 11:22:23,284 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 11:22:25,867 - INFO - ✅ Embedding model initialized
+2025-02-26 11:22:25,884 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 11:22:25,971 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 11:22:25,971 - INFO - ✅ Feedback manager initialized
+2025-02-26 11:24:20,556 - INFO - Using device: cuda
+2025-02-26 11:24:20,558 - INFO - Use pytorch device_name: cuda
+2025-02-26 11:24:20,559 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 11:24:23,875 - INFO - ✅ Embedding model initialized
+2025-02-26 11:24:23,884 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 11:24:23,967 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 11:24:23,968 - INFO - ✅ Feedback manager initialized
+2025-02-26 11:25:51,961 - INFO - Using device: cuda
+2025-02-26 11:25:51,961 - INFO - Use pytorch device_name: cuda
+2025-02-26 11:25:51,961 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 11:25:54,800 - INFO - ✅ Embedding model initialized
+2025-02-26 11:25:54,809 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 11:25:54,890 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 11:25:54,890 - INFO - ✅ Feedback manager initialized
+2025-02-26 11:26:01,216 - INFO - 📥 Received query: what is epr
+2025-02-26 11:26:05,269 - ERROR - ❌ Query error: Error 10061 connecting to localhost:6379. No connection could be made because the target machine actively refused it.
+2025-02-26 11:34:23,642 - INFO - Using device: cuda
+2025-02-26 11:34:23,643 - INFO - Use pytorch device_name: cuda
+2025-02-26 11:34:23,645 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 11:34:26,303 - INFO - ✅ Embedding model initialized
+2025-02-26 11:34:26,312 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 11:34:26,396 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 11:34:26,397 - INFO - ✅ Feedback manager initialized
+2025-02-26 11:34:47,654 - INFO - 📥 Received query: what is epr
+2025-02-26 11:34:51,876 - INFO - 📥 Received query: If exports are exempt from EPR obligations, is it still necessary to upload the data?
+2025-02-26 11:34:55,238 - INFO - 📥 Received query: Can I print the EPR application number on our plastic packing since we haven’t received our EPR Certificate?
+2025-02-26 11:39:33,068 - INFO - Using device: cuda
+2025-02-26 11:39:33,070 - INFO - Use pytorch device_name: cuda
+2025-02-26 11:39:33,070 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 11:39:35,935 - INFO - ✅ Embedding model initialized
+2025-02-26 11:39:35,943 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 11:39:36,033 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 11:39:36,034 - INFO - ✅ Feedback manager initialized
+2025-02-26 11:53:05,088 - ERROR - ❌ Query error: get() takes 2 positional arguments but 3 were given
+2025-02-26 11:54:04,672 - INFO - Using device: cuda
+2025-02-26 11:54:04,674 - INFO - Use pytorch device_name: cuda
+2025-02-26 11:54:04,675 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 11:54:07,643 - INFO - ✅ Embedding model initialized
+2025-02-26 11:54:07,652 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 11:54:07,729 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 11:54:07,729 - INFO - ✅ Feedback manager initialized
+2025-02-26 11:56:25,879 - ERROR - ❌ Query error: get() takes 2 positional arguments but 3 were given
+2025-02-26 11:59:19,173 - INFO - Using device: cuda
+2025-02-26 11:59:19,175 - INFO - Use pytorch device_name: cuda
+2025-02-26 11:59:19,177 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 11:59:21,960 - INFO - ✅ Embedding model initialized
+2025-02-26 11:59:21,969 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 11:59:22,051 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 11:59:22,051 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:00:47,624 - INFO - Using device: cuda
+2025-02-26 12:00:47,627 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:00:47,627 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:00:50,751 - INFO - ✅ Embedding model initialized
+2025-02-26 12:00:50,759 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:00:50,836 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:00:50,836 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:00:58,975 - INFO - Using device: cuda
+2025-02-26 12:00:58,977 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:00:58,977 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:01:02,978 - INFO - ✅ Embedding model initialized
+2025-02-26 12:01:02,984 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:01:03,059 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:01:03,059 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:01:38,366 - INFO - Using device: cuda
+2025-02-26 12:01:38,369 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:01:38,369 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:01:42,369 - INFO - ✅ Embedding model initialized
+2025-02-26 12:01:42,377 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:01:42,457 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:01:42,458 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:01:57,931 - ERROR - ❌ Query error: get() takes 2 positional arguments but 3 were given
+2025-02-26 12:07:00,447 - INFO - Using device: cuda
+2025-02-26 12:07:00,448 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:07:00,448 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:07:03,432 - INFO - ✅ Embedding model initialized
+2025-02-26 12:07:03,442 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:07:03,518 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:07:03,518 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:07:09,615 - ERROR - ❌ Query error: get() takes 2 positional arguments but 3 were given
+2025-02-26 12:11:01,490 - INFO - Using device: cuda
+2025-02-26 12:11:01,493 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:11:01,493 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:11:04,009 - INFO - ✅ Embedding model initialized
+2025-02-26 12:11:04,019 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:11:04,095 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:11:04,096 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:11:10,744 - ERROR - ❌ Query error: get() takes 2 positional arguments but 3 were given
+2025-02-26 12:12:03,486 - ERROR - ❌ Query error: get() takes 2 positional arguments but 3 were given
+2025-02-26 12:13:59,477 - INFO - Using device: cuda
+2025-02-26 12:13:59,480 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:13:59,480 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:14:02,051 - INFO - ✅ Embedding model initialized
+2025-02-26 12:14:02,059 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:14:02,139 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:14:02,140 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:14:03,418 - ERROR - ❌ Query error: get() takes 2 positional arguments but 3 were given
+2025-02-26 12:14:12,006 - ERROR - ❌ Query error: get() takes 2 positional arguments but 3 were given
+2025-02-26 12:15:37,764 - INFO - Using device: cuda
+2025-02-26 12:15:37,766 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:15:37,766 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:15:40,939 - INFO - ✅ Embedding model initialized
+2025-02-26 12:15:40,948 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:15:41,028 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:15:41,028 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:15:41,833 - ERROR - ❌ Query error: get() takes 2 positional arguments but 3 were given
+2025-02-26 12:17:33,262 - INFO - Using device: cuda
+2025-02-26 12:17:33,265 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:17:33,265 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:17:36,786 - INFO - ✅ Embedding model initialized
+2025-02-26 12:17:36,794 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:17:36,872 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:17:36,872 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:17:39,603 - ERROR - ❌ Query error: get() takes 2 positional arguments but 3 were given
+2025-02-26 12:17:52,239 - ERROR - ❌ Query error: get() takes 2 positional arguments but 3 were given
+2025-02-26 12:20:22,065 - INFO - Using device: cuda
+2025-02-26 12:20:22,068 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:20:22,069 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:20:25,413 - INFO - ✅ Embedding model initialized
+2025-02-26 12:20:25,421 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:20:25,500 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:20:25,501 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:23:16,803 - INFO - Using device: cuda
+2025-02-26 12:23:16,805 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:23:16,806 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:23:20,398 - INFO - ✅ Embedding model initialized
+2025-02-26 12:23:20,406 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:23:20,483 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:23:20,484 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:26:16,076 - INFO - Using device: cuda
+2025-02-26 12:26:16,078 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:26:16,080 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:26:18,963 - INFO - ✅ Embedding model initialized
+2025-02-26 12:26:18,972 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:26:19,052 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:26:19,052 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:26:20,385 - ERROR - ❌ Query error: 'Query' object has no attribute 'session_id'
+2025-02-26 12:26:39,367 - ERROR - ❌ Query error: 'Query' object has no attribute 'session_id'
+2025-02-26 12:28:09,371 - INFO - Using device: cuda
+2025-02-26 12:28:09,373 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:28:09,374 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:28:11,960 - INFO - ✅ Embedding model initialized
+2025-02-26 12:28:11,968 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:28:12,041 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:28:12,041 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:29:29,040 - INFO - 📥 Received query: What is EPR?
+2025-02-26 12:29:29,284 - ERROR - ⚠ Error while fetching similar questions: At least one of one of embeddings, documents, images, uris must be provided in query.
+2025-02-26 12:29:58,866 - INFO - 📥 Received query: What is EPR?
+2025-02-26 12:29:58,866 - INFO - ✅ Cache hit
+2025-02-26 12:35:51,577 - INFO - Using device: cuda
+2025-02-26 12:35:51,580 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:35:51,580 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:35:54,240 - INFO - ✅ Embedding model initialized
+2025-02-26 12:35:54,249 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:35:54,328 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:35:54,328 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:36:01,488 - INFO - 📥 Received query: What is EPR?
+2025-02-26 12:36:01,490 - INFO - ✅ Cache hit
+2025-02-26 12:38:43,833 - INFO - 📥 Received query: What is EPR?
+2025-02-26 12:38:43,834 - INFO - ✅ Cache hit
+2025-02-26 12:41:07,130 - INFO - Using device: cuda
+2025-02-26 12:41:07,132 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:41:07,132 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:41:09,883 - INFO - ✅ Embedding model initialized
+2025-02-26 12:41:09,892 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:41:09,976 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:41:09,976 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:41:16,758 - INFO - 📥 Received query: what is epr
+2025-02-26 12:41:16,963 - ERROR - ⚠ Error while fetching similar questions: At least one of one of embeddings, documents, images, uris must be provided in query.
+2025-02-26 12:53:45,606 - INFO - Using device: cuda
+2025-02-26 12:53:45,608 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:53:45,608 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:53:48,392 - INFO - ✅ Embedding model initialized
+2025-02-26 12:53:48,401 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:53:48,478 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:53:48,479 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:53:53,029 - INFO - 📥 Received query: what is epr
+2025-02-26 12:53:53,030 - INFO - ✅ Cache hit
+2025-02-26 12:59:13,798 - INFO - Using device: cuda
+2025-02-26 12:59:13,801 - INFO - Use pytorch device_name: cuda
+2025-02-26 12:59:13,802 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 12:59:17,384 - INFO - ✅ Embedding model initialized
+2025-02-26 12:59:17,393 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 12:59:17,469 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 12:59:17,469 - INFO - ✅ Feedback manager initialized
+2025-02-26 12:59:24,397 - INFO - 📥 Received query: what is epr
+2025-02-26 12:59:24,398 - INFO - ✅ Cache hit
+2025-02-26 12:59:40,409 - INFO - 📥 Received query: what is epr
+2025-02-26 12:59:40,410 - INFO - ✅ Cache hit
+2025-02-26 13:39:16,968 - INFO - 📥 Received query: what is epr
+2025-02-26 13:39:16,968 - INFO - ✅ Cache hit
+2025-02-26 13:50:45,357 - INFO - Using device: cuda
+2025-02-26 13:50:45,359 - INFO - Use pytorch device_name: cuda
+2025-02-26 13:50:45,359 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 13:50:48,031 - INFO - ✅ Embedding model initialized
+2025-02-26 13:50:48,040 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 13:50:48,122 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 13:50:48,122 - INFO - ✅ Feedback manager initialized
+2025-02-26 13:50:58,194 - INFO - 📥 Received query: what is epr
+2025-02-26 13:50:58,434 - INFO - ✅ Found 3 similar questions
+2025-02-26 13:51:53,074 - INFO - 📥 Received query: What is Extended Producer Responsibility (EPR)?
+2025-02-26 13:51:53,125 - INFO - ✅ Found 3 similar questions
+2025-02-26 13:51:59,424 - INFO - 📥 Received query: What shall be liabilities of producer/importer in case concerned Brand owners are currently not registered on the centralized EPR portal?
+2025-02-26 13:51:59,457 - INFO - ✅ Found 3 similar questions
+2025-02-26 13:52:01,360 - INFO - 📥 Received query: What is the EPR liability associated with a third party manufacturer of products?
+2025-02-26 13:52:01,413 - INFO - ✅ Found 3 similar questions
+2025-02-26 13:52:06,056 - INFO - 📥 Received query: What shall be liabilities of producer/importer in case concerned Brand owners are currently not registered on the centralized EPR portal?
+2025-02-26 13:52:06,057 - INFO - ✅ Cache hit
+2025-02-26 14:10:54,032 - INFO - Using device: cuda
+2025-02-26 14:10:54,035 - INFO - Use pytorch device_name: cuda
+2025-02-26 14:10:54,035 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 14:10:57,903 - INFO - ✅ Embedding model initialized
+2025-02-26 14:10:57,911 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 14:10:57,990 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 14:10:57,990 - INFO - ✅ Feedback manager initialized
+2025-02-26 14:11:05,959 - INFO - 📥 Received query: what is epr
+2025-02-26 14:11:05,960 - INFO - ✅ Cache hit
+2025-02-26 14:11:09,143 - INFO - 📥 Received query: What is Extended Producer Responsibility (EPR)?
+2025-02-26 14:11:09,144 - INFO - ✅ Cache hit
+2025-02-26 14:18:05,092 - INFO - Using device: cuda
+2025-02-26 14:18:05,093 - INFO - Use pytorch device_name: cuda
+2025-02-26 14:18:05,094 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 14:18:09,320 - INFO - ✅ Embedding model initialized
+2025-02-26 14:18:09,321 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 14:18:09,405 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 14:18:09,405 - INFO - ✅ Feedback manager initialized
+2025-02-26 14:18:10,967 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-26 14:21:05,859 - INFO - Using device: cuda
+2025-02-26 14:21:05,861 - INFO - Use pytorch device_name: cuda
+2025-02-26 14:21:05,861 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 14:21:08,422 - INFO - ✅ Embedding model initialized
+2025-02-26 14:21:08,431 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 14:21:08,505 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 14:21:08,506 - INFO - ✅ Feedback manager initialized
+2025-02-26 14:21:10,772 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-26 14:21:28,271 - INFO - 📥 Received query: what is epr
+2025-02-26 14:21:28,271 - INFO - ✅ Cache hit
+2025-02-26 14:21:31,243 - INFO - 📥 Received query: Hello
+2025-02-26 14:21:31,480 - INFO - ✅ Found 3 similar questions
+2025-02-26 14:21:34,039 - INFO - 📥 Received query: what is epr
+2025-02-26 14:21:34,040 - INFO - ✅ Cache hit
+2025-02-26 14:25:12,331 - INFO - Using device: cuda
+2025-02-26 14:25:12,333 - INFO - Use pytorch device_name: cuda
+2025-02-26 14:25:12,333 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 14:25:14,857 - INFO - ✅ Embedding model initialized
+2025-02-26 14:25:14,865 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 14:25:14,942 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 14:25:14,942 - INFO - ✅ Feedback manager initialized
+2025-02-26 14:25:26,337 - INFO - Using device: cuda
+2025-02-26 14:25:26,339 - INFO - Use pytorch device_name: cuda
+2025-02-26 14:25:26,340 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 14:25:29,653 - INFO - ✅ Embedding model initialized
+2025-02-26 14:25:29,662 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 14:25:29,739 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 14:25:29,739 - INFO - ✅ Feedback manager initialized
+2025-02-26 14:25:32,507 - INFO - 📥 Received query: Hello
+2025-02-26 14:25:32,508 - INFO - ✅ Cache hit
+2025-02-26 14:25:46,083 - INFO - 📥 Received query: Hello
+2025-02-26 14:25:46,084 - INFO - ✅ Cache hit
+2025-02-26 14:25:51,831 - INFO - 📥 Received query: Hello
+2025-02-26 14:25:51,833 - INFO - ✅ Cache hit
+2025-02-26 14:26:01,449 - INFO - 📥 Received query: Hello
+2025-02-26 14:26:01,449 - INFO - ✅ Cache hit
+2025-02-26 14:26:01,640 - INFO - 📥 Received query: Hello
+2025-02-26 14:26:01,642 - INFO - ✅ Cache hit
+2025-02-26 14:26:01,894 - INFO - 📥 Received query: Hello
+2025-02-26 14:26:01,895 - INFO - ✅ Cache hit
+2025-02-26 14:26:02,060 - INFO - 📥 Received query: Hello
+2025-02-26 14:26:02,060 - INFO - ✅ Cache hit
+2025-02-26 14:26:03,275 - INFO - 📥 Received query: Hello
+2025-02-26 14:26:03,276 - INFO - ✅ Cache hit
+2025-02-26 14:26:15,294 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-26 14:26:28,455 - ERROR - ❌ Batch email error: [Errno 11001] getaddrinfo failed
+2025-02-26 14:26:28,455 - ERROR - ❌ Failed to send email batch: [Errno 11001] getaddrinfo failed
+2025-02-26 14:28:27,440 - INFO - Using device: cuda
+2025-02-26 14:28:27,442 - INFO - Use pytorch device_name: cuda
+2025-02-26 14:28:27,443 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 14:28:30,908 - INFO - ✅ Embedding model initialized
+2025-02-26 14:28:30,917 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 14:28:30,994 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 14:28:30,994 - INFO - ✅ Feedback manager initialized
+2025-02-26 14:28:31,002 - INFO - SMTP Server: os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+2025-02-26 14:28:31,002 - INFO - SMTP Port: 587
+2025-02-26 14:28:31,002 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-26 14:28:31,002 - INFO - SMTP Password: True
+2025-02-26 14:28:31,002 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-26 14:28:31,002 - INFO - Redis Host: localhost
+2025-02-26 14:28:31,002 - INFO - Redis Port: 6379
+2025-02-26 14:44:31,427 - INFO - Using device: cuda
+2025-02-26 14:51:57,489 - INFO - Using device: cuda
+2025-02-26 14:51:57,491 - INFO - Use pytorch device_name: cuda
+2025-02-26 14:51:57,491 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 14:52:03,936 - INFO - ✅ Embedding model initialized
+2025-02-26 14:52:04,048 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 14:52:04,594 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 14:52:04,594 - INFO - ✅ Feedback manager initialized
+2025-02-26 14:52:04,603 - INFO - SMTP Server: os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+2025-02-26 14:52:04,603 - INFO - SMTP Port: 587
+2025-02-26 14:52:04,603 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-26 14:52:04,603 - INFO - SMTP Password: True
+2025-02-26 14:52:04,604 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-26 14:52:04,604 - INFO - Redis Host: localhost
+2025-02-26 14:52:04,604 - INFO - Redis Port: 6379
+2025-02-26 14:52:11,187 - INFO - 📥 Received query: Hello
+2025-02-26 14:52:11,188 - INFO - ✅ Cache hit
+2025-02-26 14:52:18,883 - INFO - 📥 Received query: Hello
+2025-02-26 14:52:18,885 - INFO - ✅ Cache hit
+2025-02-26 14:52:20,771 - INFO - 📥 Received query: Hello
+2025-02-26 14:52:20,772 - INFO - ✅ Cache hit
+2025-02-26 14:52:21,650 - INFO - 📥 Received query: Hello
+2025-02-26 14:52:21,651 - INFO - ✅ Cache hit
+2025-02-26 14:52:22,221 - INFO - 📥 Received query: Hello
+2025-02-26 14:52:22,222 - INFO - ✅ Cache hit
+2025-02-26 14:52:31,980 - INFO - 📥 Received query: Hello
+2025-02-26 14:52:31,981 - INFO - ✅ Cache hit
+2025-02-26 14:52:32,149 - INFO - 📥 Received query: Hello
+2025-02-26 14:52:32,149 - INFO - ✅ Cache hit
+2025-02-26 14:52:32,289 - INFO - 📥 Received query: Hello
+2025-02-26 14:52:32,290 - INFO - ✅ Cache hit
+2025-02-26 14:52:32,440 - INFO - 📥 Received query: Hello
+2025-02-26 14:52:32,440 - INFO - ✅ Cache hit
+2025-02-26 14:52:35,265 - INFO - 📥 Received query: Hello
+2025-02-26 14:52:35,267 - INFO - ✅ Cache hit
+2025-02-26 14:52:39,649 - INFO - 📥 Received query: what is epr
+2025-02-26 14:52:39,941 - INFO - ✅ Found 3 similar questions
+2025-02-26 14:52:46,212 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-26 14:52:56,158 - ERROR - ❌ Batch email error: [Errno 11001] getaddrinfo failed
+2025-02-26 14:52:56,159 - ERROR - ❌ Failed to send email batch: [Errno 11001] getaddrinfo failed
+2025-02-26 15:10:17,814 - INFO - Using device: cuda
+2025-02-26 15:10:17,815 - INFO - Use pytorch device_name: cuda
+2025-02-26 15:10:17,816 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 15:10:20,285 - INFO - ✅ Embedding model initialized
+2025-02-26 15:10:20,295 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 15:10:20,377 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 15:10:20,378 - INFO - ✅ Feedback manager initialized
+2025-02-26 15:10:20,380 - INFO - SMTP Server: os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+2025-02-26 15:10:20,380 - INFO - SMTP Port: 587
+2025-02-26 15:10:20,380 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-26 15:10:20,380 - INFO - SMTP Password: True
+2025-02-26 15:10:20,380 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-26 15:10:20,380 - INFO - Redis Host: localhost
+2025-02-26 15:10:20,380 - INFO - Redis Port: 6379
+2025-02-26 15:10:28,790 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:28,790 - INFO - ✅ Cache hit
+2025-02-26 15:10:33,694 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:33,695 - INFO - ✅ Cache hit
+2025-02-26 15:10:34,864 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:34,865 - INFO - ✅ Cache hit
+2025-02-26 15:10:35,640 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:35,641 - INFO - ✅ Cache hit
+2025-02-26 15:10:36,880 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:36,881 - INFO - ✅ Cache hit
+2025-02-26 15:10:38,323 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:38,324 - INFO - ✅ Cache hit
+2025-02-26 15:10:39,093 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:39,093 - INFO - ✅ Cache hit
+2025-02-26 15:10:39,367 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:39,368 - INFO - ✅ Cache hit
+2025-02-26 15:10:39,531 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:39,532 - INFO - ✅ Cache hit
+2025-02-26 15:10:39,671 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:39,672 - INFO - ✅ Cache hit
+2025-02-26 15:10:39,787 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:39,788 - INFO - ✅ Cache hit
+2025-02-26 15:10:39,943 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:39,944 - INFO - ✅ Cache hit
+2025-02-26 15:10:40,067 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:40,068 - INFO - ✅ Cache hit
+2025-02-26 15:10:40,170 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:40,171 - INFO - ✅ Cache hit
+2025-02-26 15:10:40,295 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:40,297 - INFO - ✅ Cache hit
+2025-02-26 15:10:40,381 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:40,381 - INFO - ✅ Cache hit
+2025-02-26 15:10:40,510 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:40,511 - INFO - ✅ Cache hit
+2025-02-26 15:10:42,700 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:42,703 - INFO - ✅ Cache hit
+2025-02-26 15:10:43,009 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:43,009 - INFO - ✅ Cache hit
+2025-02-26 15:10:43,208 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:43,209 - INFO - ✅ Cache hit
+2025-02-26 15:10:43,509 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:43,509 - INFO - ✅ Cache hit
+2025-02-26 15:10:43,697 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:43,698 - INFO - ✅ Cache hit
+2025-02-26 15:10:43,860 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:43,861 - INFO - ✅ Cache hit
+2025-02-26 15:10:44,119 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:44,120 - INFO - ✅ Cache hit
+2025-02-26 15:10:45,320 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:45,320 - INFO - ✅ Cache hit
+2025-02-26 15:10:45,518 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:45,518 - INFO - ✅ Cache hit
+2025-02-26 15:10:45,707 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:45,707 - INFO - ✅ Cache hit
+2025-02-26 15:10:45,869 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:45,869 - INFO - ✅ Cache hit
+2025-02-26 15:10:46,076 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:46,077 - INFO - ✅ Cache hit
+2025-02-26 15:10:46,244 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:46,246 - INFO - ✅ Cache hit
+2025-02-26 15:10:46,415 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:46,417 - INFO - ✅ Cache hit
+2025-02-26 15:10:46,773 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:46,774 - INFO - ✅ Cache hit
+2025-02-26 15:10:46,958 - INFO - 📥 Received query: Hello
+2025-02-26 15:10:46,959 - INFO - ✅ Cache hit
+2025-02-26 15:11:03,195 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-26 15:11:11,998 - ERROR - ❌ Batch email error: [Errno 11001] getaddrinfo failed
+2025-02-26 15:11:11,999 - ERROR - ❌ Failed to send email batch: [Errno 11001] getaddrinfo failed
+2025-02-26 15:11:18,683 - INFO - 📥 Received query: what is epr
+2025-02-26 15:11:18,909 - INFO - ✅ Found 3 similar questions
+2025-02-26 15:15:43,223 - INFO - Using device: cuda
+2025-02-26 15:15:43,225 - INFO - Use pytorch device_name: cuda
+2025-02-26 15:15:43,226 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 15:15:45,731 - INFO - ✅ Embedding model initialized
+2025-02-26 15:15:45,739 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 15:15:45,817 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 15:15:45,817 - INFO - ✅ Feedback manager initialized
+2025-02-26 15:15:45,818 - INFO - SMTP Server: os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+2025-02-26 15:15:45,819 - INFO - SMTP Port: 587
+2025-02-26 15:15:45,819 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-26 15:15:45,819 - INFO - SMTP Password: True
+2025-02-26 15:15:45,819 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-26 15:15:45,819 - INFO - Redis Host: localhost
+2025-02-26 15:15:45,819 - INFO - Redis Port: 6379
+2025-02-26 15:15:49,193 - INFO - 📥 Received query: Hello
+2025-02-26 15:15:49,194 - INFO - ✅ Cache hit
+2025-02-26 15:15:50,874 - INFO - 📥 Received query: Hello
+2025-02-26 15:15:50,874 - INFO - ✅ Cache hit
+2025-02-26 15:15:52,509 - INFO - 📥 Received query: Hello
+2025-02-26 15:15:52,510 - INFO - ✅ Cache hit
+2025-02-26 15:15:52,699 - INFO - 📥 Received query: Hello
+2025-02-26 15:15:52,700 - INFO - ✅ Cache hit
+2025-02-26 15:15:53,626 - INFO - 📥 Received query: Hello
+2025-02-26 15:15:53,627 - INFO - ✅ Cache hit
+2025-02-26 15:15:53,813 - INFO - 📥 Received query: Hello
+2025-02-26 15:15:53,814 - INFO - ✅ Cache hit
+2025-02-26 15:15:53,958 - INFO - 📥 Received query: Hello
+2025-02-26 15:15:53,959 - INFO - ✅ Cache hit
+2025-02-26 15:15:54,213 - INFO - 📥 Received query: Hello
+2025-02-26 15:15:54,213 - INFO - ✅ Cache hit
+2025-02-26 15:15:54,353 - INFO - 📥 Received query: Hello
+2025-02-26 15:15:54,354 - INFO - ✅ Cache hit
+2025-02-26 15:15:58,899 - INFO - 📥 Received query: Hello
+2025-02-26 15:15:58,899 - INFO - ✅ Cache hit
+2025-02-26 15:16:03,204 - INFO - 📥 Received query: Hello
+2025-02-26 15:16:03,205 - INFO - ✅ Cache hit
+2025-02-26 15:16:05,612 - INFO - 📥 Received query: Hello
+2025-02-26 15:16:05,612 - INFO - ✅ Cache hit
+2025-02-26 15:16:05,954 - INFO - 📥 Received query: Hello
+2025-02-26 15:16:05,954 - INFO - ✅ Cache hit
+2025-02-26 15:16:06,135 - INFO - 📥 Received query: Hello
+2025-02-26 15:16:06,135 - INFO - ✅ Cache hit
+2025-02-26 15:16:06,313 - INFO - 📥 Received query: Hello
+2025-02-26 15:16:06,314 - INFO - ✅ Cache hit
+2025-02-26 15:16:06,488 - INFO - 📥 Received query: Hello
+2025-02-26 15:16:06,488 - INFO - ✅ Cache hit
+2025-02-26 15:16:06,634 - INFO - 📥 Received query: Hello
+2025-02-26 15:16:06,635 - INFO - ✅ Cache hit
+2025-02-26 15:16:12,915 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-26 15:16:28,663 - ERROR - ❌ Batch email error: [Errno 11001] getaddrinfo failed
+2025-02-26 15:16:28,663 - ERROR - ❌ Failed to send email batch: [Errno 11001] getaddrinfo failed
+2025-02-26 15:17:39,779 - INFO - Using device: cuda
+2025-02-26 15:17:39,781 - INFO - Use pytorch device_name: cuda
+2025-02-26 15:17:39,781 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 15:17:42,328 - INFO - ✅ Embedding model initialized
+2025-02-26 15:17:42,337 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 15:17:42,428 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 15:17:42,428 - INFO - ✅ Feedback manager initialized
+2025-02-26 15:17:42,430 - INFO - SMTP Server: os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+2025-02-26 15:17:42,431 - INFO - SMTP Port: 587
+2025-02-26 15:17:42,431 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-26 15:17:42,431 - INFO - SMTP Password: True
+2025-02-26 15:17:42,431 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-26 15:17:42,431 - INFO - Redis Host: localhost
+2025-02-26 15:17:42,431 - INFO - Redis Port: 6379
+2025-02-26 15:17:49,883 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:49,883 - INFO - ✅ Cache hit
+2025-02-26 15:17:53,076 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:53,078 - INFO - ✅ Cache hit
+2025-02-26 15:17:54,400 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:54,400 - INFO - ✅ Cache hit
+2025-02-26 15:17:54,619 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:54,620 - INFO - ✅ Cache hit
+2025-02-26 15:17:54,792 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:54,793 - INFO - ✅ Cache hit
+2025-02-26 15:17:55,001 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:55,002 - INFO - ✅ Cache hit
+2025-02-26 15:17:55,182 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:55,183 - INFO - ✅ Cache hit
+2025-02-26 15:17:55,357 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:55,358 - INFO - ✅ Cache hit
+2025-02-26 15:17:55,532 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:55,533 - INFO - ✅ Cache hit
+2025-02-26 15:17:55,721 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:55,723 - INFO - ✅ Cache hit
+2025-02-26 15:17:55,942 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:55,943 - INFO - ✅ Cache hit
+2025-02-26 15:17:56,132 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:56,133 - INFO - ✅ Cache hit
+2025-02-26 15:17:56,407 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:56,407 - INFO - ✅ Cache hit
+2025-02-26 15:17:56,705 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:56,706 - INFO - ✅ Cache hit
+2025-02-26 15:17:56,945 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:56,946 - INFO - ✅ Cache hit
+2025-02-26 15:17:57,167 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:57,168 - INFO - ✅ Cache hit
+2025-02-26 15:17:57,528 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:57,529 - INFO - ✅ Cache hit
+2025-02-26 15:17:57,751 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:57,751 - INFO - ✅ Cache hit
+2025-02-26 15:17:57,935 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:57,935 - INFO - ✅ Cache hit
+2025-02-26 15:17:58,136 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:58,137 - INFO - ✅ Cache hit
+2025-02-26 15:17:58,324 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:58,324 - INFO - ✅ Cache hit
+2025-02-26 15:17:58,525 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:58,525 - INFO - ✅ Cache hit
+2025-02-26 15:17:58,739 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:58,739 - INFO - ✅ Cache hit
+2025-02-26 15:17:58,934 - INFO - 📥 Received query: Hello
+2025-02-26 15:17:58,934 - INFO - ✅ Cache hit
+2025-02-26 15:18:06,824 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:06,825 - INFO - ✅ Cache hit
+2025-02-26 15:18:09,523 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:09,526 - INFO - ✅ Cache hit
+2025-02-26 15:18:09,722 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:09,723 - INFO - ✅ Cache hit
+2025-02-26 15:18:09,869 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:09,869 - INFO - ✅ Cache hit
+2025-02-26 15:18:10,070 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:10,071 - INFO - ✅ Cache hit
+2025-02-26 15:18:10,270 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:10,271 - INFO - ✅ Cache hit
+2025-02-26 15:18:10,407 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:10,408 - INFO - ✅ Cache hit
+2025-02-26 15:18:10,538 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:10,539 - INFO - ✅ Cache hit
+2025-02-26 15:18:10,670 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:10,671 - INFO - ✅ Cache hit
+2025-02-26 15:18:11,769 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:11,770 - INFO - ✅ Cache hit
+2025-02-26 15:18:11,935 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:11,935 - INFO - ✅ Cache hit
+2025-02-26 15:18:12,126 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:12,128 - INFO - ✅ Cache hit
+2025-02-26 15:18:12,533 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:12,533 - INFO - ✅ Cache hit
+2025-02-26 15:18:12,649 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:12,650 - INFO - ✅ Cache hit
+2025-02-26 15:18:12,831 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:12,832 - INFO - ✅ Cache hit
+2025-02-26 15:18:13,000 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:13,001 - INFO - ✅ Cache hit
+2025-02-26 15:18:13,155 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:13,157 - INFO - ✅ Cache hit
+2025-02-26 15:18:13,400 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:13,402 - INFO - ✅ Cache hit
+2025-02-26 15:18:14,219 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:14,220 - INFO - ✅ Cache hit
+2025-02-26 15:18:14,398 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:14,399 - INFO - ✅ Cache hit
+2025-02-26 15:18:14,562 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:14,563 - INFO - ✅ Cache hit
+2025-02-26 15:18:14,740 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:14,741 - INFO - ✅ Cache hit
+2025-02-26 15:18:14,875 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:14,876 - INFO - ✅ Cache hit
+2025-02-26 15:18:15,074 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:15,075 - INFO - ✅ Cache hit
+2025-02-26 15:18:35,119 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:35,119 - INFO - ✅ Cache hit
+2025-02-26 15:18:35,302 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:35,303 - INFO - ✅ Cache hit
+2025-02-26 15:18:35,965 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:35,966 - INFO - ✅ Cache hit
+2025-02-26 15:18:36,149 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:36,149 - INFO - ✅ Cache hit
+2025-02-26 15:18:36,743 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:36,745 - INFO - ✅ Cache hit
+2025-02-26 15:18:36,959 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:36,963 - INFO - ✅ Cache hit
+2025-02-26 15:18:37,533 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:37,534 - INFO - ✅ Cache hit
+2025-02-26 15:18:37,792 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:37,793 - INFO - ✅ Cache hit
+2025-02-26 15:18:38,320 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:38,322 - INFO - ✅ Cache hit
+2025-02-26 15:18:38,584 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:38,584 - INFO - ✅ Cache hit
+2025-02-26 15:18:39,123 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:39,124 - INFO - ✅ Cache hit
+2025-02-26 15:18:39,374 - INFO - 📥 Received query: Hello
+2025-02-26 15:18:39,375 - INFO - ✅ Cache hit
+2025-02-26 15:19:37,702 - INFO - 📥 Received query: Hello
+2025-02-26 15:19:37,703 - INFO - ✅ Cache hit
+2025-02-26 15:19:39,543 - INFO - 📥 Received query: Hello
+2025-02-26 15:19:39,544 - INFO - ✅ Cache hit
+2025-02-26 15:20:08,964 - INFO - 📥 Received query: Hello
+2025-02-26 15:20:08,965 - INFO - ✅ Cache hit
+2025-02-26 15:20:09,107 - INFO - 📥 Received query: Hello
+2025-02-26 15:20:09,111 - INFO - ✅ Cache hit
+2025-02-26 15:20:09,487 - INFO - 📥 Received query: Hello
+2025-02-26 15:20:09,487 - INFO - ✅ Cache hit
+2025-02-26 15:20:09,644 - INFO - 📥 Received query: Hello
+2025-02-26 15:20:09,645 - INFO - ✅ Cache hit
+2025-02-26 15:20:09,791 - INFO - 📥 Received query: Hello
+2025-02-26 15:20:09,792 - INFO - ✅ Cache hit
+2025-02-26 15:21:00,617 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:00,618 - INFO - ✅ Cache hit
+2025-02-26 15:21:01,368 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:01,369 - INFO - ✅ Cache hit
+2025-02-26 15:21:01,514 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:01,515 - INFO - ✅ Cache hit
+2025-02-26 15:21:01,804 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:01,804 - INFO - ✅ Cache hit
+2025-02-26 15:21:01,945 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:01,945 - INFO - ✅ Cache hit
+2025-02-26 15:21:02,164 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:02,165 - INFO - ✅ Cache hit
+2025-02-26 15:21:02,306 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:02,307 - INFO - ✅ Cache hit
+2025-02-26 15:21:03,075 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:03,077 - INFO - ✅ Cache hit
+2025-02-26 15:21:03,255 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:03,256 - INFO - ✅ Cache hit
+2025-02-26 15:21:03,415 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:03,417 - INFO - ✅ Cache hit
+2025-02-26 15:21:03,582 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:03,583 - INFO - ✅ Cache hit
+2025-02-26 15:21:03,742 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:03,744 - INFO - ✅ Cache hit
+2025-02-26 15:21:03,894 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:03,895 - INFO - ✅ Cache hit
+2025-02-26 15:21:14,069 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:14,070 - INFO - ✅ Cache hit
+2025-02-26 15:21:19,532 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:19,532 - INFO - ✅ Cache hit
+2025-02-26 15:21:19,724 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:19,725 - INFO - ✅ Cache hit
+2025-02-26 15:21:19,861 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:19,862 - INFO - ✅ Cache hit
+2025-02-26 15:21:20,040 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:20,040 - INFO - ✅ Cache hit
+2025-02-26 15:21:20,195 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:20,195 - INFO - ✅ Cache hit
+2025-02-26 15:21:20,305 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:20,305 - INFO - ✅ Cache hit
+2025-02-26 15:21:20,432 - INFO - 📥 Received query: Hello
+2025-02-26 15:21:20,433 - INFO - ✅ Cache hit
+2025-02-26 15:22:50,798 - INFO - 📥 Received query: Hello
+2025-02-26 15:22:51,093 - INFO - ✅ Found 3 similar questions
+2025-02-26 15:22:51,107 - INFO - 📥 Received query: Hello
+2025-02-26 15:22:51,108 - INFO - ✅ Cache hit
+2025-02-26 15:22:51,218 - INFO - 📥 Received query: Hello
+2025-02-26 15:22:51,218 - INFO - ✅ Cache hit
+2025-02-26 15:22:51,322 - INFO - 📥 Received query: Hello
+2025-02-26 15:22:51,323 - INFO - ✅ Cache hit
+2025-02-26 15:22:51,451 - INFO - 📥 Received query: Hello
+2025-02-26 15:22:51,451 - INFO - ✅ Cache hit
+2025-02-26 15:22:51,586 - INFO - 📥 Received query: Hello
+2025-02-26 15:22:51,587 - INFO - ✅ Cache hit
+2025-02-26 15:24:05,377 - INFO - Using device: cuda
+2025-02-26 15:24:05,379 - INFO - Use pytorch device_name: cuda
+2025-02-26 15:24:05,379 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 15:24:08,255 - INFO - ✅ Embedding model initialized
+2025-02-26 15:24:08,263 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 15:24:08,338 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 15:24:08,339 - INFO - ✅ Feedback manager initialized
+2025-02-26 15:24:08,340 - INFO - SMTP Server: os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+2025-02-26 15:24:08,340 - INFO - SMTP Port: 587
+2025-02-26 15:24:08,340 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-26 15:24:08,341 - INFO - SMTP Password: True
+2025-02-26 15:24:08,341 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-26 15:24:08,341 - INFO - Redis Host: localhost
+2025-02-26 15:24:08,341 - INFO - Redis Port: 6379
+2025-02-26 15:24:11,311 - INFO - 📥 Received query: Hello
+2025-02-26 15:24:11,311 - INFO - ✅ Cache hit
+2025-02-26 15:24:12,181 - INFO - 📥 Received query: Hello
+2025-02-26 15:24:12,182 - INFO - ✅ Cache hit
+2025-02-26 15:24:44,852 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-26 15:24:53,071 - INFO - 📧 Connecting to SMTP Server: os.getenv('SMTP_SERVER', 'smtp.gmail.com'):587
+2025-02-26 15:24:53,071 - ERROR - ❌ Network error while connecting to SMTP server: [Errno 11001] getaddrinfo failed
+2025-02-26 15:25:43,745 - INFO - Using device: cuda
+2025-02-26 15:25:43,745 - INFO - Use pytorch device_name: cuda
+2025-02-26 15:25:43,745 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 15:25:46,173 - INFO - ✅ Embedding model initialized
+2025-02-26 15:25:46,180 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 15:25:46,257 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 15:25:46,258 - INFO - ✅ Feedback manager initialized
+2025-02-26 15:25:46,259 - INFO - SMTP Server: os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+2025-02-26 15:25:46,259 - INFO - SMTP Port: 587
+2025-02-26 15:25:46,260 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-26 15:25:46,260 - INFO - SMTP Password: True
+2025-02-26 15:25:46,260 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-26 15:25:46,260 - INFO - Redis Host: localhost
+2025-02-26 15:25:46,260 - INFO - Redis Port: 6379
+2025-02-26 15:26:22,479 - INFO - 📥 Received query: Hello
+2025-02-26 15:26:22,739 - INFO - ✅ Found 3 similar questions
+2025-02-26 15:26:41,172 - INFO - 📥 Received query: Hello
+2025-02-26 15:26:41,173 - INFO - ✅ Cache hit
+2025-02-26 15:26:48,655 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-26 15:26:56,112 - INFO - 📧 Connecting to SMTP Server: os.getenv('SMTP_SERVER', 'smtp.gmail.com'):587
+2025-02-26 15:26:56,112 - ERROR - ❌ Network error while connecting to SMTP server: [Errno 11001] getaddrinfo failed
+2025-02-26 16:09:47,741 - INFO - 📥 Received query: What is EPR?
+2025-02-26 16:10:03,914 - INFO - ✅ Found 3 similar questions
+2025-02-26 16:10:03,940 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:04,003 - INFO - ✅ Found 3 similar questions
+2025-02-26 16:10:09,926 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:09,928 - INFO - ✅ Cache hit
+2025-02-26 16:10:10,151 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:10,152 - INFO - ✅ Cache hit
+2025-02-26 16:10:10,325 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:10,326 - INFO - ✅ Cache hit
+2025-02-26 16:10:10,513 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:10,514 - INFO - ✅ Cache hit
+2025-02-26 16:10:10,679 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:10,680 - INFO - ✅ Cache hit
+2025-02-26 16:10:39,735 - INFO - 📥 Received query: What is EPR?
+2025-02-26 16:10:39,735 - INFO - ✅ Cache hit
+2025-02-26 16:10:47,208 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:47,209 - INFO - ✅ Cache hit
+2025-02-26 16:10:47,856 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:47,857 - INFO - ✅ Cache hit
+2025-02-26 16:10:48,223 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:48,223 - INFO - ✅ Cache hit
+2025-02-26 16:10:48,403 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:48,404 - INFO - ✅ Cache hit
+2025-02-26 16:10:48,568 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:48,569 - INFO - ✅ Cache hit
+2025-02-26 16:10:48,717 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:48,719 - INFO - ✅ Cache hit
+2025-02-26 16:10:48,856 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:48,858 - INFO - ✅ Cache hit
+2025-02-26 16:10:49,000 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:49,001 - INFO - ✅ Cache hit
+2025-02-26 16:10:49,131 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:49,132 - INFO - ✅ Cache hit
+2025-02-26 16:10:49,268 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:49,268 - INFO - ✅ Cache hit
+2025-02-26 16:10:49,406 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:49,407 - INFO - ✅ Cache hit
+2025-02-26 16:10:49,525 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:49,525 - INFO - ✅ Cache hit
+2025-02-26 16:10:49,654 - INFO - 📥 Received query: Hello
+2025-02-26 16:10:49,655 - INFO - ✅ Cache hit
+2025-02-26 16:12:02,318 - INFO - Using device: cuda
+2025-02-26 16:12:02,320 - INFO - Use pytorch device_name: cuda
+2025-02-26 16:12:02,321 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 16:12:05,151 - INFO - ✅ Embedding model initialized
+2025-02-26 16:12:05,161 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 16:12:05,239 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 16:12:05,240 - INFO - ✅ Feedback manager initialized
+2025-02-26 16:12:05,241 - INFO - SMTP Server: smtp.gmail.com
+2025-02-26 16:12:05,241 - INFO - SMTP Port: 587
+2025-02-26 16:12:05,241 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-26 16:12:05,241 - INFO - SMTP Password: True
+2025-02-26 16:12:05,241 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-26 16:12:05,241 - INFO - Redis Host: localhost
+2025-02-26 16:12:05,241 - INFO - Redis Port: 6379
+2025-02-26 16:12:14,888 - INFO - 📥 Received query: Hello
+2025-02-26 16:12:15,122 - INFO - ✅ Found 3 similar questions
+2025-02-26 16:12:15,610 - INFO - 📥 Received query: Hello
+2025-02-26 16:12:15,612 - INFO - ✅ Cache hit
+2025-02-26 16:12:31,901 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-26 16:12:42,776 - INFO - 📧 Connecting to SMTP Server: smtp.gmail.com:587
+2025-02-26 16:12:45,836 - INFO - ✅ Email sent for user: singh.vishal3066@gmail.com
+2025-02-26 16:15:28,366 - INFO - 📥 Received query: Hello
+2025-02-26 16:15:28,412 - INFO - ✅ Found 3 similar questions
+2025-02-26 16:27:31,221 - INFO - Using device: cuda
+2025-02-26 16:27:31,225 - INFO - Use pytorch device_name: cuda
+2025-02-26 16:27:31,225 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 16:27:34,081 - INFO - ✅ Embedding model initialized
+2025-02-26 16:27:34,090 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 16:27:34,166 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 16:27:34,166 - INFO - ✅ Feedback manager initialized
+2025-02-26 16:27:34,168 - INFO - SMTP Server: smtp.gmail.com
+2025-02-26 16:27:34,168 - INFO - SMTP Port: 587
+2025-02-26 16:27:34,168 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-26 16:27:34,169 - INFO - SMTP Password: True
+2025-02-26 16:27:34,169 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-26 16:27:34,169 - INFO - Redis Host: localhost
+2025-02-26 16:27:34,169 - INFO - Redis Port: 6379
+2025-02-26 16:27:38,512 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:38,660 - INFO - ✅ Found 3 similar questions
+2025-02-26 16:27:40,039 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:40,040 - INFO - ✅ Cache hit
+2025-02-26 16:27:40,205 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:40,206 - INFO - ✅ Cache hit
+2025-02-26 16:27:40,348 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:40,350 - INFO - ✅ Cache hit
+2025-02-26 16:27:40,470 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:40,471 - INFO - ✅ Cache hit
+2025-02-26 16:27:40,597 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:40,597 - INFO - ✅ Cache hit
+2025-02-26 16:27:40,717 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:40,717 - INFO - ✅ Cache hit
+2025-02-26 16:27:40,854 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:40,855 - INFO - ✅ Cache hit
+2025-02-26 16:27:40,961 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:40,962 - INFO - ✅ Cache hit
+2025-02-26 16:27:46,824 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:46,825 - INFO - ✅ Cache hit
+2025-02-26 16:27:47,641 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:47,641 - INFO - ✅ Cache hit
+2025-02-26 16:27:47,779 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:47,780 - INFO - ✅ Cache hit
+2025-02-26 16:27:47,945 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:47,945 - INFO - ✅ Cache hit
+2025-02-26 16:27:48,051 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:48,052 - INFO - ✅ Cache hit
+2025-02-26 16:27:48,170 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:48,171 - INFO - ✅ Cache hit
+2025-02-26 16:27:48,286 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:48,287 - INFO - ✅ Cache hit
+2025-02-26 16:27:48,419 - INFO - 📥 Received query: Hello
+2025-02-26 16:27:48,420 - INFO - ✅ Cache hit
+2025-02-26 16:27:52,501 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-26 16:28:00,362 - INFO - 📧 Connecting to SMTP Server: smtp.gmail.com:587
+2025-02-26 16:28:03,392 - INFO - ✅ Email sent for user: singh.vishal3066@gmail.com
+2025-02-26 16:28:11,095 - INFO - 📥 Received query: what is epr
+2025-02-26 16:28:11,136 - INFO - ✅ Found 3 similar questions
+2025-02-26 16:28:12,984 - INFO - 📥 Received query: What is Extended Producer Responsibility (EPR)?
+2025-02-26 16:28:13,023 - INFO - ✅ Found 3 similar questions
+2025-02-26 16:28:15,275 - INFO - 📥 Received query: What is the EPR target for Producers & Importers?
+2025-02-26 16:28:15,311 - INFO - ✅ Found 3 similar questions
+2025-02-26 16:28:17,172 - INFO - 📥 Received query: Hello
+2025-02-26 16:28:17,173 - INFO - ✅ Cache hit
+2025-02-26 16:28:23,073 - INFO - 📥 Received query: Hello
+2025-02-26 16:28:23,074 - INFO - ✅ Cache hit
+2025-02-26 16:28:35,593 - INFO - 📥 Received query: Hello
+2025-02-26 16:28:35,594 - INFO - ✅ Cache hit
+2025-02-26 17:36:05,174 - INFO - Using device: cuda
+2025-02-26 17:36:05,177 - INFO - Use pytorch device_name: cuda
+2025-02-26 17:36:05,177 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 17:36:08,227 - INFO - ✅ Embedding model initialized
+2025-02-26 17:36:08,243 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 17:36:08,339 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 17:36:08,339 - INFO - ✅ Feedback manager initialized
+2025-02-26 17:36:08,341 - INFO - SMTP Server: smtp.gmail.com
+2025-02-26 17:36:08,341 - INFO - SMTP Port: 587
+2025-02-26 17:36:08,341 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-26 17:36:08,341 - INFO - SMTP Password: True
+2025-02-26 17:36:08,342 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-26 17:36:08,342 - INFO - Redis Host: localhost
+2025-02-26 17:36:08,342 - INFO - Redis Port: 6379
+2025-02-26 17:36:15,609 - INFO - 📥 Received query: Hello
+2025-02-26 17:36:15,839 - INFO - ✅ Found 3 similar questions
+2025-02-26 17:36:15,975 - INFO - 📥 Received query: Hello
+2025-02-26 17:36:15,976 - INFO - ✅ Cache hit
+2025-02-26 17:36:16,101 - INFO - 📥 Received query: Hello
+2025-02-26 17:36:16,102 - INFO - ✅ Cache hit
+2025-02-26 17:36:16,214 - INFO - 📥 Received query: Hello
+2025-02-26 17:36:16,215 - INFO - ✅ Cache hit
+2025-02-26 17:36:16,323 - INFO - 📥 Received query: Hello
+2025-02-26 17:36:16,326 - INFO - ✅ Cache hit
+2025-02-26 17:36:16,453 - INFO - 📥 Received query: Hello
+2025-02-26 17:36:16,454 - INFO - ✅ Cache hit
+2025-02-26 17:36:16,573 - INFO - 📥 Received query: Hello
+2025-02-26 17:36:16,573 - INFO - ✅ Cache hit
+2025-02-26 17:36:23,233 - INFO - 📥 Received query: Hello
+2025-02-26 17:36:23,234 - INFO - ✅ Cache hit
+2025-02-26 17:36:47,359 - INFO - 📥 Received query: Hello
+2025-02-26 17:36:47,361 - INFO - ✅ Cache hit
+2025-02-26 17:36:52,311 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-26 17:37:02,277 - INFO - 📧 Connecting to SMTP Server: smtp.gmail.com:587
+2025-02-26 17:37:05,778 - INFO - ✅ Email sent for user: vishal.singh@recircle.in
+2025-02-26 17:37:09,523 - INFO - 📥 Received query: what is epr
+2025-02-26 17:37:09,594 - INFO - ✅ Found 3 similar questions
+2025-02-26 17:37:10,673 - INFO - 📥 Received query: What is Extended Producer Responsibility (EPR)?
+2025-02-26 17:37:10,723 - INFO - ✅ Found 3 similar questions
+2025-02-26 17:37:13,690 - INFO - 📥 Received query: As a small or micro producer, am I required to fulfill my EPR target obligation?
+2025-02-26 17:37:13,753 - INFO - ✅ Found 3 similar questions
+2025-02-26 17:37:27,204 - INFO - 📥 Received query: what can you do
+2025-02-26 17:37:27,263 - INFO - ✅ Found 3 similar questions
+2025-02-26 17:44:25,640 - INFO - Using device: cuda
+2025-02-26 17:44:25,642 - INFO - Use pytorch device_name: cuda
+2025-02-26 17:44:25,644 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-26 17:44:28,265 - INFO - ✅ Embedding model initialized
+2025-02-26 17:44:28,273 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-26 17:44:28,354 - INFO - ✅ ChromaDB collection initialized
+2025-02-26 17:44:28,355 - INFO - ✅ Feedback manager initialized
+2025-02-26 17:44:28,357 - INFO - SMTP Server: smtp.gmail.com
+2025-02-26 17:44:28,357 - INFO - SMTP Port: 587
+2025-02-26 17:44:28,357 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-26 17:44:28,357 - INFO - SMTP Password: True
+2025-02-26 17:44:28,357 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-26 17:44:28,357 - INFO - Redis Host: localhost
+2025-02-26 17:44:28,358 - INFO - Redis Port: 6379
+2025-02-26 17:44:46,346 - INFO - 📥 Received query: what is epr
+2025-02-26 17:44:46,569 - INFO - ✅ Found 3 similar questions
+2025-02-27 10:49:52,213 - INFO - 📥 Received query: Hello
+2025-02-27 10:49:52,482 - INFO - ✅ Found 3 similar questions
+2025-02-27 10:49:52,974 - INFO - 📥 Received query: Hello
+2025-02-27 10:49:52,974 - INFO - ✅ Cache hit
+2025-02-27 10:49:53,516 - INFO - 📥 Received query: Hello
+2025-02-27 10:49:53,516 - INFO - ✅ Cache hit
+2025-02-27 10:49:54,003 - INFO - 📥 Received query: Hello
+2025-02-27 10:49:54,004 - INFO - ✅ Cache hit
+2025-02-27 10:49:54,464 - INFO - 📥 Received query: Hello
+2025-02-27 10:49:54,465 - INFO - ✅ Cache hit
+2025-02-27 10:49:55,998 - INFO - 📥 Received query: Hello
+2025-02-27 10:49:55,999 - INFO - ✅ Cache hit
+2025-02-27 10:49:56,373 - INFO - 📥 Received query: Hello
+2025-02-27 10:49:56,374 - INFO - ✅ Cache hit
+2025-02-27 10:49:56,671 - INFO - 📥 Received query: Hello
+2025-02-27 10:49:56,672 - INFO - ✅ Cache hit
+2025-02-27 10:49:56,945 - INFO - 📥 Received query: Hello
+2025-02-27 10:49:56,946 - INFO - ✅ Cache hit
+2025-02-27 10:49:57,243 - INFO - 📥 Received query: Hello
+2025-02-27 10:49:57,244 - INFO - ✅ Cache hit
+2025-02-27 11:21:24,926 - INFO - Using device: cuda
+2025-02-27 11:21:24,926 - INFO - Use pytorch device_name: cuda
+2025-02-27 11:21:24,926 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-27 11:21:29,713 - INFO - ✅ Embedding model initialized
+2025-02-27 11:21:29,796 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-27 11:21:30,154 - INFO - ✅ ChromaDB collection initialized
+2025-02-27 11:21:30,154 - INFO - ✅ Feedback manager initialized
+2025-02-27 11:21:30,154 - INFO - SMTP Server: smtp.gmail.com
+2025-02-27 11:21:30,154 - INFO - SMTP Port: 587
+2025-02-27 11:21:30,154 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-27 11:21:30,154 - INFO - SMTP Password: True
+2025-02-27 11:21:30,154 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-27 11:21:30,154 - INFO - Redis Host: localhost
+2025-02-27 11:21:30,154 - INFO - Redis Port: 6379
+2025-02-27 11:23:28,437 - INFO - 📥 Received query: what can you do
+2025-02-27 11:23:28,727 - INFO - ✅ Found 3 similar questions
+2025-02-27 11:23:31,886 - INFO - 📥 Received query: What if PIBO has an inhouse recycling unit for their packaging plastic?
+2025-02-27 11:23:31,924 - INFO - ✅ Found 3 similar questions
+2025-02-27 11:23:33,043 - INFO - 📥 Received query: Where can I find more details about plastic packaging categories covered under EPR?
+2025-02-27 11:23:33,087 - INFO - ✅ Found 3 similar questions
+2025-02-27 11:23:33,786 - INFO - 📥 Received query: What is included in Category II of plastic packaging under EPR?
+2025-02-27 11:23:33,836 - INFO - ✅ Found 3 similar questions
+2025-02-27 11:23:34,298 - INFO - 📥 Received query: Where can I find more details about plastic packaging categories covered under EPR?
+2025-02-27 11:23:34,298 - INFO - ✅ Cache hit
+2025-02-27 11:23:34,605 - INFO - 📥 Received query: What is included in Category II of plastic packaging under EPR?
+2025-02-27 11:23:34,619 - INFO - ✅ Cache hit
+2025-02-27 11:23:34,937 - INFO - 📥 Received query: Where can I find more details about plastic packaging categories covered under EPR?
+2025-02-27 11:23:34,937 - INFO - ✅ Cache hit
+2025-02-27 11:23:36,511 - INFO - 📥 Received query: What is included in Category II of plastic packaging under EPR?
+2025-02-27 11:23:36,511 - INFO - ✅ Cache hit
+2025-02-27 11:23:37,857 - INFO - 📥 Received query: Where can I find more details about plastic packaging categories covered under EPR?
+2025-02-27 11:23:37,858 - INFO - ✅ Cache hit
+2025-02-27 11:23:38,975 - INFO - 📥 Received query: What is included in Category II of plastic packaging under EPR?
+2025-02-27 11:23:38,975 - INFO - ✅ Cache hit
+2025-02-27 11:23:40,253 - INFO - 📥 Received query: Where can I find more details about plastic packaging categories covered under EPR?
+2025-02-27 11:23:40,253 - INFO - ✅ Cache hit
+2025-02-27 11:23:41,514 - INFO - 📥 Received query: What is included in Category II of plastic packaging under EPR?
+2025-02-27 11:23:41,514 - INFO - ✅ Cache hit
+2025-02-27 11:23:42,395 - INFO - 📥 Received query: Where can I find more details about plastic packaging categories covered under EPR?
+2025-02-27 11:23:42,395 - INFO - ✅ Cache hit
+2025-02-27 11:26:58,505 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-27 11:27:12,229 - INFO - 📧 Connecting to SMTP Server: smtp.gmail.com:587
+2025-02-27 11:27:16,389 - INFO - ✅ Email sent for user: singh.vishal3066@gmail.com
+2025-02-27 11:27:20,089 - INFO - 📥 Received query: what is epr
+2025-02-27 11:27:20,123 - INFO - ✅ Found 3 similar questions
+2025-02-27 11:27:22,165 - INFO - 📥 Received query: What is the purpose of EPR Certificates?
+2025-02-27 11:27:22,220 - INFO - ✅ Found 3 similar questions
+2025-02-27 11:27:24,638 - INFO - 📥 Received query: Do EPR credits expire?
+2025-02-27 11:27:24,674 - INFO - ✅ Found 3 similar questions
+2025-02-27 11:27:43,579 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-27 11:30:42,511 - INFO - Using device: cuda
+2025-02-27 11:30:42,511 - INFO - Use pytorch device_name: cuda
+2025-02-27 11:30:42,511 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-27 11:30:45,170 - INFO - ✅ Embedding model initialized
+2025-02-27 11:30:45,186 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-27 11:30:45,265 - INFO - ✅ ChromaDB collection initialized
+2025-02-27 11:30:45,265 - INFO - ✅ Feedback manager initialized
+2025-02-27 11:30:45,265 - INFO - SMTP Server: smtp.gmail.com
+2025-02-27 11:30:45,265 - INFO - SMTP Port: 587
+2025-02-27 11:30:45,265 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-27 11:30:45,265 - INFO - SMTP Password: True
+2025-02-27 11:30:45,265 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-27 11:30:45,265 - INFO - Redis Host: localhost
+2025-02-27 11:30:45,265 - INFO - Redis Port: 6379
+2025-02-27 11:31:16,775 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-27 11:31:53,079 - INFO - Using device: cuda
+2025-02-27 11:31:53,081 - INFO - Use pytorch device_name: cuda
+2025-02-27 11:31:53,081 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-27 11:31:56,796 - INFO - ✅ Embedding model initialized
+2025-02-27 11:31:56,818 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-27 11:31:56,891 - INFO - ✅ ChromaDB collection initialized
+2025-02-27 11:31:56,891 - INFO - ✅ Feedback manager initialized
+2025-02-27 11:31:56,891 - INFO - SMTP Server: smtp.gmail.com
+2025-02-27 11:31:56,891 - INFO - SMTP Port: 587
+2025-02-27 11:31:56,891 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-27 11:31:56,891 - INFO - SMTP Password: True
+2025-02-27 11:31:56,891 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-27 11:31:56,891 - INFO - Redis Host: localhost
+2025-02-27 11:31:56,891 - INFO - Redis Port: 6379
+2025-02-27 11:32:34,717 - INFO - 📥 Received query: what is epr
+2025-02-27 11:32:34,950 - INFO - ✅ Found 3 similar questions
+2025-02-27 11:34:08,724 - INFO - Using device: cuda
+2025-02-27 11:34:08,724 - INFO - Use pytorch device_name: cuda
+2025-02-27 11:34:08,724 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-27 11:34:11,216 - INFO - ✅ Embedding model initialized
+2025-02-27 11:34:11,224 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-27 11:34:11,300 - INFO - ✅ ChromaDB collection initialized
+2025-02-27 11:34:11,301 - INFO - ✅ Feedback manager initialized
+2025-02-27 11:34:11,302 - INFO - SMTP Server: smtp.gmail.com
+2025-02-27 11:34:11,303 - INFO - SMTP Port: 587
+2025-02-27 11:34:11,303 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-27 11:34:11,303 - INFO - SMTP Password: True
+2025-02-27 11:34:11,303 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-27 11:34:11,303 - INFO - Redis Host: localhost
+2025-02-27 11:34:11,303 - INFO - Redis Port: 6379
+2025-02-27 11:34:36,948 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-27 11:34:39,797 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-27 11:34:43,314 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-27 11:36:37,832 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-27 11:38:41,801 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-27 12:30:23,649 - INFO - Using device: cuda
+2025-02-27 12:30:23,652 - INFO - Use pytorch device_name: cuda
+2025-02-27 12:30:23,652 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-27 12:30:26,437 - INFO - ✅ Embedding model initialized
+2025-02-27 12:30:26,449 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-27 12:30:26,538 - INFO - ✅ ChromaDB collection initialized
+2025-02-27 12:30:26,539 - INFO - ✅ Feedback manager initialized
+2025-02-27 12:30:26,540 - INFO - SMTP Server: smtp.gmail.com
+2025-02-27 12:30:26,540 - INFO - SMTP Port: 587
+2025-02-27 12:30:26,540 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-27 12:30:26,541 - INFO - SMTP Password: True
+2025-02-27 12:30:26,541 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-27 12:30:26,541 - INFO - Redis Host: localhost
+2025-02-27 12:30:26,541 - INFO - Redis Port: 6379
+2025-02-27 12:30:58,704 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-27 12:33:15,189 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-27 12:33:28,310 - INFO - 📧 Connecting to SMTP Server: smtp.gmail.com:587
+2025-02-27 12:33:31,356 - INFO - ✅ Email sent for user: admin@recircle.in
+2025-02-27 12:35:48,927 - INFO - Using device: cuda
+2025-02-27 12:35:48,929 - INFO - Use pytorch device_name: cuda
+2025-02-27 12:35:48,930 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-02-27 12:35:51,467 - INFO - ✅ Embedding model initialized
+2025-02-27 12:35:51,476 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-02-27 12:35:51,554 - INFO - ✅ ChromaDB collection initialized
+2025-02-27 12:35:51,555 - INFO - ✅ Feedback manager initialized
+2025-02-27 12:35:51,556 - INFO - SMTP Server: smtp.gmail.com
+2025-02-27 12:35:51,556 - INFO - SMTP Port: 587
+2025-02-27 12:35:51,557 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-02-27 12:35:51,557 - INFO - SMTP Password: True
+2025-02-27 12:35:51,557 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-02-27 12:35:51,557 - INFO - Redis Host: localhost
+2025-02-27 12:35:51,557 - INFO - Redis Port: 6379
+2025-02-27 12:36:06,623 - INFO - ⚠️ User data not collected, redirecting to form
+2025-02-27 12:36:20,077 - INFO - 📧 Connecting to SMTP Server: smtp.gmail.com:587
+2025-02-27 12:36:22,935 - INFO - ✅ Email sent for user: vishal.singh@recircle.in
+2025-02-27 12:36:27,279 - INFO - 📥 Received query: what is epr
+2025-02-27 12:36:27,949 - INFO - ✅ Found 3 similar questions
+2025-02-27 12:36:39,164 - INFO - 📥 Received query: What is Extended Producer Responsibility (EPR)?
+2025-02-27 12:36:39,213 - INFO - ✅ Found 3 similar questions
+2025-02-27 12:36:40,898 - INFO - 📥 Received query: What is the EPR target for Producers & Importers?
+2025-02-27 12:36:40,950 - INFO - ✅ Found 3 similar questions
+2025-02-27 12:39:07,247 - INFO - 📥 Received query: what is a dog?
+2025-02-27 12:39:07,296 - INFO - ✅ Found 3 similar questions
+2025-02-27 12:39:24,331 - INFO - 📥 Received query: life
+2025-02-27 12:39:24,389 - INFO - ✅ Found 3 similar questions

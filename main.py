@@ -1,174 +1,78 @@
-# from fastapi import FastAPI, Request, HTTPException, Form, Depends
-# from fastapi.responses import HTMLResponse, JSONResponse
-# from fastapi.staticfiles import StaticFiles
-# from fastapi.templating import Jinja2Templates
-# from pydantic import BaseModel, confloat
-# from sentence_transformers import SentenceTransformer
-# from db_import import collection, embedding_model, feedback_manager
-# from typing import List, Optional
-
-# app = FastAPI()
-
-# # Mount static files and templates
-# app.mount("/static", StaticFiles(directory="static"), name="static")
-# templates = Jinja2Templates(directory="template")
-
-# # Request model for chatbot query
-# class QueryRequest(BaseModel):
-#     user_query: str
-
-# # Request model for feedback submission
-# class FeedbackRequest(BaseModel):
-#     query: str
-#     question_id: str
-#     feedback: str
-#     relevance_score: float  # Changed from confloat to float for simplicity
-
-#     class Config:
-#         json_schema_extra = {
-#             "example": {
-#                 "query": "What is machine learning?",
-#                 "question_id": "q123",
-#                 "feedback": "yes",
-#                 "relevance_score": 0.9
-#             }
-#         }
-
-# ## **2️⃣ Serve the Chatbot UI (HTML)**
-# @app.get("/", response_class=HTMLResponse)
-# async def serve_homepage(request: Request):
-#     return templates.TemplateResponse("index.html", {"request": request})
-
-# ## **3️⃣ Chatbot API Endpoint**
-# @app.post("/query")
-# async def query_chromadb(request: Request):
-#     try:
-#         # Parse and log the incoming request
-#         body = await request.json()
-#         print("Received Request:", body)
-
-#         # Extract user query
-#         user_query = body.get("user_query")
-#         if not user_query:
-#             raise HTTPException(status_code=400, detail="Missing 'user_query' field in request body.")
-
-#         # Convert query to embeddings
-#         query_embedding = embedding_model.encode([user_query]).tolist()
-
-#         # Fetch the best matching answer with metadata and distances
-#         result = collection.query(
-#             query_embeddings=query_embedding, 
-#             n_results=1,
-#             include=["metadatas", "distances", "documents"]
-#         )
-
-#         # Check if any valid result is found
-#         if not result["ids"]:
-#             return JSONResponse(
-#                 content={"answer": "No relevant answer found.", "suggestions": []}, 
-#                 status_code=200
-#             )
-
-#         # Extract best answer and metadata
-#         metadata = result["metadatas"][0][0]
-#         best_answer = metadata.get("answer", "No answer available")
-#         question_id = result["ids"][0][0]
-#         similarity_score = 1 - (result["distances"][0][0] / 2)  # Convert distance to similarity
-#         cluster = metadata.get("cluster_kmeans", None)
-
-#         # Retrieve top 3 suggested questions if a valid cluster exists
-#         suggested_questions = []
-#         if cluster:
-#             suggestions = collection.query(
-#                 query_embeddings=query_embedding,
-#                 n_results=3,  # 1 best match + 2 suggestions
-#                 where={"cluster_kmeans": cluster},
-#                 include=["metadatas"]
-#             )
-
-#             # Extract suggested questions (exclude the exact user query)
-#             suggested_questions = [
-#                 meta["question"] 
-#                 for meta in suggestions["metadatas"][0] 
-#                 if meta["question"] != user_query
-#             ]
-
-#         return JSONResponse(
-#             content={
-#                 "answer": best_answer,
-#                 "question_id": question_id,
-#                 "similarity_score": similarity_score,
-#                 "suggestions": suggested_questions
-#             }, 
-#             status_code=200
-#         )
-
-#     except Exception as e:
-#         print("Error processing request:", str(e))
-#         return JSONResponse(
-#             content={"error": "Internal server error. Check logs for details."}, 
-#             status_code=500
-#         )
-
-# ## **4️⃣ Feedback API Endpoint**
-# @app.post("/feedback")
-# async def update_relevance(request: FeedbackRequest):
-#     try:
-#         print(f"Received Feedback: {request}")  # Debugging log
-
-#         # Add feedback through feedback manager
-#         await feedback_manager.add_feedback(
-#             query=request.query,
-#             question_id=request.question_id,
-#             relevance_score=1.0 if request.feedback.lower() == "yes" else 0.0
-#         )
-
-#         return JSONResponse(
-#             content={"message": "Feedback recorded successfully"}, 
-#             status_code=200
-#         )
-
-#     except Exception as e:
-#         print(f"Error processing feedback: {e}")
-#         return JSONResponse(
-#             content={"error": "Failed to process feedback"}, 
-#             status_code=500
-#         )
-
-# ## **5️⃣ Feedback Stats Endpoint**
-# @app.get("/feedback/stats")
-# async def get_feedback_stats():
-#     """Get statistics about feedback and reweighting"""
-#     try:
-#         history = feedback_manager.feedback_history
-#         return JSONResponse(content={
-#             "total_feedbacks": len(history["feedbacks"]),
-#             "last_reweight": history["last_reweight"],
-#             "feedback_count_since_last_reweight": feedback_manager.feedback_count
-#         })
-#     except Exception as e:
-#         return JSONResponse(
-#             content={"error": f"Failed to get feedback stats: {str(e)}"}, 
-#             status_code=500
-#         )
-
-
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
-from pydantic import BaseModel
+from fastapi.responses import FileResponse, JSONResponse
+from pydantic import BaseModel, EmailStr, Field, validator
 from typing import List, Optional
-import numpy as np
-from db_import import collection, embedding_model, feedback_manager
+import smtplib
 import logging
 import asyncio
+import os
+import redis
+import json
+import traceback
+from collections import Counter
+from datetime import datetime
+import smtplib
+import socket  # Required for network error handling
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from db_import import collection, embedding_model, feedback_manager
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
+
+# Email batch configuration
+email_batch = []
+batch_size = 1
+SIMILARTY_THRESOLD = 0.8
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('app.log'),
+        logging.StreamHandler()
+    ]
+)
+logger = logging.getLogger(__name__)
+
+# Email configuration
+SMTP_SERVER = os.getenv('SMTP_SERVER', 'smtp.gmail.com')
+SMTP_PORT = int(os.getenv('SMTP_PORT', '587'))
+SMTP_USERNAME = os.getenv('SMTP_USERNAME')
+SMTP_PASSWORD = os.getenv('SMTP_PASSWORD')
+RECIPIENT_EMAIL = os.getenv('RECIPIENT_EMAIL')
+
+# Redis configuration
+REDIS_HOST = os.getenv('REDIS_HOST', 'localhost')
+REDIS_PORT = int(os.getenv('REDIS_PORT', '6379'))
+
+logger.info(f"SMTP Server: {SMTP_SERVER}")  
+logger.info(f"SMTP Port: {SMTP_PORT}")
+logger.info(f"SMTP Username: {SMTP_USERNAME}")
+logger.info(f"SMTP Password: {SMTP_PASSWORD is not None}")
+logger.info(f"Recipient Email: {RECIPIENT_EMAIL}")
+logger.info(f"Redis Host: {REDIS_HOST}")
+logger.info(f"Redis Port: {REDIS_PORT}")
+
+try:
+    server = smtplib.SMTP(SMTP_SERVER, SMTP_PORT)
+    server.starttls()
+    server.login(SMTP_USERNAME, SMTP_PASSWORD)
+    print("✅ SMTP Connection Successful!")
+    server.quit()
+except smtplib.SMTPAuthenticationError:
+    print("❌ Authentication Error! Check username/password.")
+except smtplib.SMTPConnectError:
+    print("❌ Unable to connect to SMTP server. Check internet or firewall.")
+except Exception as e:
+    print(f"❌ Other SMTP Error: {e}")
 
 # Initialize FastAPI app
 app = FastAPI()
-
-# Enable Logging
-logging.basicConfig(level=logging.INFO)
 
 # Configure CORS
 app.add_middleware(
@@ -182,15 +86,61 @@ app.add_middleware(
 # Mount static files
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-# Pydantic models
+# Initialize Redis client
+redis_client = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, db=0, decode_responses=True)
+
+# Pydantic models with updated validation
 class Query(BaseModel):
-    text: str
+    session_id: str
+    text: str = Field(..., min_length=1, max_length=1000)
     n_results: Optional[int] = 5
 
+    @validator('text')
+    def text_not_empty(cls, v):
+        if not v.strip():
+            raise ValueError('Query text cannot be empty')
+        return v.strip()
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "text": "What is machine learning?",
+                "n_results": 5
+            }
+        }
+
+class UserData(BaseModel):
+    session_id: str
+    name: str = Field(..., min_length=2, max_length=100)
+    email: EmailStr
+    phone: str = Field(..., pattern=r'^\d{10}$')
+    organization: str = Field(..., min_length=2, max_length=100)
+
+    @validator('name')
+    def validate_name(cls, v):
+        if not v.strip():
+            raise ValueError('Name cannot be empty')
+        return v.strip()
+
+    @validator('organization')
+    def validate_organization(cls, v):
+        if not v.strip():
+            raise ValueError('Organization cannot be empty')
+        return v.strip()
+
 class FeedbackRequest(BaseModel):
-    query: str
+    query: str = Field(..., min_length=1, max_length=1000)
     question_id: str
-    relevance_score: float
+    relevance_score: float = Field(..., ge=0.0, le=1.0)
+
+    class Config:
+        schema_extra = {
+            "example": {
+                "query": "What is AI?",
+                "question_id": "q123",
+                "relevance_score": 0.95
+            }
+        }
 
 # Routes
 @app.get("/")
@@ -200,73 +150,156 @@ async def read_root():
 @app.post("/query")
 async def query_database(query: Query):
     try:
-        logging.info(f"📥 Received query: {query.text}")
+        if not query.session_id:
+            logger.info("No session found. Redirecting to form")
+            return JSONResponse(content={
+                "redirect_to": "/collect_user_data",
+                "message": "Please complete the form first!!"})
 
-        # ✅ Generate query embedding
+        session_key = f"session:{query.session_id}"
+        user_data_collected = redis_client.hget(session_key, "user_data_collected")
+
+        # #Store chat message in Redis
+        # chat_key = f"chat:{query.session_id}"
+        # chat_message = {
+        #     "type": "user",
+        #     "message": query.text,
+        #     "timestamp": datetime.utcnow().isoformat()
+        # }
+
+        # ✅ Ensure session exists and user data is collected
+        if not user_data_collected or user_data_collected != "true":
+            logger.info("⚠️ User data not collected, redirecting to form")
+            return JSONResponse(content={
+                "redirect_to": "/collect_user_data",
+                "message": "Please complete the form first!!"})
+
+        logger.info(f"📥 Received query: {query.text}")
+
+        # ✅ Check Cache First
+        cache_key = f"query:{query.text}"
+        cached_result = redis_client.get(cache_key)
+        if cached_result:
+            logger.info("✅ Cache hit")
+            return json.loads(cached_result)
+
+        # ✅ Generate Query Embedding
         query_embedding = embedding_model.encode([query.text])[0].tolist()
-        logging.info(f"🔎 Generated Embedding: {query_embedding[:5]}...")  # Log first 5 values
 
-        # ✅ Query ChromaDB for relevant answers
+        # ✅ Search in ChromaDB
         results = collection.query(
             query_embeddings=[query_embedding],
             n_results=query.n_results,
             include=["metadatas", "distances"]
         )
 
-        # ✅ Check if results exist
-        if not results['ids'][0]:  
-            logging.warning("⚠ No matching results found in ChromaDB!")
+        if not results['ids'][0]:
+            logger.warning("⚠ No results found")
             return {
-                "results": [{"id": None, "answer": "Sorry, I couldn't find an answer to your question."}]
+                "results": [ {
+                    "id": None,
+                    "answer": "Sorry, I couldn't find an answer to your question."
+                }],
+                "similar_questions": []
             }
 
-        # ✅ Process results
+        # ✅ Process Results
         processed_results = []
-        top_cluster = None  # Store cluster of the top-ranked result
+        cluster_counts = Counter()
 
-        for i in range(len(results['ids'][0])):
+        for i, result_id in enumerate(results['ids'][0]):
+            similarity = 1 - float(results['distances'][0][i])
+            cluster = results['metadatas'][0][i]['cluster_kmeans']
+
             result_data = {
-                'id': results['ids'][0][i],
+                'id': result_id,
                 'question': results['metadatas'][0][i]['question'],
                 'answer': results['metadatas'][0][i]['answer'],
-                'cluster': results['metadatas'][0][i]['cluster_kmeans'],
-                'similarity': round(1 - float(results['distances'][0][i]), 4),
+                'cluster': cluster,
+                'similarity': round(similarity, 4),
             }
             processed_results.append(result_data)
 
-            # Capture cluster of the first result
-            if i == 0:
-                top_cluster = result_data['cluster']
+            # ✅ Count occurrences of clusters
+            cluster_counts[cluster] += 1
 
-        # ✅ Fetch 3 similar questions from the same cluster
-        if top_cluster is not None:
-            similar_questions_results = collection.get(
-                where={"cluster_kmeans": top_cluster},  # Filter by cluster
-                include=["metadatas"]
-            )
+        # ✅ Extract **Top 3 Clusters**
+        top_clusters = [cluster for cluster, _ in cluster_counts.most_common(3)]
 
-            # Extract 3 similar questions (excluding the original query result)
-            similar_questions = [
-                {"question": meta['question']} 
-                for meta in similar_questions_results['metadatas']
-                if meta['question'] != processed_results[0]['question']
-            ][:3]  # Limit to 3 suggestions
+        # ✅ Fetch Similar Questions Using Top 3 Clusters
+        similar_questions = []
+        if top_clusters:
+            try:
+                similar_results = collection.query(
+                    query_embeddings=[query_embedding],  # ✅ Uses embeddings instead of `where`
+                    n_results=10,  # Fetch more results to filter from
+                    include=["metadatas"]
+                )
 
-        else:
-            similar_questions = []
+                # ✅ Filter by top clusters and avoid duplicates
+                seen_questions = set([query.text])
+                # Correct access to metadatas array
+                for metadata in similar_results['metadatas'][0]:  # Note the [0] index
+                    cluster = metadata.get('cluster_kmeans')
+                    question = metadata.get('question')
+                    
+                    if (cluster in top_clusters and 
+                        question and 
+                        question not in seen_questions):
+                        similar_questions.append({"question": question})
+                        seen_questions.add(question)
 
-        # ✅ Log response
-        logging.info(f"📤 Returning Answer: {processed_results[0]['answer']} with {len(similar_questions)} similar questions.")
+                        if len(similar_questions) >= 3:  # ✅ Limit to top 3 questions
+                            break
+                logger.info(f"✅ Found {len(similar_questions)} similar questions")               
+            except Exception as e:
+                logger.error(f"⚠ Error while fetching similar questions: {str(e)}")
+                similar_questions = []
 
-        return {
+        # ✅ Prepare Response
+        response_data = {
             'results': processed_results,
             'query': query.text,
             'similar_questions': similar_questions
         }
 
+        #Store bot response in Redis
+        if len(processed_results)>0:
+            bot_message = {
+                "type": "bot",
+                "message": processed_results[0]['answer'],
+                "timestamp": datetime.utcnow().isoformat()
+            }
+
+        # ✅ Cache Response
+        redis_client.setex(cache_key, 60, json.dumps(response_data))
+
+        return response_data
+
     except Exception as e:
-        logging.error(f"❌ Query error: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        traceback.print_exc()  # ✅ Print full error traceback
+        logger.error(f"❌ Query error: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail=f"An error occurred: {str(e)}"
+        )
+
+
+# Add new endpoint to get chat history
+@app.get("/chat_history/{session_id}")
+async def get_chat_history(session_id: str):
+    try:
+        chat_key = f"chat:{session_id}"
+        messages = redis_client.lrange(chat_key, 0, -1)
+        return {
+            "messages": [json.loads(msg) for msg in messages]
+        }
+    except Exception as e:
+        logger.error(f"❌ Error fetching chat history: {str(e)}")
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to fetch chat history"
+        )
 
 @app.post("/feedback")
 async def add_feedback(feedback: FeedbackRequest):
@@ -278,30 +311,102 @@ async def add_feedback(feedback: FeedbackRequest):
         )
         return {"message": "Feedback recorded successfully"}
     except Exception as e:
-        logging.error(f"❌ Feedback error: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"Feedback error: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to process feedback")
 
-@app.get("/clusters")
-async def get_clusters():
+@app.post("/collect_user_data")
+async def collect_user_data(user_data: UserData):
     try:
-        results = collection.get()
-        clusters = {}
+        # Save to Redis
+        session_key = f"session:{user_data.session_id}"
+        redis_client.hset(
+            session_key,
+            mapping={
+                "user_data_collected": "true",
+                "user_name": user_data.name,
+                "email": user_data.email,
+                "phone": user_data.phone,
+                "organization": user_data.organization,
+                "last_interaction": datetime.utcnow().isoformat()
+            }
+        )
+        
+        # Add to email batch
+        email_batch.append(user_data.dict())
+        
+        # Send batch if size limit reached
+        if len(email_batch) >= batch_size:
+            try:
+                await send_email_batch(email_batch)
+                email_batch.clear()
+            except Exception as e:
+                logger.error(f"❌ Failed to send email batch: {e}")
 
-        for metadata in results['metadatas']:
-            cluster = metadata['cluster_kmeans']
-            if cluster not in clusters:
-                clusters[cluster] = 0
-            clusters[cluster] += 1
+        return JSONResponse(
+            content={"message": "User data collected successfully"},
+            status_code=200
+        )
 
-        return {
-            'clusters': [
-                {'name': k, 'count': v}
-                for k, v in clusters.items()
-            ]
-        }
     except Exception as e:
-        logging.error(f"❌ Cluster analysis error: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.error(f"❌ Error collecting user data: {e}")
+        raise HTTPException(
+            status_code=500,
+            detail="Failed to collect user data"
+        )
+
+async def send_email_batch(batch):
+    """Send a batch of emails using a single SMTP connection."""
+    if not SMTP_SERVER or not SMTP_USERNAME or not SMTP_PASSWORD:
+        logger.error("❌ Missing SMTP configuration. Check environment variables.")
+        return
+
+    try:
+        logger.info(f"📧 Connecting to SMTP Server: {SMTP_SERVER}:{SMTP_PORT}")
+        with smtplib.SMTP(SMTP_SERVER, SMTP_PORT, timeout=30) as server:
+            server.set_debuglevel(1)  # Enable debugging for SMTP connection
+            server.starttls()
+            
+            try:
+                server.login(SMTP_USERNAME, SMTP_PASSWORD)
+            except smtplib.SMTPAuthenticationError as e:
+                logger.error(f"❌ SMTP Authentication Error: {e}")
+                return
+            except smtplib.SMTPException as e:
+                logger.error(f"❌ General SMTP Error: {e}")
+                return
+            
+            for user_data in batch:
+                try:
+                    msg = MIMEMultipart()
+                    msg['From'] = SMTP_USERNAME
+                    msg['To'] = RECIPIENT_EMAIL
+                    msg['Subject'] = "New User Registration"
+
+                    body = f"""
+                    New User Registration:
+                    Name: {user_data['name']}
+                    Email: {user_data['email']}
+                    Phone: {user_data['phone']}
+                    Organization: {user_data['organization']}
+                    Time: {datetime.utcnow().isoformat()}
+                    """
+
+                    msg.attach(MIMEText(body, 'plain'))
+                    server.send_message(msg)
+                    logger.info(f"✅ Email sent for user: {user_data['email']}")
+
+                except smtplib.SMTPRecipientsRefused:
+                    logger.error(f"❌ Recipient email refused: {RECIPIENT_EMAIL}")
+                except smtplib.SMTPException as e:
+                    logger.error(f"❌ Failed to send email for {user_data['email']}: {e}")
+                except Exception as e:
+                    logger.error(f"❌ Unexpected error: {e}")
+
+    except (socket.gaierror, smtplib.SMTPConnectError) as e:
+        logger.error(f"❌ Network error while connecting to SMTP server: {e}")
+    except Exception as e:
+        logger.error(f"❌ Unexpected error in email batch: {e}")
+
 
 if __name__ == "__main__":
     import uvicorn
