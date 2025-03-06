@@ -35,7 +35,6 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('app.log'),
         logging.StreamHandler()
     ]
 )
@@ -331,19 +330,14 @@ async def add_feedback(feedback: FeedbackRequest):
 @app.post("/collect_user_data")
 async def collect_user_data(user_data: UserData):
     try:
-        # Save to Redis
+# Save to Redis
         session_key = f"session:{user_data.session_id}"
-        redis_client.hset(
-            session_key,
-            mapping={
-                "user_data_collected": "true",
-                "user_name": user_data.name,
-                "email": user_data.email,
-                "phone": user_data.phone,
-                "organization": user_data.organization,
-                "last_interaction": datetime.utcnow().isoformat()
-            }
-        )
+        redis_client.hset(session_key, "user_data_collected", "true")
+        redis_client.hset(session_key, "user_name", user_data.name)
+        redis_client.hset(session_key, "email", user_data.email)
+        redis_client.hset(session_key, "phone", user_data.phone)
+        redis_client.hset(session_key, "organization", user_data.organization)
+        redis_client.hset(session_key, "last_interaction", datetime.utcnow().isoformat())
         
         # Add to email batch
         email_batch.append(user_data.dict())

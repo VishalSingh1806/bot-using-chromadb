@@ -131,7 +131,6 @@ function displayForm() {
         <div class="bot-message fade-in">
             <div class="form-container">
                 <h3 id="formHeading">Let's get to know you!</h3>
-                <p class="form-description">Let’s start by knowing a little about you. It won’t take long!</p>
                 <form id="userForm">
                     <div class="form-group">
                         <label for="name">Name</label>
