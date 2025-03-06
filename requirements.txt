@@ -1,0 +1,13 @@
+fastapi
+pydantic
+uvicorn
+redis
+numpy
+scikit-learn
+dotenv
+uvicorn
+chromadb
+pandas
+torch
+sentence_transformers
+pydantic[email]
