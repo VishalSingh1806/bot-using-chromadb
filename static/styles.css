@@ -21,7 +21,7 @@ body {
     right: 20px;
     background-color: rgba(24, 64, 64, 1);
     color: white;
-    border-radius: 50%; /* Ensures a perfect circle */
+    border-radius: 20%; /* Ensures a perfect circle */
     width: 60px;
     height: 60px;
     display: flex;
