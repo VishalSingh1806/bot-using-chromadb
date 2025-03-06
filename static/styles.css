@@ -192,50 +192,30 @@ body {
     padding: 10px 12px;
     border-radius: 15px;
     max-width: 75%;
+    text-align: left;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 8px;
+    word-break: break-word;
+    margin-bottom: 6px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
 }
 
 /* 🔹 User Message (Aligns to Right) */
 .user-message {
     background-color: #e1ffc7;
     color: #000;
-    padding: 6px 12px; /* ✅ Balanced padding for readability */
-    border-radius: 12px;
-    max-width: 70%; /* ✅ Prevents message from being too wide */
-    text-align: left; /* ✅ Natural text alignment */
-    display: block;
-    word-break: break-word; /* ✅ Prevents text overflow */
-    margin-bottom: 6px;
-    align-self: flex-end; /* ✅ Push to the right */
-    margin-left: auto; /* ✅ Ensures alignment to the right */
-    margin-right: 10px; /* ✅ Adds spacing from the edge */
-    font-size: 14px;
-    line-height: 1.4; /* ✅ Improves readability */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    
+    margin-left: auto;
+    margin-right: 10px;
+    flex-direction: row-reverse;
 }
 
 /* 🔹 Bot Message (Aligns to Left) */
 .bot-message {
     background-color: rgba(24, 64, 64, 1);
     color: white;
-    padding: 6px 12px;
-    border-radius: 12px;
-    max-width: 70%;
-    text-align: left;
-    display: block;
-    word-break: break-word;
-    margin-bottom: 6px;
-    align-self: flex-start; /* ✅ Push to the left */
-    margin-right: auto; /* ✅ Ensures alignment to the left */
-    margin-left: 10px; /* ✅ Adds spacing from the edge */
-    font-size: 14px;
-    line-height: 1.4;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: auto;
+    margin-left: 10px;
 }
 
 
@@ -247,19 +227,29 @@ body {
     content: "";
     width: 30px;
     height: 30px;
+    min-width: 30px;
     border-radius: 50%;
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.user-message::before { background: url("../static/user-icon.png") no-repeat center; }
-.bot-message::after { background: url("../static/bot-icon.png") no-repeat center; }
+.user-message::before { background-image: url("/static/user-img.svg") no-repeat center; }
+.bot-message::after { background-image: url("/static/bot-chat-img.svg") no-repeat center; }
+
+.message-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.fade-in { animation: fadeIn 0.5s ease-in; }
 
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-.fade-in { animation: fadeIn 0.5s ease-in; }
+
 
 /* Form Styling */
 .form-container {

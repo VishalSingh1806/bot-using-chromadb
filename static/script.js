@@ -435,22 +435,38 @@ function addMessageToChat(message, className) {
         return;
     }
 
-    const messageElement = document.createElement("div");
-    messageElement.className = className;
-    messageElement.innerHTML = `<p>${message}</p>`;
-    chatContent.appendChild(messageElement);
+    // Create message wrapper
+    const messageWrapper = document.createElement("div");
+    messageWrapper.className = `${className} fade-in`;
+
+    // Create profile image
+    const profileIcon = document.createElement("img");
+    profileIcon.className = "profile-icon";
+    profileIcon.src = className.includes('user') ? "/static/user-img.svg" : "/static/bot-chat-img.svg";
+    profileIcon.alt = className.includes('user') ? "User" : "Bot";
+
+    // Create message content wrapper
+    const messageText = document.createElement("div");
+    messageText.className = "message-content";
+    messageText.innerHTML = `<p>${message}</p>`;
+
+    // Append elements in correct order based on message type
+    if (className.includes('user')) {
+        messageWrapper.appendChild(messageText);
+        messageWrapper.appendChild(profileIcon);
+    } else {
+        messageWrapper.appendChild(profileIcon);
+        messageWrapper.appendChild(messageText);
+    }
+
+    chatContent.appendChild(messageWrapper);
     chatContent.scrollTop = chatContent.scrollHeight;
 
-    // Store in localStorage as backup
+    // Store in localStorage
     const sessionId = localStorage.getItem("session_id");
     if (sessionId) {
         const chatHistoryKey = `chatHistory_${sessionId}`;
         const chatHistory = JSON.parse(localStorage.getItem(chatHistoryKey) || '[]');
-
-        // ✅ Prevent duplicate messages
-        if (chatHistory.length > 0 && chatHistory[chatHistory.length - 1].message === message) {
-            return;
-        }
 
         chatHistory.push({
             message: message,
@@ -461,6 +477,7 @@ function addMessageToChat(message, className) {
         localStorage.setItem(chatHistoryKey, JSON.stringify(chatHistory));
     }
 }
+
 
 function saveChatMessage(sessionId, messageData) {
     try {
@@ -615,7 +632,6 @@ function loadChatHistory() {
         }
 
         const chatHistory = JSON.parse(localStorage.getItem(`chatHistory_${sessionId}`)) || [];
-
         chatContent.innerHTML = '';
 
         chatHistory.forEach(item => {
@@ -623,13 +639,12 @@ function loadChatHistory() {
             addMessageToChat(item.message, messageType);
         });
 
-        // ✅ Scroll to the latest message after loading chat history
+        // Ensure scroll to bottom after loading history
         chatContent.scrollTop = chatContent.scrollHeight;
     } catch (error) {
         console.error("❌ Error loading chat history:", error);
     }
 }
-
 
 
 

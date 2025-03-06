@@ -156,7 +156,7 @@ async def query_database(query: Query):
             logger.info("No session found. Redirecting to form")
             return JSONResponse(content={
                 "redirect_to": "/collect_user_data",
-                "message": "Please complete the form first!!"
+                "message": "Please complete the form first!"
             })
 
         session_key = f"session:{query.session_id}"
@@ -166,7 +166,7 @@ async def query_database(query: Query):
             logger.info("⚠️ User data not collected, redirecting to form")
             return JSONResponse(content={
                 "redirect_to": "/collect_user_data",
-                "message": "Please complete the form first!!"
+                "message": "Please complete the form first!"
             })
 
         logger.info(f"📥 Received query: {query.text}")
@@ -188,6 +188,7 @@ async def query_database(query: Query):
             include=["metadatas", "embeddings"]
         )
 
+        # ✅ Handle no results case
         if not results['ids'][0]:
             logger.warning("⚠ No results found")
             return {
@@ -200,27 +201,28 @@ async def query_database(query: Query):
 
         # ✅ Compute Cosine Similarity
         query_embedding_np = np.array(query_embedding).reshape(1, -1)
-        retrieved_embeddings_np = np.array(results["embeddings"][0])  # Ensure embeddings exist
+        retrieved_embeddings_np = np.array(results["embeddings"][0])
 
         cos_similarities = cosine_similarity(query_embedding_np, retrieved_embeddings_np)[0]
 
         # ✅ Process results with similarity threshold
         processed_results = []
         cluster_counts = Counter()
+        similar_questions = []  # Always return similar questions
 
         logger.info(f"Processing {len(results['ids'][0])} results with similarity threshold: {SIMILARITY_THRESHOLD}")
 
         for i, result_id in enumerate(results['ids'][0]):
-            similarity = cos_similarities[i]  # ✅ Use computed cosine similarity
+            similarity = cos_similarities[i]  
             cluster = results['metadatas'][0][i]['cluster_kmeans']
             question = results['metadatas'][0][i]['question']
 
-            # ✅ Log similarity for debugging
-            logger.info(f"Result {i+1}: Question: '{question}' - Similarity: {similarity:.4f}")
+            # ✅ Always collect similar questions
+            similar_questions.append({"question": question})
 
             if similarity < SIMILARITY_THRESHOLD:
-                logger.warning(f"❌ Skipping result with low similarity: {similarity:.4f}")
-                continue
+                logger.warning(f"❌ Skipping result (low similarity: {similarity:.4f})")
+                continue  # Skip low-confidence answers
 
             result_data = {
                 'id': result_id,
@@ -232,24 +234,24 @@ async def query_database(query: Query):
             processed_results.append(result_data)
             cluster_counts[cluster] += 1
 
-        # ✅ Handle no relevant results
-        if not processed_results:
-            logger.warning("No results met the similarity threshold")
+        # ✅ Sort results by similarity and select best match
+        if processed_results:
+            best_answer = max(processed_results, key=lambda x: x['similarity'])
+            processed_results = [best_answer]
+        else:
+            logger.warning("No results met the similarity threshold, returning suggested questions.")
+
             return {
                 "results": [{
                     "id": None,
-                    "answer": "I'm not confident I have a relevant answer to your question. Could you please rephrase or ask something else?"
+                    "answer": "I'm not confident I have a relevant answer. Could you please rephrase or ask something else?"
                 }],
-                "similar_questions": []
+                "similar_questions": similar_questions[:3]  # Limit to 3 suggestions
             }
-
-        # ✅ Sort results by similarity and select best match
-        best_answer = max(processed_results, key=lambda x: x['similarity'])
-        processed_results = [best_answer]
 
         # ✅ Get similar questions from top clusters
         top_clusters = [cluster for cluster, _ in cluster_counts.most_common(3)]
-        similar_questions = []
+        refined_similar_questions = []
 
         if top_clusters:
             try:
@@ -265,33 +267,33 @@ async def query_database(query: Query):
                     question = metadata.get('question')
 
                     if (cluster in top_clusters and question and question not in seen_questions):
-                        similar_questions.append({"question": question})
+                        refined_similar_questions.append({"question": question})
                         seen_questions.add(question)
 
-                        if len(similar_questions) >= 3:  # ✅ Limit to top 3
+                        if len(refined_similar_questions) >= 3:
                             break
 
-                logger.info(f"✅ Found {len(similar_questions)} similar questions")
+                logger.info(f"✅ Found {len(refined_similar_questions)} similar questions")
 
             except Exception as e:
                 logger.error(f"⚠ Error fetching similar questions: {str(e)}")
-                similar_questions = []
+                refined_similar_questions = similar_questions[:3]  # Use previous list
 
         # ✅ Prepare Response
         response_data = {
             'results': processed_results,
             'query': query.text,
-            'similar_questions': similar_questions
+            'similar_questions': refined_similar_questions
         }
 
         # ✅ Cache the response
-        redis_client.setex(cache_key, 120, json.dumps(response_data))  # Cache for 2 minutes
+        redis_client.setex(cache_key, 120, json.dumps(response_data))
 
         return response_data
 
     except Exception as e:
         logger.error(f"❌ Query error: {str(e)}")
-        logger.error(traceback.format_exc())  # Log full traceback
+        logger.error(traceback.format_exc())
         raise HTTPException(
             status_code=500,
             detail=f"An error occurred: {str(e)}"
@@ -313,19 +315,6 @@ async def get_chat_history(session_id: str):
             status_code=500,
             detail="Failed to fetch chat history"
         )
-
-@app.post("/feedback")
-async def add_feedback(feedback: FeedbackRequest):
-    try:
-        await feedback_manager.add_feedback(
-            query=feedback.query,
-            question_id=feedback.question_id,
-            relevance_score=feedback.relevance_score
-        )
-        return {"message": "Feedback recorded successfully"}
-    except Exception as e:
-        logger.error(f"Feedback error: {str(e)}")
-        raise HTTPException(status_code=500, detail="Failed to process feedback")
 
 @app.post("/collect_user_data")
 async def collect_user_data(user_data: UserData):
