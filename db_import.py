@@ -22,7 +22,6 @@ logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler('app.log'),
         logging.StreamHandler()
     ]
 )
@@ -102,15 +101,6 @@ def import_data_from_csv(file_path: str) -> Tuple[pd.DataFrame, List[str]]:
         logger.error(f"Error importing data from CSV: {str(e)}")
         raise
 
-# Also, let's fix the logging setup to handle Unicode characters
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('app.log', encoding='utf-8'),  # Added encoding
-        logging.StreamHandler()
-    ]
-)
 
 
 def import_and_index_data(file_path: str, collection) -> None:
@@ -327,27 +317,6 @@ def find_optimal_k(embeddings: np.ndarray) -> int:
     except Exception as e:
         logger.error(f"Error finding optimal k: {str(e)}")
         return CONFIG['min_clusters']
-
-# Also, let's update the logging setup to handle Unicode properly
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('app.log', encoding='utf-8'),
-        logging.StreamHandler(sys.stdout)
-    ],
-    force=True  # This will reset any existing handlers
-)
-
-# Update the logging setup to handle Unicode characters properly
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('app.log', encoding='utf-8'),
-        logging.StreamHandler(sys.stdout)  # Add explicit stdout handler
-    ]
-)
 
 # 10. INITIALIZATION
 try:
