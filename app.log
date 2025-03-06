@@ -3647,3 +3647,17 @@ P - Producers (Small/Micro) with 3 similar questions.
 2025-02-27 15:08:16,200 - INFO - Result 4: Question: 'What is the penalty for providing false data in EPR?' - Similarity: 0.5864
 2025-02-27 15:08:16,200 - INFO - Result 5: Question: 'What is the penalty for non-compliance with EPR targets?' - Similarity: 0.5691
 2025-02-27 15:08:16,203 - INFO - ✅ Found 3 similar questions
+2025-03-06 15:09:53,559 - INFO - Using device: cpu
+2025-03-06 15:09:53,562 - INFO - Use pytorch device_name: cpu
+2025-03-06 15:09:53,562 - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2025-03-06 15:09:55,999 - INFO - ✅ Embedding model initialized
+2025-03-06 15:09:56,011 - INFO - Anonymized telemetry enabled. See                     https://docs.trychroma.com/telemetry for more information.
+2025-03-06 15:09:56,116 - INFO - ✅ ChromaDB collection initialized
+2025-03-06 15:09:56,117 - INFO - ✅ Feedback manager initialized
+2025-03-06 15:09:56,117 - INFO - SMTP Server: smtp.gmail.com
+2025-03-06 15:09:56,118 - INFO - SMTP Port: 587
+2025-03-06 15:09:56,118 - INFO - SMTP Username: urban.ease4all@gmail.com
+2025-03-06 15:09:56,118 - INFO - SMTP Password: True
+2025-03-06 15:09:56,119 - INFO - Recipient Email: vishal.singh@recircle.in
+2025-03-06 15:09:56,120 - INFO - Redis Host: localhost
+2025-03-06 15:09:56,120 - INFO - Redis Port: 6379

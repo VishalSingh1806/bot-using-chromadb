@@ -390,8 +390,9 @@ async function submitForm() {
 // Toggle Chat Window
 function toggleChat() {
     const chatWindow = document.getElementById("chatWindow");
-    if (!chatWindow) {
-        console.error("❌ Chat window element not found!");
+    const chatButton = document.querySelector(".chat-button")
+    if (!chatWindow || !chatButton) {
+        console.error("❌ Chat elements not found!");
         return;
     }
 
@@ -401,10 +402,14 @@ function toggleChat() {
         chatWindow.style.display = "none";
         chatWindow.classList.remove('show');
         chatWindow.classList.add('hidden');
+        chatButton.style.display = "block";
+        chatButton.style.display = "flex";
+        chatButton.style.bottom = "20px";
     } else {
         chatWindow.style.display = "block";
         chatWindow.classList.remove('hidden');
         chatWindow.classList.add('show');
+        chatButton.style.display = "none";
         
         const chatContent = document.getElementById("chatContent");
         if (chatContent && !chatContent.children.length) {
@@ -479,122 +484,106 @@ function saveChatMessage(sessionId, messageData) {
     }
 }
 
+// ✅ Show error screen and hide chat
+function showErrorScreen() {
+    const chatBody = document.querySelector('.chat-body');
+    const chatFooter = document.querySelector('.chat-footer');
+    const errorScreen = document.querySelector('.error-screen');
+    const chatWindow = document.getElementById("chatWindow");
+
+    if (!chatBody || !chatFooter || !errorScreen || !chatWindow) {
+        console.error("❌ Error: Missing chat elements!");
+        return;
+    }
+
+    // ✅ Hide chat content, keep header visible
+    chatBody.classList.add('hidden');
+    chatFooter.classList.add('hidden');
+
+    // ✅ Show error screen
+    errorScreen.classList.add('show');
+    errorScreen.style.display = "flex";
+
+    // ✅ Ensure chat window height is correct
+    chatWindow.style.height = "400px"; // 🔹 Make sure it's large enough
+}
+
+
+// ✅ Hide error screen and restore chat content
+function hideErrorScreen() {
+    const chatBody = document.querySelector('.chat-body');
+    const chatFooter = document.querySelector('.chat-footer');
+    const errorScreen = document.querySelector('.error-screen');
+
+    if (!chatBody || !chatFooter || !errorScreen) {
+        console.error("❌ Error: Missing chat elements!");
+        return;
+    }
+
+    // ✅ Restore chat content
+    chatBody.classList.remove('hidden');
+    chatFooter.classList.remove('hidden');
+
+    // ✅ Hide error screen
+    errorScreen.classList.remove('show');
+    errorScreen.style.display = "none";
+}
+
 async function sendMessage(userQuery = null, isSuggested = false) {
     try {
         const userMessageInput = document.getElementById("userMessage");
-        let userMessage = userQuery || (userMessageInput ? userMessageInput.value.trim() : "");
-
-        if (!userMessage) return; // ✅ Prevent empty messages
-
         const chatContent = document.getElementById("chatContent");
-        if (!chatContent) {
-            console.error("❌ Chat content container not found!");
+        const chatFooter = document.querySelector(".chat-footer");
+        const errorScreen = document.querySelector(".error-screen");
+
+        if (!chatContent || !errorScreen || !chatFooter) {
+            console.error("❌ Error: Missing chat elements!");
             return;
         }
+
+        let userMessage = userQuery || userMessageInput?.value.trim();
+        if (!userMessage) return; // Prevent empty messages
 
         const sessionId = localStorage.getItem("session_id") || generateSessionId();
 
-        // ✅ Check if the last user message is the same (Prevents duplicate user messages)
-        let lastUserMessage = chatContent.querySelector(".user-message:last-child");
-        if (lastUserMessage && lastUserMessage.textContent.trim() === userMessage.trim()) {
-            console.warn("Duplicate user message detected, skipping...");
-            return;
-        }
-
-        // ✅ Save user message to chat history
-        const userMessageData = {
-            type: 'user',
-            message: userMessage,
-            timestamp: new Date().toISOString()
-        };
-        saveChatMessage(sessionId, userMessageData);
-
         // ✅ Append user message to UI
-        let userMessageDiv = document.createElement("div");
-        userMessageDiv.className = "user-message";
-        userMessageDiv.textContent = userMessage;
-        chatContent.appendChild(userMessageDiv);
+        chatContent.innerHTML += `<div class="user-message">${userMessage}</div>`;
         chatContent.scrollTop = chatContent.scrollHeight; // Auto-scroll
 
-        // ✅ Scroll to clicked suggested question instead of bottom
-        if (isSuggested) {
-            userMessageDiv.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-
-        if (userMessageInput) {
-            userMessageInput.value = ""; // ✅ Clear input field
-        }
+        if (userMessageInput) userMessageInput.value = ""; // Clear input field
 
         try {
             const response = await fetch(BACKEND_CHAT_URL, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                    session_id: sessionId, 
-                    text: userMessage, 
-                    n_results: 5 
-                })
+                body: JSON.stringify({ session_id: sessionId, text: userMessage, n_results: 5 })
             });
 
-            if (!response.ok) {
-                throw new Error(`Server responded with ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`Server Error: ${response.status}`);
 
             const data = await response.json();
             console.log("✅ API Response:", data);
 
-            if (!data.results || !data.results[0] || data.results.length === 0) {
-                const errorMessage = "Sorry, I couldn't find an answer to your question.";
-                addMessageToChat(errorMessage, "bot-message");
-                saveChatMessage(sessionId, {
-                    type: 'bot',
-                    message: errorMessage,
-                    timestamp: new Date().toISOString()
-                });
-                return;
-            }
+            if (!data.results?.[0]?.answer) throw new Error("No valid response received.");
 
-            // ✅ Save and append bot response
-            const botMessage = data.results[0].answer;
-            const botMessageData = {
-                type: 'bot',
-                message: botMessage,
-                timestamp: new Date().toISOString()
-            };
-            saveChatMessage(sessionId, botMessageData);
-
-            let botMessageDiv = document.createElement("div");
-            botMessageDiv.className = "bot-message";
-            botMessageDiv.textContent = botMessage;
-            chatContent.appendChild(botMessageDiv);
+            // ✅ Show the bot response
+            chatContent.innerHTML += `<div class="bot-message">${data.results[0].answer}</div>`;
             chatContent.scrollTop = chatContent.scrollHeight;
 
-            // ✅ Display Similar Questions if available
-            if (data.similar_questions && data.similar_questions.length > 0) {
-                displaySimilarQuestions(data.similar_questions);
-            }
+            // ✅ Display similar questions if available
+            if (data.similar_questions?.length > 0) displaySimilarQuestions(data.similar_questions);
+
+            // ✅ Hide error screen if chat works fine
+            hideErrorScreen();
         } catch (error) {
             console.error("❌ Fetch Error:", error);
-            const errorMessage = "Server error. Please try again.";
-            addMessageToChat(errorMessage, "bot-message");
-            saveChatMessage(sessionId, {
-                type: 'bot',
-                message: errorMessage,
-                timestamp: new Date().toISOString()
-            });
+            showErrorScreen();
         }
     } catch (error) {
         console.error("❌ Unexpected Error:", error);
-        const errorMessage = "Network error. Please check your connection.";
-        addMessageToChat(errorMessage, "bot-message");
-        saveChatMessage(sessionId, {
-            type: 'bot',
-            message: errorMessage,
-            timestamp: new Date().toISOString()
-        });
+        showErrorScreen();
     }
 }
-
 
 
 function saveChatHistory(message, type) {
