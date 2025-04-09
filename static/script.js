@@ -128,7 +128,7 @@ function displayForm() {
     }
 
     const formHtml = `
-        <div class="bot-message fade-in">
+        <div class="bot-message fade-in form-center">
             <div class="form-container">
                 <h3 id="formHeading">Let's get to know you!</h3>
                 <form id="userForm">
@@ -316,14 +316,81 @@ function sanitizeInput(input) {
 
 
 // Submit Form Data
+// async function submitForm() {
+//     // Get form elements safely
+//     const nameInput = document.getElementById("name");
+//     const emailInput = document.getElementById("email");
+//     const phoneInput = document.getElementById("phone");
+//     const orgInput = document.getElementById("organization");
+
+//     // Check if elements exist
+//     if (!nameInput || !emailInput || !phoneInput || !orgInput) {
+//         console.error("❌ One or more form elements not found!");
+//         addMessageToChat("Form error: missing fields.", "bot-message");
+//         return;
+//     }
+
+//     const name = nameInput.value.trim();
+//     const email = emailInput.value.trim();
+//     const phone = phoneInput.value.trim();
+//     const organization = orgInput.value.trim();
+
+//     try {
+//         const response = await fetch(BACKEND_FORM_URL, {
+//             method: "POST",
+//             headers: { "Content-Type": "application/json" },
+//             body: JSON.stringify({
+//                 session_id: localStorage.getItem("session_id") || null,
+//                 name,
+//                 email,
+//                 phone,
+//                 organization,
+//             }),
+//         });
+
+//         if (response.ok) {
+//             const contentType = response.headers.get("content-type");
+//             let data = null;
+
+//             if (contentType && contentType.includes("application/json")) {
+//                 data = await response.json(); // Parse only if JSON
+//             } else {
+//                 console.warn("⚠ Unexpected response format:", contentType);
+//             }
+
+//             // Update UI after successful submission
+//             const formHeading = document.getElementById("formHeading");
+//             if (formHeading) {
+//                 formHeading.innerText = "🌟Great! Let’s get started with your EPR-related questions.";
+//             }
+
+//             const formDescription = document.querySelector(".form-description");
+//             if (formDescription) {
+//                 formDescription.style.display = "none";
+//             }
+
+//             const userForm = document.getElementById("userForm");
+//             if (userForm) {
+//                 userForm.remove();
+//             }
+
+//             isFormSubmitted = true;
+//         } else {
+//             addMessageToChat("Error submitting your details. Please try again.", "bot-message");
+//         }
+//     } catch (error) {
+//         addMessageToChat("Network error while submitting your details.", "bot-message");
+//         console.error("Fetch error:", error);
+//     }
+// }
+
+// Submit Form Data
 async function submitForm() {
-    // Get form elements safely
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
     const phoneInput = document.getElementById("phone");
     const orgInput = document.getElementById("organization");
 
-    // Check if elements exist
     if (!nameInput || !emailInput || !phoneInput || !orgInput) {
         console.error("❌ One or more form elements not found!");
         addMessageToChat("Form error: missing fields.", "bot-message");
@@ -349,30 +416,21 @@ async function submitForm() {
         });
 
         if (response.ok) {
-            const contentType = response.headers.get("content-type");
-            let data = null;
-
-            if (contentType && contentType.includes("application/json")) {
-                data = await response.json(); // Parse only if JSON
-            } else {
-                console.warn("⚠ Unexpected response format:", contentType);
-            }
-
-            // Update UI after successful submission
-            const formHeading = document.getElementById("formHeading");
-            if (formHeading) {
-                formHeading.innerText = "🌟Great! Let’s get started with your EPR-related questions.";
-            }
-
-            const formDescription = document.querySelector(".form-description");
-            if (formDescription) {
-                formDescription.style.display = "none";
-            }
-
+            // ✅ Remove the form after successful submission
             const userForm = document.getElementById("userForm");
-            if (userForm) {
-                userForm.remove();
-            }
+            if (userForm) userForm.remove();
+
+            // ✅ Add a centered success message
+            const successHtml = `
+                <div class="bot-message fade-in form-center">
+                    <div class="form-container">
+                        <h3 style="text-align:center;">🌟 Great! Let’s get started with your EPR-related questions.</h3>
+                    </div>
+                </div>
+            `;
+            const chatContent = document.getElementById("chatContent");
+            chatContent.insertAdjacentHTML("beforeend", successHtml);
+            chatContent.scrollTop = chatContent.scrollHeight;
 
             isFormSubmitted = true;
         } else {
@@ -383,7 +441,6 @@ async function submitForm() {
         console.error("Fetch error:", error);
     }
 }
-
 
 
 // Toggle Chat Window
@@ -428,6 +485,68 @@ function checkEnter(event) {
 }
 
 
+// function addMessageToChat(message, className) {
+//     const chatContent = document.getElementById("chatContent");
+//     if (!chatContent) {
+//         console.error("❌ Chat content container not found!");
+//         return;
+//     }
+
+//     // Handle user messages normally
+//     if (className.includes('user')) {
+//         const messageWrapper = document.createElement("div");
+//         messageWrapper.className = `${className} fade-in`;
+
+//         const profileIcon = document.createElement("img");
+//         profileIcon.className = "profile-icon";
+//         profileIcon.src = "/static/user-img.svg";
+//         profileIcon.alt = "User";
+
+//         const messageText = document.createElement("div");
+//         messageText.className = "message-content";
+//         messageText.innerHTML = `<p>${message}</p>`;
+
+//         messageWrapper.appendChild(messageText);
+//         messageWrapper.appendChild(profileIcon);
+//         chatContent.appendChild(messageWrapper);
+//     } else {
+//         // For bot messages with avatar floating above
+//         const wrapper = document.createElement("div");
+//         wrapper.className = "bot-message-wrapper fade-in";
+
+//         const avatar = document.createElement("img");
+//         avatar.src = "/static/bot-chat-img.svg";
+//         console.log("bot-img-updated");
+//         avatar.alt = "Bot";
+//         avatar.className = "bot-avatar";
+
+//         const bubble = document.createElement("div");
+//         bubble.className = "bot-message";
+//         bubble.innerHTML = `<div class="message-content"><p>${message}</p></div>`;
+
+//         wrapper.appendChild(avatar);
+//         wrapper.appendChild(bubble);
+//         chatContent.appendChild(wrapper);
+//     }
+
+//     chatContent.scrollTop = chatContent.scrollHeight;
+
+//     // Save to localStorage
+//     const sessionId = localStorage.getItem("session_id");
+//     if (sessionId) {
+//         const chatHistoryKey = `chatHistory_${sessionId}`;
+//         const chatHistory = JSON.parse(localStorage.getItem(chatHistoryKey) || '[]');
+
+//         chatHistory.push({
+//             message: message,
+//             type: className.includes('user') ? 'user' : 'bot',
+//             timestamp: new Date().toISOString()
+//         });
+
+//         localStorage.setItem(chatHistoryKey, JSON.stringify(chatHistory));
+//     }
+// }
+
 function addMessageToChat(message, className) {
     const chatContent = document.getElementById("chatContent");
     if (!chatContent) {
@@ -435,48 +554,51 @@ function addMessageToChat(message, className) {
         return;
     }
 
-    // Create message wrapper
-    const messageWrapper = document.createElement("div");
-    messageWrapper.className = `${className} fade-in`;
+    if (className.includes("user")) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "message-wrapper user-wrapper fade-in";
 
-    // Create profile image
-    const profileIcon = document.createElement("img");
-    profileIcon.className = "profile-icon";
-    profileIcon.src = className.includes('user') ? "/static/user-img.svg" : "/static/bot-chat-img.svg";
-    profileIcon.alt = className.includes('user') ? "User" : "Bot";
+        const bubble = document.createElement("div");
+        bubble.className = "message-bubble user-message";
+        bubble.innerHTML = `
+            <div class="message-text">${message}</div>
+            <img class="avatar user-avatar" src="/static/user-img.svg" alt="User">
+        `;
 
-    // Create message content wrapper
-    const messageText = document.createElement("div");
-    messageText.className = "message-content";
-    messageText.innerHTML = `<p>${message}</p>`;
-
-    // Append elements in correct order based on message type
-    if (className.includes('user')) {
-        messageWrapper.appendChild(messageText);
-        messageWrapper.appendChild(profileIcon);
+        wrapper.appendChild(bubble);
+        chatContent.appendChild(wrapper);
     } else {
-        messageWrapper.appendChild(profileIcon);
-        messageWrapper.appendChild(messageText);
+        const wrapper = document.createElement("div");
+        wrapper.className = "message-wrapper bot-wrapper fade-in";
+
+        const bubble = document.createElement("div");
+        bubble.className = "message-bubble bot-message";
+        bubble.innerHTML = `
+            <img class="avatar bot-avatar" src="/static/bot-chat-img.svg" alt="Bot">
+            <div class="message-text">${message}</div>
+        `;
+
+        wrapper.appendChild(bubble);
+        chatContent.appendChild(wrapper);
     }
 
-    chatContent.appendChild(messageWrapper);
     chatContent.scrollTop = chatContent.scrollHeight;
 
-    // Store in localStorage
     const sessionId = localStorage.getItem("session_id");
     if (sessionId) {
         const chatHistoryKey = `chatHistory_${sessionId}`;
-        const chatHistory = JSON.parse(localStorage.getItem(chatHistoryKey) || '[]');
+        const chatHistory = JSON.parse(localStorage.getItem(chatHistoryKey) || "[]");
 
         chatHistory.push({
             message: message,
-            type: className.includes('user') ? 'user' : 'bot',
-            timestamp: new Date().toISOString()
+            type: className.includes("user") ? "user" : "bot",
+            timestamp: new Date().toISOString(),
         });
 
         localStorage.setItem(chatHistoryKey, JSON.stringify(chatHistory));
     }
 }
+
 
 
 function saveChatMessage(sessionId, messageData) {
@@ -562,9 +684,8 @@ async function sendMessage(userQuery = null, isSuggested = false) {
 
         const sessionId = localStorage.getItem("session_id") || generateSessionId();
 
-        // ✅ Append user message to UI
-        chatContent.innerHTML += `<div class="user-message">${userMessage}</div>`;
-        chatContent.scrollTop = chatContent.scrollHeight; // Auto-scroll
+        // ✅ Append user message using addMessageToChat
+        addMessageToChat(userMessage, "user-message");
 
         if (userMessageInput) userMessageInput.value = ""; // Clear input field
 
@@ -582,9 +703,8 @@ async function sendMessage(userQuery = null, isSuggested = false) {
 
             if (!data.results?.[0]?.answer) throw new Error("No valid response received.");
 
-            // ✅ Show the bot response
-            chatContent.innerHTML += `<div class="bot-message">${data.results[0].answer}</div>`;
-            chatContent.scrollTop = chatContent.scrollHeight;
+            // ✅ Append bot message with avatar
+            addMessageToChat(data.results[0].answer, "bot-message");
 
             // ✅ Display similar questions if available
             if (data.similar_questions?.length > 0) displaySimilarQuestions(data.similar_questions);
@@ -600,6 +720,7 @@ async function sendMessage(userQuery = null, isSuggested = false) {
         showErrorScreen();
     }
 }
+
 
 
 function saveChatHistory(message, type) {
@@ -680,15 +801,16 @@ function displaySimilarQuestions(similarQuestions) {
     similarDiv.innerHTML = `<strong>You can also ask:</strong>`;
 
     similarQuestions.forEach(q => {
-        if (!q.question) return; // ✅ Prevent empty or invalid questions
-        
+        if (!q) return; // ✅ Prevent empty or invalid strings
+    
         let button = document.createElement("button");
-        button.textContent = q.question.trim();
+        button.textContent = q.trim();
         button.className = "similar-question-item";
-        button.setAttribute("data-question", q.question.trim());
-
+        button.setAttribute("data-question", q.trim());
+    
         similarDiv.appendChild(button);
     });
+    
 
     chatContent.appendChild(similarDiv);
 }

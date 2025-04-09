@@ -11,3 +11,6 @@ pandas
 torch
 sentence_transformers
 pydantic[email]
+thefuzz
+python-levenshtein
+fuzzywuzzy

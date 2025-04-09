@@ -4,6 +4,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
 from pydantic import BaseModel, EmailStr, Field, validator
 from typing import List, Optional
+from fuzzywuzzy import fuzz
 import smtplib
 import logging
 import asyncio
@@ -148,10 +149,11 @@ class FeedbackRequest(BaseModel):
 async def read_root():
     return FileResponse("template/index.html")
 
+
 @app.post("/query")
 async def query_database(query: Query):
     try:
-        # ✅ Session validation
+        # 1️⃣ Session validation
         if not query.session_id:
             logger.info("No session found. Redirecting to form")
             return JSONResponse(content={
@@ -171,24 +173,24 @@ async def query_database(query: Query):
 
         logger.info(f"📥 Received query: {query.text}")
 
-        # ✅ Check cache
+        # 2️⃣ Cache check
         cache_key = f"query:{query.text}"
         cached_result = redis_client.get(cache_key)
         if cached_result:
             logger.info("✅ Cache hit")
             return json.loads(cached_result)
 
-        # ✅ Generate embedding
+        # 3️⃣ Generate embedding
         query_embedding = embedding_model.encode([query.text])[0].tolist()
+        query_embedding_np = np.array(query_embedding).reshape(1, -1)
 
-        # ✅ Retrieve results from ChromaDB
+        # 4️⃣ Retrieve initial results
         results = collection.query(
             query_embeddings=[query_embedding],
             n_results=query.n_results,
             include=["metadatas", "embeddings"]
         )
 
-        # ✅ Handle no results case
         if not results['ids'][0]:
             logger.warning("⚠ No results found")
             return {
@@ -199,96 +201,153 @@ async def query_database(query: Query):
                 "similar_questions": []
             }
 
-        # ✅ Compute Cosine Similarity
-        query_embedding_np = np.array(query_embedding).reshape(1, -1)
+        # 5️⃣ Compute Cosine Similarity and filter
         retrieved_embeddings_np = np.array(results["embeddings"][0])
-
         cos_similarities = cosine_similarity(query_embedding_np, retrieved_embeddings_np)[0]
 
-        # ✅ Process results with similarity threshold
         processed_results = []
-        cluster_counts = Counter()
-        similar_questions = []  # Always return similar questions
+        question_set = set()  # track questions to avoid duplicates
 
-        logger.info(f"Processing {len(results['ids'][0])} results with similarity threshold: {SIMILARITY_THRESHOLD}")
+        logger.info(f"Processing {len(results['ids'][0])} results with "
+                    f"similarity threshold: {SIMILARITY_THRESHOLD}")
 
         for i, result_id in enumerate(results['ids'][0]):
-            similarity = cos_similarities[i]  
-            cluster = results['metadatas'][0][i]['cluster_kmeans']
+            similarity = cos_similarities[i]
             question = results['metadatas'][0][i]['question']
+            answer = results['metadatas'][0][i]['answer']
 
-            # ✅ Always collect similar questions
-            similar_questions.append({"question": question})
+            if not question or similarity < SIMILARITY_THRESHOLD:
+                # Either no question text or below threshold => skip
+                continue
 
-            if similarity < SIMILARITY_THRESHOLD:
-                logger.warning(f"❌ Skipping result (low similarity: {similarity:.4f})")
-                continue  # Skip low-confidence answers
+            # Avoid duplicates
+            if question not in question_set:
+                processed_results.append({
+                    'id': result_id,
+                    'question': question,
+                    'answer': answer,
+                    'similarity': round(similarity, 4),
+                })
+                question_set.add(question)
 
-            result_data = {
-                'id': result_id,
-                'question': question,
-                'answer': results['metadatas'][0][i]['answer'],
-                'cluster': cluster,
-                'similarity': round(similarity, 4),
-            }
-            processed_results.append(result_data)
-            cluster_counts[cluster] += 1
+        # 6️⃣ Sort results by similarity
+        processed_results.sort(key=lambda x: x['similarity'], reverse=True)
+        best_answer = processed_results[0] if processed_results else None
 
-        # ✅ Sort results by similarity and select best match
-        if processed_results:
-            best_answer = max(processed_results, key=lambda x: x['similarity'])
-            processed_results = [best_answer]
-        else:
-            logger.warning("No results met the similarity threshold, returning suggested questions.")
-
+        if not best_answer:
+            logger.warning("No results met the similarity threshold, returning minimal suggestions.")
             return {
                 "results": [{
                     "id": None,
-                    "answer": "I'm not confident I have a relevant answer. Could you please rephrase or ask something else?"
+                    "answer": (
+                        "I'm not confident I have a relevant answer. "
+                        "Could you please rephrase or ask something else?"
+                    )
                 }],
-                "similar_questions": similar_questions[:3]  # Limit to 3 suggestions
+                "similar_questions": []
             }
 
-        # ✅ Get similar questions from top clusters
-        top_clusters = [cluster for cluster, _ in cluster_counts.most_common(3)]
+        # 7️⃣ Prepare to fetch additional similar questions
+        # Exclude the query itself and the best_answer to avoid duplicates
+        excluded_questions = {query.text.lower(), best_answer['question'].lower()}
+
+        # We'll store only the question text in our final suggestions
         refined_similar_questions = []
 
-        if top_clusters:
-            try:
-                similar_results = collection.query(
-                    query_embeddings=[query_embedding],
-                    n_results=10,
-                    include=["metadatas"]
-                )
+        try:
+            # 8️⃣ Get more candidates for suggested questions
+            more_results = collection.query(
+                query_embeddings=[query_embedding],
+                n_results=15,
+                include=["metadatas", "embeddings"]
+            )
 
-                seen_questions = set([query.text])
-                for metadata in similar_results['metadatas'][0]:
-                    cluster = metadata.get('cluster_kmeans')
-                    question = metadata.get('question')
+            more_embeddings = np.array(more_results["embeddings"][0])
+            more_similarities = cosine_similarity(query_embedding_np, more_embeddings)[0]
 
-                    if (cluster in top_clusters and question and question not in seen_questions):
-                        refined_similar_questions.append({"question": question})
-                        seen_questions.add(question)
+            # Sort candidates by similarity (descending)
+            candidate_list = sorted(
+                zip(more_similarities, more_results['metadatas'][0]),
+                key=lambda x: x[0],
+                reverse=True
+            )
 
-                        if len(refined_similar_questions) >= 3:
-                            break
+            # Dynamically determine thresholds
+            max_sim = candidate_list[0][0]  # highest similarity across candidates
+            # a) First pass threshold is max(0.6, 0.8 * max_sim)
+            first_pass_threshold = max(0.5, 0.7 * max_sim)
+            # b) Second pass threshold is max(0.5, 0.6 * max_sim) => can be adjusted
+            second_pass_threshold = max(0.4, 0.5 * max_sim)
 
-                logger.info(f"✅ Found {len(refined_similar_questions)} similar questions")
+            def is_near_duplicate(q1, q2, fuzz_threshold=75):
+                """
+                Check if q1 and q2 are near duplicates using fuzzy matching.
+                Return True if they are too similar.
+                """
+                if not q1 or not q2:
+                    return False
+                return fuzz.ratio(q1.lower(), q2.lower()) >= fuzz_threshold
 
-            except Exception as e:
-                logger.error(f"⚠ Error fetching similar questions: {str(e)}")
-                refined_similar_questions = similar_questions[:3]  # Use previous list
+            def already_in_list(q, suggestions):
+                """Check if 'q' is near-duplicate with any question in 'suggestions'."""
+                for existing_q in suggestions:
+                    if is_near_duplicate(q, existing_q):
+                        return True
+                return False
 
-        # ✅ Prepare Response
+            # 9️⃣ First pass for suggestions
+            for sim_score, metadata in candidate_list:
+                q = metadata.get('question', '').strip()
+                if not q:
+                    continue
+
+                # Check exclude list + near-duplicate to best_answer
+                if q.lower() in excluded_questions or is_near_duplicate(q, best_answer['question']):
+                    continue
+
+                # Strict threshold (first_pass_threshold)
+                if sim_score >= first_pass_threshold:
+                    # Also ensure it's not near-duplicate to what's already in refined_similar_questions
+                    if not already_in_list(q, refined_similar_questions):
+                        refined_similar_questions.append(q)
+                        excluded_questions.add(q.lower())
+
+                if len(refined_similar_questions) >= 3:
+                    break
+
+            # 🔟 Second pass with relaxed threshold
+            if len(refined_similar_questions) < 3:
+                for sim_score, metadata in candidate_list:
+                    q = metadata.get('question', '').strip()
+                    if not q:
+                        continue
+
+                    if q.lower() in excluded_questions or is_near_duplicate(q, best_answer['question']):
+                        continue
+
+                    if sim_score >= second_pass_threshold:
+                        if not already_in_list(q, refined_similar_questions):
+                            refined_similar_questions.append(q)
+                            excluded_questions.add(q.lower())
+
+                    if len(refined_similar_questions) >= 3:
+                        break
+
+            logger.info(f"✅ Found {len(refined_similar_questions)} unique suggestions")
+
+        except Exception as e:
+            logger.error(f"⚠ Error fetching additional similar questions: {str(e)}")
+            refined_similar_questions = []
+
+        # 1️⃣1️⃣ Final response
         response_data = {
-            'results': processed_results,
-            'query': query.text,
-            'similar_questions': refined_similar_questions
+            "results": [best_answer],
+            "query": query.text,
+            "similar_questions": [q["question"] if isinstance(q, dict) else q for q in refined_similar_questions[:3]] # Ensure we sending just the question string
         }
 
-        # ✅ Cache the response
+        # 1️⃣2️⃣ Cache the response
         redis_client.setex(cache_key, 120, json.dumps(response_data))
-
         return response_data
 
     except Exception as e:
@@ -298,6 +357,7 @@ async def query_database(query: Query):
             status_code=500,
             detail=f"An error occurred: {str(e)}"
         )
+
 
 
 # Add new endpoint to get chat history
