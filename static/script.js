@@ -28,8 +28,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
     console.log("✅ Chat elements found");
     
-    
-    
+    const sendBtn = document.getElementById("sendMessage");
+    if (sendBtn) {
+        // Disable send button until form is submitted
+        const formSubmitted = localStorage.getItem("formSubmitted") === "true";
+        sendBtn.disabled = !formSubmitted;
+    }
+
     // Only trigger the form if no chat history exists
     const storedChatHistory = JSON.parse(localStorage.getItem(`chatHistory_${localStorage.getItem("session_id")}`) || "[]");
     if (storedChatHistory.length === 0) {
@@ -361,6 +366,11 @@ async function submitForm() {
             const chatContent = document.getElementById("chatContent");
             chatContent.insertAdjacentHTML("beforeend", successHtml);
             chatContent.scrollTop = chatContent.scrollHeight;
+
+            localStorage.setItem("formSubmitted", "true");
+
+            const sendBtn = document.getElementById("sendMessage");
+            if (sendBtn) sendBtn.disabled = false;
 
             isFormSubmitted = true;
         } else {
