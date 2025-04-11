@@ -308,25 +308,6 @@ body {
     order: 0;
 }
 
-
-
-/* .user-message:hover, .bot-message:hover {
-    transform: scale(1.02);
-} */
-
-.user-message::before, .bot-message::after {
-    content: "";
-    width: 30px;
-    height: 30px;
-    min-width: 30px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-/* .user-message::before { background-image: url("/static/user-img.svg") no-repeat center; } */
-
 .fade-in { animation: fadeIn 0.5s ease-in; }
 
 @keyframes fadeIn {
@@ -651,4 +632,11 @@ body {
 .chat-body.hidden,
 .chat-footer.hidden {
     display: none !important;
+}
+
+.submit-button{
+    padding: 5px;
+    font-size: 0.9em;
+    color: #333;
+    font-family: 'Arial', sans-serif;
 }
