@@ -203,43 +203,109 @@ body {
 
 /* 🔹 User Message (Aligns to Right) */
 .user-message {
-    background-color: #e1ffc7;
+    background: #EEF1FF;
     color: #000;
-    margin-left: auto;
-    margin-right: 10px;
     flex-direction: row-reverse;
 }
 
-/* 🔹 Bot Message (Aligns to Left) */
-.bot-message {
-    background-color: rgba(24, 64, 64, 1);
-    color: white;
-    margin-right: auto;
-    margin-left: 10px;
-}
-
-
-.user-message:hover, .bot-message:hover {
-    transform: scale(1.02);
-}
-
-.user-message::before, .bot-message::after {
-    content: "";
-    width: 30px;
-    height: 30px;
-    min-width: 30px;
-    border-radius: 50%;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-.user-message::before { background-image: url("/static/user-img.svg") no-repeat center; }
-.bot-message::after { background-image: url("/static/bot-chat-img.svg") no-repeat center; }
-
 .message-content {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    border-radius: 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-size: 14px;
+    max-width: 85%;
+    word-wrap: break-word;
+}
+
+.user-message .message-content {
+    background-color: #EDEAFF;
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.user-message .profile-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #2E0F78;
+    padding: 6px;
+}
+
+/* Bot Message Aligned Left with Avatar Inline */
+.message-wrapper {
+    display: flex;
+    align-items: flex-end;
+    margin: 10px 0;
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.user-wrapper {
+    justify-content: flex-end;
+}
+
+.bot-wrapper {
+    justify-content: flex-start;
+}
+
+.message-bubble {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    max-width: 90%;
+    padding: 14px 16px;
+    border-radius: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.bot-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #0F3D3E; /* Bot avatar background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bot-avatar img {
+    width: 20px;
+    height: 20px;
+}
+
+.bot-message {
+    background: #ffffff;
+    color: #000;
+}
+
+.bot-message .message-content {
+    background-color: #ffffff;
+    justify-content: flex-start;
+    margin-right: auto;
+}
+
+.avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.message-text {
     flex: 1;
-    min-width: 0;
+    word-wrap: break-word;
+    font-size: 15px;
+    line-height: 1.5;
+}
+.avatar.right {
+    order: 2;
+}
+
+.avatar.left {
+    order: 0;
 }
 
 .fade-in { animation: fadeIn 0.5s ease-in; }
@@ -256,18 +322,64 @@ body {
     background: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 8px;
-    padding: 20px;
+    padding: 20px 16px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
     margin: 20px auto;
     font-family: 'Arial', sans-serif;
 }
 
+
+/* Center only the form container and success message */
+.bot-message.form-center {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 0;
+    box-shadow: none;
+    background: transparent;
+}
+
+/* Keep the form nicely centered */
+.bot-message.form-center .form-container {
+    width: 100%;
+    max-width: 300px;
+    padding: 16px;
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.form-center {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.form-center .form-container {
+    width: 100%;
+    max-width: 300px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+#userForm {
+    width: 100%;
+}
+#userForm .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 #formHeading {
     text-align: center;
-    color: rgba(24, 64, 64, 1);
-    margin-bottom: 10px;
-    font-size: 1.5em;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 12px;
 }
 
 .form-group {
@@ -520,4 +632,11 @@ body {
 .chat-body.hidden,
 .chat-footer.hidden {
     display: none !important;
+}
+
+.submit-button{
+    padding: 5px;
+    font-size: 0.9em;
+    color: #333;
+    font-family: 'Arial', sans-serif;
 }
