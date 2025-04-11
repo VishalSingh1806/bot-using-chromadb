@@ -3,6 +3,22 @@ const BACKEND_CHAT_URL = isLocal ? "http://127.0.0.1:8000/query" : "http://34.17
 const BACKEND_FORM_URL = isLocal ? "http://127.0.0.1:8000/collect_user_data" : "http://34.173.78.39:8000/collect_user_data";
 
 let isFormSubmitted = false; // Default state: form not submitted
+let inactivityTimer;
+let lastPingTime = 0;
+
+const suggestedQuestions = [
+    "What is EPR registration?",
+    "How can I apply for a plastic waste certificate?",
+    "What are the responsibilities of a brand owner?",
+    "Do I need to submit monthly reports?",
+    "How is EPR compliance verified?",
+    "What documents are needed for CPCB registration?",
+    "Who qualifies as a PIBO?",
+    "How does ReCircle help with plastic credit?",
+    "What is the penalty for non-compliance?",
+    "Can you help me with recycling partners?"
+];
+
 
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", function() {
@@ -27,7 +43,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     console.log("✅ Chat elements found");
+
+    ["mousemove", "keydown", "click", "scroll"].forEach(event => {
+        document.addEventListener(event, resetInactivityTimer);
+    });
+    resetInactivityTimer(); // start it once
     
+
     const sendBtn = document.getElementById("sendMessage");
     if (sendBtn) {
         // Disable send button until form is submitted
@@ -314,6 +336,14 @@ function sanitizeInput(input) {
     return input.replace(/<\/?[^>]+(>|$)/g, ""); // Removes HTML tags
 }
 
+function showInitialSuggestedQuestions() {
+    const shuffled = suggestedQuestions.sort(() => 0.5 - Math.random());
+    const topQuestions = shuffled.slice(0, 3); // Show 3 at a time
+
+    displaySimilarQuestions(topQuestions);
+}
+
+
 // Submit Form Data
 async function submitForm() {
     const nameInput = document.getElementById("name");
@@ -354,20 +384,28 @@ async function submitForm() {
             const formWrapper = document.querySelector(".bot-message.form-center");
             if (formWrapper) formWrapper.remove();
             
+            const userName = nameInput.value.trim().split(" ")[0]; // First name only
+
             const successHtml = `
                 <div class="bot-message-wrapper fade-in">
                     <div class="message-bubble bot-message">
                         <img class="avatar bot-avatar" src="/static/bot-chat-img.svg" alt="Bot">
-                        <div class="message-text">🌟 Great! Let’s get started with your EPR-related questions.</div>
+                        <div class="message-text">
+                            🌟 Great to meet you, <b>${userName}</b>!<br>
+                            Let’s get started with your EPR-related questions.
+                        </div>
                     </div>
                 </div>
             `;
-            
+
             const chatContent = document.getElementById("chatContent");
             chatContent.insertAdjacentHTML("beforeend", successHtml);
             chatContent.scrollTop = chatContent.scrollHeight;
 
             localStorage.setItem("formSubmitted", "true");
+
+            // ✅ Show 3 shuffled suggested questions
+            showInitialSuggestedQuestions();
 
             const sendBtn = document.getElementById("sendMessage");
             if (sendBtn) sendBtn.disabled = false;
@@ -478,7 +516,30 @@ function addMessageToChat(message, className) {
     }
 }
 
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(triggerSoftPing, 60000); // 1 min
+}
 
+function triggerSoftPing() {
+    const now = Date.now();
+    if (now - lastPingTime < 1 * 60 * 1000) return; // 5 min cooldown
+    if (!localStorage.getItem("formSubmitted")) return;
+
+    const input = document.getElementById("userMessage");
+    if (!input || input.disabled) return;
+
+    const softPings = [
+        "Still there? 😊 I’m here to help.",
+        "Have more questions about EPR?",
+        "Need help with certificates or compliance?",
+        "👋 Just checking in. Ask away anytime!",
+    ];
+    const randomPing = softPings[Math.floor(Math.random() * softPings.length)];
+
+    addMessageToChat(randomPing, "bot-message");
+    lastPingTime = now;
+}
 
 function saveChatMessage(sessionId, messageData) {
     try {
