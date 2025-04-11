@@ -3,6 +3,22 @@ const BACKEND_CHAT_URL = isLocal ? "http://127.0.0.1:8000/query" : "http://34.17
 const BACKEND_FORM_URL = isLocal ? "http://127.0.0.1:8000/collect_user_data" : "http://34.173.78.39:8000/collect_user_data";
 
 let isFormSubmitted = false; // Default state: form not submitted
+let inactivityTimer;
+let lastPingTime = 0;
+
+const suggestedQuestions = [
+    "What is EPR registration?",
+    "How can I apply for a plastic waste certificate?",
+    "What are the responsibilities of a brand owner?",
+    "Do I need to submit monthly reports?",
+    "How is EPR compliance verified?",
+    "What documents are needed for CPCB registration?",
+    "Who qualifies as a PIBO?",
+    "How does ReCircle help with plastic credit?",
+    "What is the penalty for non-compliance?",
+    "Can you help me with recycling partners?"
+];
+
 
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", function() {
@@ -27,9 +43,20 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     console.log("✅ Chat elements found");
+
+    ["mousemove", "keydown", "click", "scroll"].forEach(event => {
+        document.addEventListener(event, resetInactivityTimer);
+    });
+    resetInactivityTimer(); // start it once
     
-    
-    
+
+    const sendBtn = document.getElementById("sendMessage");
+    if (sendBtn) {
+        // Disable send button until form is submitted
+        const formSubmitted = localStorage.getItem("formSubmitted") === "true";
+        sendBtn.disabled = !formSubmitted;
+    }
+
     // Only trigger the form if no chat history exists
     const storedChatHistory = JSON.parse(localStorage.getItem(`chatHistory_${localStorage.getItem("session_id")}`) || "[]");
     if (storedChatHistory.length === 0) {
@@ -37,12 +64,7 @@ document.addEventListener("DOMContentLoaded", function() {
         triggerBackendForForm();
     } else{
         console.log("✅ Chat history found, skipping form check.")
-        // Show chat window and trigger form check
-        // chatWindow.style.display = "block";
     }
-
-    // Keep chat window hidden initially
-    // chatWindow.classList.add('hidden')
 });
 
 
@@ -128,9 +150,9 @@ function displayForm() {
     }
 
     const formHtml = `
-        <div class="bot-message fade-in">
+        <div class="bot-message fade-in form-center">
             <div class="form-container">
-                <h3 id="formHeading">Let's get to know you!</h3>
+             <h3 id="formHeading">Let's get to know you!</h3>
                 <form id="userForm">
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -314,16 +336,21 @@ function sanitizeInput(input) {
     return input.replace(/<\/?[^>]+(>|$)/g, ""); // Removes HTML tags
 }
 
+function showInitialSuggestedQuestions() {
+    const shuffled = suggestedQuestions.sort(() => 0.5 - Math.random());
+    const topQuestions = shuffled.slice(0, 3); // Show 3 at a time
+
+    displaySimilarQuestions(topQuestions);
+}
+
 
 // Submit Form Data
 async function submitForm() {
-    // Get form elements safely
     const nameInput = document.getElementById("name");
     const emailInput = document.getElementById("email");
     const phoneInput = document.getElementById("phone");
     const orgInput = document.getElementById("organization");
 
-    // Check if elements exist
     if (!nameInput || !emailInput || !phoneInput || !orgInput) {
         console.error("❌ One or more form elements not found!");
         addMessageToChat("Form error: missing fields.", "bot-message");
@@ -349,30 +376,39 @@ async function submitForm() {
         });
 
         if (response.ok) {
-            const contentType = response.headers.get("content-type");
-            let data = null;
-
-            if (contentType && contentType.includes("application/json")) {
-                data = await response.json(); // Parse only if JSON
-            } else {
-                console.warn("⚠ Unexpected response format:", contentType);
-            }
-
-            // Update UI after successful submission
-            const formHeading = document.getElementById("formHeading");
-            if (formHeading) {
-                formHeading.innerText = "🌟Great! Let’s get started with your EPR-related questions.";
-            }
-
-            const formDescription = document.querySelector(".form-description");
-            if (formDescription) {
-                formDescription.style.display = "none";
-            }
-
+            // ✅ Remove the form after successful submission
             const userForm = document.getElementById("userForm");
-            if (userForm) {
-                userForm.remove();
-            }
+            if (userForm) userForm.remove();
+
+            // ✅ Add a centered success message
+            const formWrapper = document.querySelector(".bot-message.form-center");
+            if (formWrapper) formWrapper.remove();
+            
+            const userName = nameInput.value.trim().split(" ")[0]; // First name only
+
+            const successHtml = `
+                <div class="bot-message-wrapper fade-in">
+                    <div class="message-bubble bot-message">
+                        <img class="avatar bot-avatar" src="/static/bot-chat-img.svg" alt="Bot">
+                        <div class="message-text">
+                            🌟 Great to meet you, <b>${userName}</b>!<br>
+                            Let’s get started with your EPR-related questions.
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            const chatContent = document.getElementById("chatContent");
+            chatContent.insertAdjacentHTML("beforeend", successHtml);
+            chatContent.scrollTop = chatContent.scrollHeight;
+
+            localStorage.setItem("formSubmitted", "true");
+
+            // ✅ Show 3 shuffled suggested questions
+            showInitialSuggestedQuestions();
+
+            const sendBtn = document.getElementById("sendMessage");
+            if (sendBtn) sendBtn.disabled = false;
 
             isFormSubmitted = true;
         } else {
@@ -383,7 +419,6 @@ async function submitForm() {
         console.error("Fetch error:", error);
     }
 }
-
 
 
 // Toggle Chat Window
@@ -428,6 +463,7 @@ function checkEnter(event) {
 }
 
 
+
 function addMessageToChat(message, className) {
     const chatContent = document.getElementById("chatContent");
     if (!chatContent) {
@@ -435,49 +471,75 @@ function addMessageToChat(message, className) {
         return;
     }
 
-    // Create message wrapper
-    const messageWrapper = document.createElement("div");
-    messageWrapper.className = `${className} fade-in`;
+    if (className.includes("user")) {
+        const wrapper = document.createElement("div");
+        wrapper.className = "message-wrapper user-wrapper fade-in";
 
-    // Create profile image
-    const profileIcon = document.createElement("img");
-    profileIcon.className = "profile-icon";
-    profileIcon.src = className.includes('user') ? "/static/user-img.svg" : "/static/bot-chat-img.svg";
-    profileIcon.alt = className.includes('user') ? "User" : "Bot";
+        const bubble = document.createElement("div");
+        bubble.className = "message-bubble user-message";
+        bubble.innerHTML = `
+            <div class="message-text">${message}</div>
+            <img class="avatar user-avatar" src="/static/user-img.svg" alt="User">
+        `;
 
-    // Create message content wrapper
-    const messageText = document.createElement("div");
-    messageText.className = "message-content";
-    messageText.innerHTML = `<p>${message}</p>`;
-
-    // Append elements in correct order based on message type
-    if (className.includes('user')) {
-        messageWrapper.appendChild(messageText);
-        messageWrapper.appendChild(profileIcon);
+        wrapper.appendChild(bubble);
+        chatContent.appendChild(wrapper);
     } else {
-        messageWrapper.appendChild(profileIcon);
-        messageWrapper.appendChild(messageText);
+        const wrapper = document.createElement("div");
+        wrapper.className = "message-wrapper bot-wrapper fade-in";
+
+        const bubble = document.createElement("div");
+        bubble.className = "message-bubble bot-message";
+        bubble.innerHTML = `
+            <img class="avatar bot-avatar" src="/static/bot-chat-img.svg" alt="Bot">
+            <div class="message-text">${message}</div>
+        `;
+
+        wrapper.appendChild(bubble);
+        chatContent.appendChild(wrapper);
     }
 
-    chatContent.appendChild(messageWrapper);
     chatContent.scrollTop = chatContent.scrollHeight;
 
-    // Store in localStorage
     const sessionId = localStorage.getItem("session_id");
     if (sessionId) {
         const chatHistoryKey = `chatHistory_${sessionId}`;
-        const chatHistory = JSON.parse(localStorage.getItem(chatHistoryKey) || '[]');
+        const chatHistory = JSON.parse(localStorage.getItem(chatHistoryKey) || "[]");
 
         chatHistory.push({
             message: message,
-            type: className.includes('user') ? 'user' : 'bot',
-            timestamp: new Date().toISOString()
+            type: className.includes("user") ? "user" : "bot",
+            timestamp: new Date().toISOString(),
         });
 
         localStorage.setItem(chatHistoryKey, JSON.stringify(chatHistory));
     }
 }
 
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(triggerSoftPing, 60000); // 1 min
+}
+
+function triggerSoftPing() {
+    const now = Date.now();
+    if (now - lastPingTime < 1 * 60 * 1000) return; // 5 min cooldown
+    if (!localStorage.getItem("formSubmitted")) return;
+
+    const input = document.getElementById("userMessage");
+    if (!input || input.disabled) return;
+
+    const softPings = [
+        "Still there? 😊 I’m here to help.",
+        "Have more questions about EPR?",
+        "Need help with certificates or compliance?",
+        "👋 Just checking in. Ask away anytime!",
+    ];
+    const randomPing = softPings[Math.floor(Math.random() * softPings.length)];
+
+    addMessageToChat(randomPing, "bot-message");
+    lastPingTime = now;
+}
 
 function saveChatMessage(sessionId, messageData) {
     try {
@@ -562,9 +624,8 @@ async function sendMessage(userQuery = null, isSuggested = false) {
 
         const sessionId = localStorage.getItem("session_id") || generateSessionId();
 
-        // ✅ Append user message to UI
-        chatContent.innerHTML += `<div class="user-message">${userMessage}</div>`;
-        chatContent.scrollTop = chatContent.scrollHeight; // Auto-scroll
+        // ✅ Append user message using addMessageToChat
+        addMessageToChat(userMessage, "user-message");
 
         if (userMessageInput) userMessageInput.value = ""; // Clear input field
 
@@ -582,9 +643,8 @@ async function sendMessage(userQuery = null, isSuggested = false) {
 
             if (!data.results?.[0]?.answer) throw new Error("No valid response received.");
 
-            // ✅ Show the bot response
-            chatContent.innerHTML += `<div class="bot-message">${data.results[0].answer}</div>`;
-            chatContent.scrollTop = chatContent.scrollHeight;
+            // ✅ Append bot message with avatar
+            addMessageToChat(data.results[0].answer, "bot-message");
 
             // ✅ Display similar questions if available
             if (data.similar_questions?.length > 0) displaySimilarQuestions(data.similar_questions);
@@ -600,6 +660,7 @@ async function sendMessage(userQuery = null, isSuggested = false) {
         showErrorScreen();
     }
 }
+
 
 
 function saveChatHistory(message, type) {
@@ -680,15 +741,16 @@ function displaySimilarQuestions(similarQuestions) {
     similarDiv.innerHTML = `<strong>You can also ask:</strong>`;
 
     similarQuestions.forEach(q => {
-        if (!q.question) return; // ✅ Prevent empty or invalid questions
-        
+        if (!q) return; // ✅ Prevent empty or invalid strings
+    
         let button = document.createElement("button");
-        button.textContent = q.question.trim();
+        button.textContent = q.trim();
         button.className = "similar-question-item";
-        button.setAttribute("data-question", q.question.trim());
-
+        button.setAttribute("data-question", q.trim());
+    
         similarDiv.appendChild(button);
     });
+    
 
     chatContent.appendChild(similarDiv);
 }
