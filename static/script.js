@@ -5,6 +5,8 @@ const BACKEND_FORM_URL = isLocal ? "http://127.0.0.1:8000/collect_user_data" : "
 let isFormSubmitted = false; // Default state: form not submitted
 let inactivityTimer;
 let lastPingTime = 0;
+let hasSentSoftPing = false;
+
 
 const suggestedQuestions = [
     "What is EPR registration?",
@@ -392,7 +394,7 @@ async function submitForm() {
                         <img class="avatar bot-avatar" src="/static/bot-chat-img.svg" alt="Bot">
                         <div class="message-text">
                             🌟 Great to meet you, <b>${userName}</b>!<br>
-                            Let’s get started with your EPR-related questions.
+                            What would you like to know today.
                         </div>
                     </div>
                 </div>
@@ -523,6 +525,7 @@ function resetInactivityTimer() {
 
 function triggerSoftPing() {
     const now = Date.now();
+    if (hasSentSoftPing) return;
     if (now - lastPingTime < 1 * 60 * 1000) return; // 5 min cooldown
     if (!localStorage.getItem("formSubmitted")) return;
 
@@ -539,6 +542,7 @@ function triggerSoftPing() {
 
     addMessageToChat(randomPing, "bot-message");
     lastPingTime = now;
+    hasSentSoftPing = true; 
 }
 
 function saveChatMessage(sessionId, messageData) {
@@ -626,6 +630,7 @@ async function sendMessage(userQuery = null, isSuggested = false) {
 
         // ✅ Append user message using addMessageToChat
         addMessageToChat(userMessage, "user-message");
+        hasSentSoftPing = false; // ✅ reset when user sends message
 
         if (userMessageInput) userMessageInput.value = ""; // Clear input field
 
@@ -738,7 +743,7 @@ function displaySimilarQuestions(similarQuestions) {
     // ✅ Create a new similar questions container
     const similarDiv = document.createElement("div");
     similarDiv.className = "similar-questions";
-    similarDiv.innerHTML = `<strong>You can also ask:</strong>`;
+    similarDiv.innerHTML = `<strong>Would you also like to know about?:</strong>`;
 
     similarQuestions.forEach(q => {
         if (!q) return; // ✅ Prevent empty or invalid strings
