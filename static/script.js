@@ -25,49 +25,52 @@ const suggestedQuestions = [
 // Initialize when DOM is loaded
 document.addEventListener("DOMContentLoaded", function() {
     console.log("🚀 Initializing chat...");
-    
-    // Generate session ID if not exists
-    if (!localStorage.getItem("session_id")) {
+
+    // Step 1: Check if session is expired first
+    let isSessionValid = checkSessionValidity();
+
+    // 🛠 If expired, regenerate new session ID and show form
+    if (!isSessionValid || !localStorage.getItem("session_id")) {
         const sessionId = generateSessionId();
-        console.log("Generated new session ID:", sessionId);
-        localStorage.setItem("session_id", sessionId);
-    }
-    // Load stored chat history Chat history from localstorage
-    loadChatHistory();
-
-    // Get chat elements
-    const chatWindow = document.getElementById("chatWindow");
-    const chatContent = document.getElementById("chatContent");
-    
-    if (!chatWindow || !chatContent) {
-        console.error("❌ Chat elements not found!");
-        return;
+        console.log("🔄 New session started:", sessionId);
+        displayForm(); // show form immediately on session renewal
+        return; // skip further loading
     }
 
-    console.log("✅ Chat elements found");
+    // Step 3: If session was valid, continue loading chat
+    if (isSessionValid) {
+        loadChatHistory();
 
-    ["mousemove", "keydown", "click", "scroll"].forEach(event => {
-        document.addEventListener(event, resetInactivityTimer);
-    });
-    resetInactivityTimer(); // start it once
-    
+        const chatWindow = document.getElementById("chatWindow");
+        const chatContent = document.getElementById("chatContent");
 
-    const sendBtn = document.getElementById("sendMessage");
-    if (sendBtn) {
-        // Disable send button until form is submitted
-        const formSubmitted = localStorage.getItem("formSubmitted") === "true";
-        sendBtn.disabled = !formSubmitted;
-    }
+        if (!chatWindow || !chatContent) {
+            console.error("❌ Chat elements not found!");
+            return;
+        }
 
-    // Only trigger the form if no chat history exists
-    const storedChatHistory = JSON.parse(localStorage.getItem(`chatHistory_${localStorage.getItem("session_id")}`) || "[]");
-    if (storedChatHistory.length === 0) {
-        console.log("Chat content empty, triggering form check...");
-        triggerBackendForForm();
-    } else{
-        console.log("✅ Chat history found, skipping form check.")
+        console.log("✅ Chat elements found");
+
+        ["mousemove", "keydown", "click", "scroll"].forEach(event => {
+            document.addEventListener(event, resetInactivityTimer);
+        });
+        resetInactivityTimer();
+
+        const sendBtn = document.getElementById("sendMessage");
+        if (sendBtn) {
+            sendBtn.disabled = localStorage.getItem("formSubmitted") !== "true";
+        }
+
+        const storedChatHistory = JSON.parse(localStorage.getItem(`chatHistory_${localStorage.getItem("session_id")}`) || "[]");
+        if (storedChatHistory.length === 0) {
+            console.log("Chat content empty, triggering form check...");
+            triggerBackendForForm();
+        } else {
+            console.log("✅ Chat history found, skipping form check.")
+        }
     }
 });
+
 
 
 // Trigger Backend for Form
@@ -646,13 +649,18 @@ async function sendMessage(userQuery = null, isSuggested = false) {
             const data = await response.json();
             console.log("✅ API Response:", data);
 
-            if (!data.results?.[0]?.answer) throw new Error("No valid response received.");
+            // ✅ Always show the answer if present (even fallback)
+            if (data.results?.[0]?.answer) {
+                addMessageToChat(data.results[0].answer, "bot-message");
+            } else {
+                addMessageToChat("I'm not confident I have an answer. Please rephrase.", "bot-message");
+            }
 
-            // ✅ Append bot message with avatar
-            addMessageToChat(data.results[0].answer, "bot-message");
+            // ✅ Always show similar questions if available
+            if (data.similar_questions?.length > 0) {
+                displaySimilarQuestions(data.similar_questions);
+            }
 
-            // ✅ Display similar questions if available
-            if (data.similar_questions?.length > 0) displaySimilarQuestions(data.similar_questions);
 
             // ✅ Hide error screen if chat works fine
             hideErrorScreen();
@@ -773,16 +781,59 @@ document.addEventListener("click", function(event) {
 
 
 
+// function generateSessionId() {
+//     let sessionId = localStorage.getItem("session_id");
+//     if (!sessionId) {
+//         sessionId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+//             const r = Math.random() * 16 | 0;
+//             const v = c == 'x' ? r : (r & 0x3 | 0x8);
+//             return v.toString(16);
+//         });
+//         localStorage.setItem("session_id", sessionId);
+//     }
+//     return sessionId;
+// }
+
+// When generating a session ID
 function generateSessionId() {
-    let sessionId = localStorage.getItem("session_id");
-    if (!sessionId) {
-        sessionId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-            const r = Math.random() * 16 | 0;
-            const v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
-        localStorage.setItem("session_id", sessionId);
-    }
+    const sessionId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+        const r = Math.random() * 16 | 0;
+        const v = c === 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
+
+    localStorage.setItem("session_id", sessionId);
+
+    const expirationDate = new Date();
+    // expirationDate.setTime(expirationDate.getTime() + 30 * 24 * 60 * 60 * 1000);
+    expirationDate.setTime(expirationDate.getTime() + 1* 60 * 1000); // 30 days
+    localStorage.setItem("session_expiry", expirationDate.toISOString());
+
     return sessionId;
 }
+
+
+// Check session validity on page load
+function checkSessionValidity() {
+    const expiryStr = localStorage.getItem("session_expiry");
+
+    if (expiryStr && new Date() > new Date(expiryStr)) {
+        const sessionId = localStorage.getItem("session_id");
+        
+        localStorage.removeItem("session_id");
+        localStorage.removeItem("session_expiry");
+        localStorage.removeItem("formSubmitted");
+        if (sessionId) {
+            localStorage.removeItem(`chatHistory_${sessionId}`);
+        }
+
+        console.log("🕒 Session expired. Displaying form...");
+        displayForm(); // ✅ Trigger the form right here
+        return false; // tell the caller that session was expired
+    }
+
+    return true; // still valid
+}
+
+
 
