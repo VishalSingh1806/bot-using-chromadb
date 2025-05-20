@@ -6,6 +6,7 @@ let isFormSubmitted = false; // Default state: form not submitted
 let inactivityTimer;
 let lastPingTime = 0;
 let hasSentSoftPing = false;
+let lastInteractionTime = Date.now();
 
 
 const suggestedQuestions = [
@@ -21,13 +22,12 @@ const suggestedQuestions = [
     "Can you help me with recycling partners?"
 ];
 
-
 // Initialize when DOM is loaded
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     console.log("🚀 Initializing chat...");
 
     // Step 1: Check if session is expired first
-    let isSessionValid = checkSessionValidity();
+    let isSessionValid = checkSessionValidityAndHandle();
 
     // 🛠 If expired, regenerate new session ID and show form
     if (!isSessionValid || !localStorage.getItem("session_id")) {
@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return; // skip further loading
     }
 
-    // Step 3: If session was valid, continue loading chat
+    // Step 2: If session was valid, continue loading chat
     if (isSessionValid) {
         loadChatHistory();
 
@@ -51,10 +51,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
         console.log("✅ Chat elements found");
 
+        // 🖱 Track user activity to reset inactivity timer
         ["mousemove", "keydown", "click", "scroll"].forEach(event => {
             document.addEventListener(event, resetInactivityTimer);
         });
+
+        // ⏱ Track last activity time immediately on load
         resetInactivityTimer();
+
+        // 🔁 Periodically check for session expiry every 30 seconds
+        setInterval(checkSessionValidityAndHandle, 30000);
+
+        // ⏱ Periodically check inactivity every 10 seconds
+        setInterval(() => {
+            const now = Date.now();
+            const inactivityDuration = now - lastInteractionTime;
+
+            console.log(`⏳ Inactivity time: ${(inactivityDuration / 1000).toFixed(1)}s`);
+
+            if (!hasSentSoftPing && inactivityDuration >= 60000) {
+                triggerSoftPing(); // ⏲ Fire once if inactive > 60s
+            }
+        }, 10000);
 
         const sendBtn = document.getElementById("sendMessage");
         if (sendBtn) {
@@ -66,11 +84,10 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log("Chat content empty, triggering form check...");
             triggerBackendForForm();
         } else {
-            console.log("✅ Chat history found, skipping form check.")
+            console.log("✅ Chat history found, skipping form check.");
         }
     }
 });
-
 
 
 // Trigger Backend for Form
@@ -520,33 +537,46 @@ function addMessageToChat(message, className) {
         localStorage.setItem(chatHistoryKey, JSON.stringify(chatHistory));
     }
 }
-
 function resetInactivityTimer() {
-    clearTimeout(inactivityTimer);
-    inactivityTimer = setTimeout(triggerSoftPing, 60000); // 1 min
+    console.log("🔄 Resetting inactivity timer");
+    lastInteractionTime = Date.now(); // ✅ Update user activity timestamp
+    hasSentSoftPing = false;          // ✅ Allow one soft ping again
+    console.log("hasSentSoftPing reset to:", hasSentSoftPing);
 }
 
 function triggerSoftPing() {
-    const now = Date.now();
-    if (hasSentSoftPing) return;
-    if (now - lastPingTime < 1 * 60 * 1000) return; // 5 min cooldown
-    if (!localStorage.getItem("formSubmitted")) return;
+    console.log("🔔 Attempting to trigger soft ping");
+    if (hasSentSoftPing) {
+        console.log("❌ Soft ping already sent, skipping");
+        return;
+    }
+
+    if (!localStorage.getItem("formSubmitted")) {
+        console.log("❌ Form not submitted, skipping soft ping");
+        return;
+    }
 
     const input = document.getElementById("userMessage");
-    if (!input || input.disabled) return;
+    if (!input || input.disabled) {
+        console.log("❌ Input not available or disabled, skipping soft ping");
+        return;
+    }
 
     const softPings = [
-        "Still there? 😊 I’m here to help.",
+        "Still there? 😊 I'm here to help.",
         "Have more questions about EPR?",
         "Need help with certificates or compliance?",
         "👋 Just checking in. Ask away anytime!",
     ];
     const randomPing = softPings[Math.floor(Math.random() * softPings.length)];
 
+    console.log("✅ Sending soft ping:", randomPing);
     addMessageToChat(randomPing, "bot-message");
-    lastPingTime = now;
-    hasSentSoftPing = true; 
+    hasSentSoftPing = true;
+    console.log("hasSentSoftPing set to:", hasSentSoftPing);
 }
+
+
 
 function saveChatMessage(sessionId, messageData) {
     try {
@@ -713,12 +743,18 @@ function loadChatHistory() {
             addMessageToChat(item.message, messageType);
         });
 
-        // Ensure scroll to bottom after loading history
+        // ✅ Ensure suggested questions are visible after reload
+        const hasSuggestions = document.querySelector(".similar-questions");
+        if (!hasSuggestions && localStorage.getItem("formSubmitted") === "true") {
+            showInitialSuggestedQuestions();
+        }
+
         chatContent.scrollTop = chatContent.scrollHeight;
     } catch (error) {
         console.error("❌ Error loading chat history:", error);
     }
 }
+
 
 
 
@@ -781,19 +817,6 @@ document.addEventListener("click", function(event) {
 
 
 
-// function generateSessionId() {
-//     let sessionId = localStorage.getItem("session_id");
-//     if (!sessionId) {
-//         sessionId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-//             const r = Math.random() * 16 | 0;
-//             const v = c == 'x' ? r : (r & 0x3 | 0x8);
-//             return v.toString(16);
-//         });
-//         localStorage.setItem("session_id", sessionId);
-//     }
-//     return sessionId;
-// }
-
 // When generating a session ID
 function generateSessionId() {
     const sessionId = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
@@ -805,8 +828,8 @@ function generateSessionId() {
     localStorage.setItem("session_id", sessionId);
 
     const expirationDate = new Date();
-    // expirationDate.setTime(expirationDate.getTime() + 30 * 24 * 60 * 60 * 1000);
-    expirationDate.setTime(expirationDate.getTime() + 1* 60 * 1000); // 30 days
+    // expirationDate.setTime(expirationDate.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
+    expirationDate.setTime(expirationDate.getTime() + 2* 60 * 1000); // 1 minute
     localStorage.setItem("session_expiry", expirationDate.toISOString());
 
     return sessionId;
@@ -814,7 +837,7 @@ function generateSessionId() {
 
 
 // Check session validity on page load
-function checkSessionValidity() {
+function checkSessionValidityAndHandle() {
     const expiryStr = localStorage.getItem("session_expiry");
 
     if (expiryStr && new Date() > new Date(expiryStr)) {
@@ -828,12 +851,11 @@ function checkSessionValidity() {
         }
 
         console.log("🕒 Session expired. Displaying form...");
-        displayForm(); // ✅ Trigger the form right here
-        return false; // tell the caller that session was expired
+        const chatContent = document.getElementById("chatContent");
+        if (chatContent) chatContent.innerHTML = "";
+        displayForm(); // ✅ Trigger the form again
+        return false;
     }
 
-    return true; // still valid
+    return true;
 }
-
-
-
