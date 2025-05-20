@@ -35,7 +35,7 @@ logger.info(f"Using device: {device}")
 FEEDBACK_FILE = "feedback_history.json"
 FEEDBACK_THRESHOLD = 0.7
 REWEIGHT_INTERVAL = 100
-CSV_FILE_PATH = r"~/bot-using-chroma/FAQ Database.csv"  # Update this path
+CSV_FILE_PATH = r"D:\Chroam DB\bot-using-chromadb\FAQ Database.csv"  # Update this path
 
 # 5. CONFIGURATION DICTIONARY
 CONFIG = {

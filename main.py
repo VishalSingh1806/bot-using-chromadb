@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, HTTPException, Request, Body
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse, JSONResponse
@@ -24,7 +24,7 @@ from db_import import collection, embedding_model, feedback_manager
 from dotenv import load_dotenv
 from fuzzywuzzy import fuzz
 import random
-
+from intent import predict_intent
 # Load environment variables
 load_dotenv()
 
@@ -171,6 +171,258 @@ async def read_root():
     return FileResponse("template/index.html")
 
 
+@app.post("/classify_intent")
+async def classify_intent(query: str = Body(..., embed=True)):
+    try:
+        predicted_intent = predict_intent(query)
+        return {"query": query, "predicted_intent": predicted_intent}
+    except Exception as e:
+        logger.error(f"❌ Intent classification failed: {str(e)}")
+        raise HTTPException(status_code=500, detail="Error classifying intent")
+
+# @app.post("/query")
+# async def query_database(query: Query):
+#     try:
+#         # 1️⃣ Session validation
+#         if not query.session_id:
+#             logger.info("No session found. Redirecting to form")
+#             return JSONResponse(content={
+#                 "redirect_to": "/collect_user_data",
+#                 "message": "Please complete the form first!"
+#             })
+
+#         session_key = f"session:{query.session_id}"
+#         user_data_collected = redis_client.hget(session_key, "user_data_collected")
+#         # 🔄 Refresh session last interaction timestamp
+#         redis_client.hset(session_key, "last_interaction", datetime.utcnow().isoformat())
+
+#         if not user_data_collected or user_data_collected != "true":
+#             logger.info("⚠️ User data not collected, redirecting to form")
+#             return JSONResponse(content={
+#                 "redirect_to": "/collect_user_data",
+#                 "message": "Please complete the form first!"
+#             })
+
+#         logger.info(f"📥 Received query: {query.text}")
+
+#         # 2️⃣ Cache check
+#         cache_key = f"query:{query.text}"
+#         cached_result = redis_client.get(cache_key)
+#         if cached_result:
+#             logger.info("✅ Cache hit")
+#             return json.loads(cached_result)
+
+#         # 3️⃣ Generate embedding
+#         query_embedding = embedding_model.encode([query.text])[0].tolist()
+#         query_embedding_np = np.array(query_embedding).reshape(1, -1)
+
+#         # 4️⃣ Retrieve initial results
+#         results = collection.query(
+#             query_embeddings=[query_embedding],
+#             n_results=query.n_results,
+#             include=["metadatas", "embeddings"]
+#         )
+
+#         if not results['ids'][0]:
+#             logger.warning("⚠ No results found, attempting to fetch related questions")
+
+#             # Fetch similar questions from collection anyway
+#             try:
+#                 more_results = collection.query(
+#                     query_embeddings=[query_embedding],
+#                     n_results=15,
+#                     include=["metadatas", "embeddings"]
+#                 )
+
+#                 more_embeddings = np.array(more_results["embeddings"][0])
+#                 more_similarities = cosine_similarity(query_embedding_np, more_embeddings)[0]
+
+#                 candidate_list = sorted(
+#                     zip(more_similarities, more_results['metadatas'][0]),
+#                     key=lambda x: x[0],
+#                     reverse=True
+#                 )
+
+#                 suggestions = []
+#                 used_questions = set()
+
+#                 for sim_score, metadata in candidate_list:
+#                     q = metadata.get("question", "").strip()
+#                     if q and q.lower() not in used_questions:
+#                         suggestions.append(q)
+#                         used_questions.add(q.lower())
+#                     if len(suggestions) >= 3:
+#                         break
+
+#                 return {
+#                     "results": [{
+#                         "id": None,
+#                         "answer": "I'm not confident I have a relevant answer. Could you please rephrase or ask something else?"
+#                     }],
+#                     "similar_questions": suggestions
+#                 }
+
+#             except Exception as e:
+#                 logger.error(f"⚠ Error during fallback suggestion logic: {e}")
+#                 return {
+#                     "results": [{
+#                         "id": None,
+#                         "answer": "I'm not confident I have a relevant answer."
+#                     }],
+#                     "similar_questions": []
+#                 }
+
+
+#         # 5️⃣ Compute Cosine Similarity and filter
+#         retrieved_embeddings_np = np.array(results["embeddings"][0])
+#         cos_similarities = cosine_similarity(query_embedding_np, retrieved_embeddings_np)[0]
+
+#         processed_results = []
+#         question_set = set()  # track questions to avoid duplicates
+
+#         logger.info(f"Processing {len(results['ids'][0])} results with "
+#                     f"similarity threshold: {SIMILARITY_THRESHOLD}")
+
+#         for i, result_id in enumerate(results['ids'][0]):
+#             similarity = cos_similarities[i]
+#             metadata = results['metadatas'][0][i]
+#             question = metadata.get('question', '').strip()
+#             answer = metadata.get('answer', '').strip()
+
+#             if not question:
+#                 continue
+
+#             # Apply hybrid logic
+#             is_cosine_match = similarity >= SIMILARITY_THRESHOLD
+#             is_fuzzy_match = fuzz.ratio(query.text.lower(), question.lower()) >= FUZZY_MATCH_THRESHOLD
+
+#             if is_cosine_match or is_fuzzy_match:
+#                 if question not in question_set:
+#                     processed_results.append({
+#                         'id': result_id,
+#                         'question': question,
+#                         'answer': answer,
+#                         'similarity': round(similarity, 4),
+#                         'fuzzy_score': fuzz.ratio(query.text.lower(), question.lower())
+#                     })
+#                     question_set.add(question)
+
+#         # 6️⃣ Sort results by similarity
+#         processed_results.sort(key=lambda x: (x['similarity'] + (x['fuzzy_score'] / 100)), reverse=True)
+#         best_answer = processed_results[0] if processed_results else None
+
+#         if not best_answer:
+#             logger.warning("No results met the similarity threshold, returning fallback suggestions.")
+
+#             fallback_pool = [
+#                 "What is EPR registration?",
+#                 "How can I apply for a plastic waste certificate?",
+#                 "What are the responsibilities of a brand owner?",
+#                 "Do I need to submit monthly reports?",
+#                 "How is EPR compliance verified?",
+#                 "What documents are needed for CPCB registration?",
+#                 "Who qualifies as a PIBO?",
+#                 "How does ReCircle help with plastic credit?",
+#                 "What is the penalty for non-compliance?",
+#                 "Can you help me with recycling partners?"
+#             ]
+
+#             # Shuffle fallback and take top 3
+
+#             fallback_suggestions = random.sample(fallback_pool, 3)
+
+#             return {
+#                 "results": [{
+#                     "id": None,
+#                     "answer": "I'm not confident I have a relevant answer. Could you please rephrase or ask something else?"
+#                 }],
+#                 "similar_questions": fallback_suggestions
+#             }
+
+
+#         # 7️⃣ Prepare to fetch additional similar questions
+#         excluded_questions = {query.text.lower()}
+#         refined_similar_questions = []
+
+#         try:
+#             more_results = collection.query(
+#                 query_embeddings=[query_embedding],
+#                 n_results=15,
+#                 include=["metadatas", "embeddings"]
+#             )
+
+#             more_embeddings = np.array(more_results["embeddings"][0])
+#             more_similarities = cosine_similarity(query_embedding_np, more_embeddings)[0]
+
+#             candidate_list = sorted(
+#                 zip(more_similarities, more_results['metadatas'][0]),
+#                 key=lambda x: x[0],
+#                 reverse=True
+#             )
+
+#             max_sim = candidate_list[0][0] if candidate_list else 0.0
+#             first_pass_threshold = max(0.5, 0.7 * max_sim)
+#             second_pass_threshold = max(0.4, 0.5 * max_sim)
+
+#             def is_near_duplicate(q1, q2, threshold=75):
+#                 return fuzz.ratio(q1.lower(), q2.lower()) >= threshold
+
+#             def already_in_list(q, suggestions):
+#                 return any(is_near_duplicate(q, existing_q) for existing_q in suggestions)
+
+#             # 🔍 Hybrid check: Cosine OR Fuzzy above threshold
+#             def is_valid_suggestion(q, sim_score):
+#                 fuzzy_score = fuzz.ratio(query.text.lower(), q.lower())
+#                 return (sim_score >= first_pass_threshold or fuzzy_score >= FUZZY_MATCH_THRESHOLD)
+
+#             for sim_score, metadata in candidate_list:
+#                 q = metadata.get('question', '').strip()
+#                 if not q or q.lower() in excluded_questions:
+#                     continue
+#                 if is_valid_suggestion(q, sim_score) and not already_in_list(q, refined_similar_questions):
+#                     refined_similar_questions.append(q)
+#                     excluded_questions.add(q.lower())
+#                 if len(refined_similar_questions) >= 3:
+#                     break
+
+#             # 2nd pass with relaxed threshold if needed
+#             if len(refined_similar_questions) < 3:
+#                 for sim_score, metadata in candidate_list:
+#                     q = metadata.get('question', '').strip()
+#                     if not q or q.lower() in excluded_questions:
+#                         continue
+#                     fuzzy_score = fuzz.ratio(query.text.lower(), q.lower())
+#                     if (sim_score >= second_pass_threshold or fuzzy_score >= FUZZY_MATCH_THRESHOLD) and not already_in_list(q, refined_similar_questions):
+#                         refined_similar_questions.append(q)
+#                         excluded_questions.add(q.lower())
+#                     if len(refined_similar_questions) >= 3:
+#                         break
+
+#             logger.info(f"✅ Found {len(refined_similar_questions)} unique suggestions")
+
+#         except Exception as e:
+#             logger.error(f"⚠ Error fetching additional similar questions: {str(e)}")
+#             refined_similar_questions = []
+
+#         # 1️⃣1️⃣ Final response
+#         response_data = {
+#             "results": [best_answer],
+#             "query": query.text,
+#             "similar_questions": [q["question"] if isinstance(q, dict) else q for q in refined_similar_questions[:3]] # Ensure we sending just the question string
+#         }
+
+#         # 1️⃣2️⃣ Cache the response
+#         redis_client.setex(cache_key, 120, json.dumps(response_data))
+#         return response_data
+
+#     except Exception as e:
+#         logger.error(f"❌ Query error: {str(e)}")
+#         logger.error(traceback.format_exc())
+#         raise HTTPException(
+#             status_code=500,
+#             detail=f"An error occurred: {str(e)}"
+#         )
+
 @app.post("/query")
 async def query_database(query: Query):
     try:
@@ -184,7 +436,6 @@ async def query_database(query: Query):
 
         session_key = f"session:{query.session_id}"
         user_data_collected = redis_client.hget(session_key, "user_data_collected")
-        # 🔄 Refresh session last interaction timestamp
         redis_client.hset(session_key, "last_interaction", datetime.utcnow().isoformat())
 
         if not user_data_collected or user_data_collected != "true":
@@ -203,11 +454,15 @@ async def query_database(query: Query):
             logger.info("✅ Cache hit")
             return json.loads(cached_result)
 
-        # 3️⃣ Generate embedding
+        # 3️⃣ Intent classification
+        predicted_intent = predict_intent(query.text)
+        logger.info(f"🎯 Predicted intent: {predicted_intent}")
+
+        # 4️⃣ Generate embedding
         query_embedding = embedding_model.encode([query.text])[0].tolist()
         query_embedding_np = np.array(query_embedding).reshape(1, -1)
 
-        # 4️⃣ Retrieve initial results
+        # 5️⃣ Initial retrieval
         results = collection.query(
             query_embeddings=[query_embedding],
             n_results=query.n_results,
@@ -215,77 +470,36 @@ async def query_database(query: Query):
         )
 
         if not results['ids'][0]:
-            logger.warning("⚠ No results found, attempting to fetch related questions")
+            logger.warning("⚠ No results found, attempting fallback suggestions")
+            return {
+                "results": [{
+                    "id": None,
+                    "answer": "I'm not confident I have a relevant answer. Could you please rephrase or ask something else?"
+                }],
+                "similar_questions": fallback_random_suggestions()
+            }
 
-            # Fetch similar questions from collection anyway
-            try:
-                more_results = collection.query(
-                    query_embeddings=[query_embedding],
-                    n_results=15,
-                    include=["metadatas", "embeddings"]
-                )
-
-                more_embeddings = np.array(more_results["embeddings"][0])
-                more_similarities = cosine_similarity(query_embedding_np, more_embeddings)[0]
-
-                candidate_list = sorted(
-                    zip(more_similarities, more_results['metadatas'][0]),
-                    key=lambda x: x[0],
-                    reverse=True
-                )
-
-                suggestions = []
-                used_questions = set()
-
-                for sim_score, metadata in candidate_list:
-                    q = metadata.get("question", "").strip()
-                    if q and q.lower() not in used_questions:
-                        suggestions.append(q)
-                        used_questions.add(q.lower())
-                    if len(suggestions) >= 3:
-                        break
-
-                return {
-                    "results": [{
-                        "id": None,
-                        "answer": "I'm not confident I have a relevant answer. Could you please rephrase or ask something else?"
-                    }],
-                    "similar_questions": suggestions
-                }
-
-            except Exception as e:
-                logger.error(f"⚠ Error during fallback suggestion logic: {e}")
-                return {
-                    "results": [{
-                        "id": None,
-                        "answer": "I'm not confident I have a relevant answer."
-                    }],
-                    "similar_questions": []
-                }
-
-
-        # 5️⃣ Compute Cosine Similarity and filter
+        # 6️⃣ Filter & boost by intent match
+        processed_results = []
+        question_set = set()
         retrieved_embeddings_np = np.array(results["embeddings"][0])
         cos_similarities = cosine_similarity(query_embedding_np, retrieved_embeddings_np)[0]
-
-        processed_results = []
-        question_set = set()  # track questions to avoid duplicates
-
-        logger.info(f"Processing {len(results['ids'][0])} results with "
-                    f"similarity threshold: {SIMILARITY_THRESHOLD}")
 
         for i, result_id in enumerate(results['ids'][0]):
             similarity = cos_similarities[i]
             metadata = results['metadatas'][0][i]
             question = metadata.get('question', '').strip()
             answer = metadata.get('answer', '').strip()
+            record_intent = metadata.get('intent', '').strip().lower()
 
             if not question:
                 continue
 
-            # Apply hybrid logic
             is_cosine_match = similarity >= SIMILARITY_THRESHOLD
             is_fuzzy_match = fuzz.ratio(query.text.lower(), question.lower()) >= FUZZY_MATCH_THRESHOLD
+            is_intent_match = record_intent == predicted_intent.lower()
+
+            adjusted_similarity = similarity + (0.05 if is_intent_match else 0)
 
             if is_cosine_match or is_fuzzy_match:
                 if question not in question_set:
@@ -293,127 +507,91 @@ async def query_database(query: Query):
                         'id': result_id,
                         'question': question,
                         'answer': answer,
-                        'similarity': round(similarity, 4),
+                        'similarity': round(adjusted_similarity, 4),
+                        'intent_match': is_intent_match,
                         'fuzzy_score': fuzz.ratio(query.text.lower(), question.lower())
                     })
                     question_set.add(question)
 
-        # 6️⃣ Sort results by similarity
-        processed_results.sort(key=lambda x: (x['similarity'] + (x['fuzzy_score'] / 100)), reverse=True)
+        processed_results.sort(key=lambda x: (x['similarity'] + x['fuzzy_score'] / 100), reverse=True)
         best_answer = processed_results[0] if processed_results else None
 
         if not best_answer:
-            logger.warning("No results met the similarity threshold, returning fallback suggestions.")
-
-            fallback_pool = [
-                "What is EPR registration?",
-                "How can I apply for a plastic waste certificate?",
-                "What are the responsibilities of a brand owner?",
-                "Do I need to submit monthly reports?",
-                "How is EPR compliance verified?",
-                "What documents are needed for CPCB registration?",
-                "Who qualifies as a PIBO?",
-                "How does ReCircle help with plastic credit?",
-                "What is the penalty for non-compliance?",
-                "Can you help me with recycling partners?"
-            ]
-
-            # Shuffle fallback and take top 3
-
-            fallback_suggestions = random.sample(fallback_pool, 3)
-
+            logger.warning("No relevant results after filtering")
             return {
                 "results": [{
                     "id": None,
                     "answer": "I'm not confident I have a relevant answer. Could you please rephrase or ask something else?"
                 }],
-                "similar_questions": fallback_suggestions
+                "similar_questions": fallback_random_suggestions()
             }
 
+        # 7️⃣ Similar question suggestions (fallback logic unchanged)
+        refined_similar_questions = get_similar_questions(query_embedding, query.text)
 
-        # 7️⃣ Prepare to fetch additional similar questions
-        excluded_questions = {query.text.lower()}
-        refined_similar_questions = []
-
-        try:
-            more_results = collection.query(
-                query_embeddings=[query_embedding],
-                n_results=15,
-                include=["metadatas", "embeddings"]
-            )
-
-            more_embeddings = np.array(more_results["embeddings"][0])
-            more_similarities = cosine_similarity(query_embedding_np, more_embeddings)[0]
-
-            candidate_list = sorted(
-                zip(more_similarities, more_results['metadatas'][0]),
-                key=lambda x: x[0],
-                reverse=True
-            )
-
-            max_sim = candidate_list[0][0] if candidate_list else 0.0
-            first_pass_threshold = max(0.5, 0.7 * max_sim)
-            second_pass_threshold = max(0.4, 0.5 * max_sim)
-
-            def is_near_duplicate(q1, q2, threshold=75):
-                return fuzz.ratio(q1.lower(), q2.lower()) >= threshold
-
-            def already_in_list(q, suggestions):
-                return any(is_near_duplicate(q, existing_q) for existing_q in suggestions)
-
-            # 🔍 Hybrid check: Cosine OR Fuzzy above threshold
-            def is_valid_suggestion(q, sim_score):
-                fuzzy_score = fuzz.ratio(query.text.lower(), q.lower())
-                return (sim_score >= first_pass_threshold or fuzzy_score >= FUZZY_MATCH_THRESHOLD)
-
-            for sim_score, metadata in candidate_list:
-                q = metadata.get('question', '').strip()
-                if not q or q.lower() in excluded_questions:
-                    continue
-                if is_valid_suggestion(q, sim_score) and not already_in_list(q, refined_similar_questions):
-                    refined_similar_questions.append(q)
-                    excluded_questions.add(q.lower())
-                if len(refined_similar_questions) >= 3:
-                    break
-
-            # 2nd pass with relaxed threshold if needed
-            if len(refined_similar_questions) < 3:
-                for sim_score, metadata in candidate_list:
-                    q = metadata.get('question', '').strip()
-                    if not q or q.lower() in excluded_questions:
-                        continue
-                    fuzzy_score = fuzz.ratio(query.text.lower(), q.lower())
-                    if (sim_score >= second_pass_threshold or fuzzy_score >= FUZZY_MATCH_THRESHOLD) and not already_in_list(q, refined_similar_questions):
-                        refined_similar_questions.append(q)
-                        excluded_questions.add(q.lower())
-                    if len(refined_similar_questions) >= 3:
-                        break
-
-            logger.info(f"✅ Found {len(refined_similar_questions)} unique suggestions")
-
-        except Exception as e:
-            logger.error(f"⚠ Error fetching additional similar questions: {str(e)}")
-            refined_similar_questions = []
-
-        # 1️⃣1️⃣ Final response
+        # 8️⃣ Final response
         response_data = {
             "results": [best_answer],
             "query": query.text,
-            "similar_questions": [q["question"] if isinstance(q, dict) else q for q in refined_similar_questions[:3]] # Ensure we sending just the question string
+            "predicted_intent": predicted_intent,
+            "similar_questions": refined_similar_questions
         }
 
-        # 1️⃣2️⃣ Cache the response
         redis_client.setex(cache_key, 120, json.dumps(response_data))
         return response_data
 
     except Exception as e:
         logger.error(f"❌ Query error: {str(e)}")
         logger.error(traceback.format_exc())
-        raise HTTPException(
-            status_code=500,
-            detail=f"An error occurred: {str(e)}"
+        raise HTTPException(status_code=500, detail="An error occurred")
+
+
+def fallback_random_suggestions():
+    fallback_pool = [
+        "What is EPR registration?",
+        "How can I apply for a plastic waste certificate?",
+        "What are the responsibilities of a brand owner?",
+        "Do I need to submit monthly reports?",
+        "How is EPR compliance verified?",
+        "What documents are needed for CPCB registration?",
+        "Who qualifies as a PIBO?",
+        "How does ReCircle help with plastic credit?",
+        "What is the penalty for non-compliance?",
+        "Can you help me with recycling partners?"
+    ]
+    return random.sample(fallback_pool, 3)
+
+def get_similar_questions(query_embedding, query_text):
+    try:
+        query_embedding_np = np.array(query_embedding).reshape(1, -1)
+        more_results = collection.query(query_embeddings=[query_embedding], n_results=15, include=["metadatas", "embeddings"])
+        more_embeddings = np.array(more_results["embeddings"][0])
+        more_similarities = cosine_similarity(query_embedding_np, more_embeddings)[0]
+
+        candidate_list = sorted(
+            zip(more_similarities, more_results['metadatas'][0]),
+            key=lambda x: x[0],
+            reverse=True
         )
 
+        refined = []
+        used = {query_text.lower()}
+
+        for sim_score, metadata in candidate_list:
+            q = metadata.get('question', '').strip()
+            if not q or q.lower() in used:
+                continue
+            fuzzy_score = fuzz.ratio(query_text.lower(), q.lower())
+            if sim_score >= 0.6 or fuzzy_score >= FUZZY_MATCH_THRESHOLD:
+                refined.append(q)
+                used.add(q.lower())
+            if len(refined) >= 3:
+                break
+
+        return refined
+    except Exception as e:
+        logger.error(f"⚠ Error getting similar questions: {e}")
+        return []
 
 
 # Add new endpoint to get chat history
