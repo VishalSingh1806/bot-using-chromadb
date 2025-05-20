@@ -379,10 +379,15 @@ async function submitForm() {
         return;
     }
 
-    const name = nameInput.value.trim();
-    const email = emailInput.value.trim();
-    const phone = phoneInput.value.trim();
-    const organization = orgInput.value.trim();
+    // ✨ Sanitize and normalize helper
+    function sanitizeAndTrim(value) {
+        return value.replace(/<\/?[^>]+(>|$)/g, "").trim();
+    }
+
+    const name = sanitizeAndTrim(nameInput.value).replace(/\s+/g, " ");
+    const email = sanitizeAndTrim(emailInput.value).toLowerCase();
+    const phone = sanitizeAndTrim(phoneInput.value).replace(/\D/g, "");
+    const organization = sanitizeAndTrim(orgInput.value);
 
     try {
         const response = await fetch(BACKEND_FORM_URL, {
@@ -398,15 +403,13 @@ async function submitForm() {
         });
 
         if (response.ok) {
-            // ✅ Remove the form after successful submission
             const userForm = document.getElementById("userForm");
             if (userForm) userForm.remove();
 
-            // ✅ Add a centered success message
             const formWrapper = document.querySelector(".bot-message.form-center");
             if (formWrapper) formWrapper.remove();
-            
-            const userName = nameInput.value.trim().split(" ")[0]; // First name only
+
+            const userName = name.split(" ")[0]; // Already cleaned above
 
             const successHtml = `
                 <div class="bot-message-wrapper fade-in">
@@ -426,7 +429,6 @@ async function submitForm() {
 
             localStorage.setItem("formSubmitted", "true");
 
-            // ✅ Show 3 shuffled suggested questions
             showInitialSuggestedQuestions();
 
             const sendBtn = document.getElementById("sendMessage");
