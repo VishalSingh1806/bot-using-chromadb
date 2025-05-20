@@ -184,6 +184,8 @@ async def query_database(query: Query):
 
         session_key = f"session:{query.session_id}"
         user_data_collected = redis_client.hget(session_key, "user_data_collected")
+        # 🔄 Refresh session last interaction timestamp
+        redis_client.hset(session_key, "last_interaction", datetime.utcnow().isoformat())
 
         if not user_data_collected or user_data_collected != "true":
             logger.info("⚠️ User data not collected, redirecting to form")
