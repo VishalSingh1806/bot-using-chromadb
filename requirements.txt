@@ -14,5 +14,5 @@ pydantic[email]
 thefuzz
 python-levenshtein
 fuzzywuzzy
-spellchecker
+pyspellchecker
 indexer
