@@ -15,4 +15,3 @@ thefuzz
 python-levenshtein
 fuzzywuzzy
 pyspellchecker
-indexer
