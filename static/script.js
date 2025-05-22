@@ -1,6 +1,6 @@
 const isLocal = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost";
-const BACKEND_CHAT_URL = isLocal ? "http://127.0.0.1:8001/query" : "http://34.173.78.39:8001/query";
-const BACKEND_FORM_URL = isLocal ? "http://127.0.0.1:8001/collect_user_data" : "http://34.173.78.39:8000/collect_user_data";
+const BACKEND_CHAT_URL = isLocal ? "http://127.0.0.1:8000/query" : "http://0.0.0.0:8000/query";
+const BACKEND_FORM_URL = isLocal ? "http://127.0.0.1:8000/collect_user_data" : "http://0.0.0.0:8000/collect_user_data";
 
 let isFormSubmitted = false; // Default state: form not submitted
 let inactivityTimer;
