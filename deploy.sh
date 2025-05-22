@@ -1,9 +1,16 @@
 #!/bin/bash
 
+set -e  # ⛑️ Exit immediately if any command fails
+
+echo "📥 Pulling latest changes from Git..."
+git reset --hard HEAD      # Discard local changes
+git clean -fd              # Remove untracked files/folders
+git pull origin main       # Or replace 'main' with your branch name
+
 # 🔁 Step 1: Stop and remove existing container (if running)
 echo "🛑 Stopping and removing any existing container..."
-docker stop recircle-chatbot-container 2>/dev/null
-docker rm recircle-chatbot-container 2>/dev/null
+docker stop recircle-chatbot-container 2>/dev/null || true
+docker rm recircle-chatbot-container 2>/dev/null || true
 
 # 🔨 Step 2: Build the Docker image
 echo "🔨 Building the Docker image..."
