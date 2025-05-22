@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/styles.css">
-    <link rel="icon" href="../static/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
 
     <title>EPR ChatBot </title>
 </head>
 <body>
     <div class="chat-widget">
-        <div class="chat-button" onclick="toggleChat()"><img src="../static/logo.png" alt="Chat Logo" class="chat-logo"></div>
+        <div class="chat-button" onclick="toggleChat()"><img src="/static/logo.png" alt="Chat Logo" class="chat-logo"></div>
         <div id="chatWindow" class="chat-window">
             <div class="chat-header">
                <div class="bot-info">
-                <img src="../static/bot-img.svg" alt="Bot Icon" class="bot-icon">
+                <img src="/static/bot-img.svg" alt="Bot Icon" class="bot-icon">
                 <span class="bo-name">Revo</span>
                </div>
                <span class="close-btn" onclick="toggleChat()">✖</span>
@@ -24,7 +24,7 @@
                 <!-- ❌ Error Screen (Hidden by default) -->
             <div id="errorScreen" class="error-screen">
                 <div class="error-content">
-                    <img src="../static/error-screen.svg" alt="Error" class="error-image">
+                    <img src="/static/error-screen.svg" alt="Error" class="error-image">
                     <h3><b>Seems like a problem!</b></h3>
                     <p style="color: black;"><b>Don’t worry, our team is resolving it.</b></p>
                     <p style="color:blue">
@@ -38,7 +38,7 @@
                 <div class="input-container">
                     <input type="text" id="userMessage" placeholder="Ask your question..." onkeydown="checkEnter(event)" maxlength="100">
                     <button onclick="sendMessage()" id="sendMessage" class="send-btn">
-                        <img src="../static/Send.svg" alt="send">
+                        <img src="/static/Send.svg" alt="send">
                     </button>
                 </div>
             </div>            
