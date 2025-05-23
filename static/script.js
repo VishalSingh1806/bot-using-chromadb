@@ -830,8 +830,8 @@ function generateSessionId() {
     localStorage.setItem("session_id", sessionId);
 
     const expirationDate = new Date();
-    // expirationDate.setTime(expirationDate.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
-    expirationDate.setTime(expirationDate.getTime() + 2* 60 * 1000); // 1 minute
+    expirationDate.setTime(expirationDate.getTime() + 30 * 24 * 60 * 60 * 1000); // 30 days
+    // expirationDate.setTime(expirationDate.getTime() + 2* 60 * 1000); // 1 minute
     localStorage.setItem("session_expiry", expirationDate.toISOString());
 
     return sessionId;
