@@ -7,6 +7,14 @@ git reset --hard HEAD
 git clean -fd
 git pull origin paraphrasing-clean  # Change if you're using another branch
 
+# ♻️ Optional: Clean up stopped containers and dangling images
+echo "🧹 Cleaning up unused Docker containers and images..."
+docker container prune -f
+docker image prune -f
+
+# Optional: Remove all unused (untagged and unreferenced) images and build ca>
+docker system prune -a -f --volumes
+
 # 🔁 Step 1: Stop and remove existing container (if running)
 echo "🛑 Stopping and removing any existing container..."
 docker stop recircle-chatbot-container 2>/dev/null
