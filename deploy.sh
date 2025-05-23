@@ -17,8 +17,10 @@ docker image prune -f
 
 # 🔁 Step 1: Stop and remove existing container (if running)
 echo "🛑 Stopping and removing any existing container..."
-docker stop recircle-chatbot-container 2>/dev/null
-docker rm recircle-chatbot-container 2>/dev/null
+docker stop recircle-chatbot-container 2>/dev/null || echo "Container not running"
+docker rm recircle-chatbot-container 2>/dev/null || echo "Container not found"
+echo "✅ Old container cleanup done."
+
 
 # 🔨 Step 2: Build the Docker image
 echo "🔨 Building the Docker image..."
