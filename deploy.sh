@@ -13,7 +13,7 @@ docker container prune -f
 docker image prune -f
 
 # Optional: Remove all unused (untagged and unreferenced) images and build ca>
-docker system prune -a -f --volumes
+# docker system prune -a -f --volumes
 
 # 🔁 Step 1: Stop and remove existing container (if running)
 echo "🛑 Stopping and removing any existing container..."
