@@ -180,8 +180,7 @@ async def classify_intent(query: str = Body(..., embed=True)):
         logger.error(f"❌ Intent classification failed: {str(e)}")
         raise HTTPException(status_code=500, detail="Error classifying intent")
 
-<<<<<<< HEAD
-=======
+
 # @app.post("/query")
 # async def query_database(query: Query):
 #     try:
@@ -425,7 +424,6 @@ async def classify_intent(query: str = Body(..., embed=True)):
 #             detail=f"An error occurred: {str(e)}"
 #         )
 
->>>>>>> d0975c49067ae97c5ea1b25417370a369eff3e22
 @app.post("/query")
 async def query_database(query: Query):
     try:
