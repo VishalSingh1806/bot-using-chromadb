@@ -62,12 +62,15 @@ class ChromaEmbeddingFunction:
                 show_progress_bar=True,
                 batch_size=CONFIG['batch_size']
             )
-            # ✅ Normalize embeddings
             normalized_embeddings = embeddings / np.linalg.norm(embeddings, axis=1, keepdims=True)
             return normalized_embeddings.tolist()
         except Exception as e:
             logger.error(f"Embedding generation error: {str(e)}")
             raise
+
+    def name(self) -> str:
+        return "custom_chroma_embedding_v1"
+
 
 
 
